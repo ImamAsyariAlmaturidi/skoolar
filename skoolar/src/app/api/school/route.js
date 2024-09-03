@@ -1,26 +1,43 @@
+import { NextResponse } from "next/server";
 class School {
   static async POST() {
     try {
     } catch (error) {
-      console.log(error);
+      return NextResponse.json({
+        statusCode: 500,
+        message: "Internal server error",
+        data: [],
+      });
     }
   }
   static async GET() {
     try {
     } catch (error) {
-      console.log(error);
+      return NextResponse.json({
+        statusCode: 500,
+        message: "Internal server error",
+        data: [],
+      });
     }
   }
   static async PUT() {
     try {
     } catch (error) {
-      console.log9err;
+      return NextResponse.json({
+        statusCode: 500,
+        message: "Internal server error",
+        data: [],
+      });
     }
   }
   static async DELETE() {
     try {
     } catch (error) {
-      console.log(error);
+      return NextResponse.json({
+        statusCode: 500,
+        message: "Internal server error",
+        data: [],
+      });
     }
   }
 }

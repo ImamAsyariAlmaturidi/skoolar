@@ -12,7 +12,7 @@ export async function POST(request) {
     if (parsedData.error) {
       return NextResponse.json({
         statusCode: 400,
-        message: error,
+        message: parsedData.error,
         data,
       });
     }
