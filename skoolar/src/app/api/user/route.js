@@ -1,8 +1,17 @@
+import { NextResponse } from "next/server";
 import { getUser } from "../../../db/models/User";
 
-export async function POST() {
+export async function GET() {
   try {
+    const data = await getUser();
+    console.log(data);
+    return NextResponse.json({
+      statusCode: 200,
+      message: "Succes get all user",
+      data: data,
+    });
   } catch (error) {
+    console.log(error);
     return NextResponse.json({
       statusCode: 500,
       message: "Internal server error",
@@ -10,14 +19,8 @@ export async function POST() {
     });
   }
 }
-export async function GET() {
+export async function POST() {
   try {
-    const data = await getUser();
-    return NextResponse.json({
-      statusCode: 200,
-      message: "Succes get all user",
-      data: data,
-    });
   } catch (error) {
     return NextResponse.json({
       statusCode: 500,
