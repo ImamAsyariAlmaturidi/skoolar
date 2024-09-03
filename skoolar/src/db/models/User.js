@@ -1,5 +1,5 @@
 import { hashingPassword } from "../utils/bcrypt";
-import getMongoClientInstance from "../../config/mongo";
+import { getMongoClientInstance } from "../../config/mongo";
 const DATABASE_NAME = process.env.DATABASE_NAME || "skoolar";
 const COLLECTION_USER = "user";
 export const getDb = async () => {

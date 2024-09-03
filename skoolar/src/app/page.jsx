@@ -1,7 +1,8 @@
 import Image from "next/image";
 
 export default async function Home() {
-  const data = await fetch("http://localhost:3000/api/user", {
+  const data = await fetch("http://localhost:3000/api/user/1", {
+    cache: "no-store",
     method: "GET",
   });
   console.log(await data.json());
