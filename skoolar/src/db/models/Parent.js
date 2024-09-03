@@ -1,5 +1,5 @@
 const DATABASE_NAME = process.env.DATABASE_NAME || "skoolar";
-const COLLECTION_USER = "skoolar";
+const COLLECTION_USER = "parent";
 export const getDb = async () => {
   const client = await getMongoClientInstance();
   const db = client.db(DATABASE_NAME);
