@@ -7,6 +7,7 @@ import {
   where,
   getDocs,
   orderBy,
+  doc
 } from "firebase/firestore";
 import { snap } from "../../../config/midtrans";
 
@@ -19,13 +20,13 @@ export async function createGroup(data) {
   }
 }
 
-export async function getAllMessagesByGroupId(groupId) {
+export async function getAllMessagesByGroupId() {
   try {
     const messagesRef = collection(db, "group_message");
 
     const q = query(
       messagesRef,
-      where("group_id", "==", groupId),
+      where("group_id", "==", 1),
       orderBy("created_at")
     );
 
