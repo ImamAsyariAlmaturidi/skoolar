@@ -1,73 +1,217 @@
-export default function SideBar() {
-    return (
-        <>
-            <div className="w-[7rem] h-full rounded-3xl bg-white shadow-xl py-5">
-                <div className="w-full h-[20%] py-5 flex justify-center">
-                    <figure className="w-[5rem] h-[5rem] rounded-full bg-neutral-300 flex justify-center items-center cursor-pointer">
-                        <img
-                            className="w-[90%] h-[90%] object-cover rounded-full border-white border"
-                            src="https://shotkit.com/wp-content/uploads/bb-plugin/cache/cool-profile-pic-matheus-ferrero-landscape-6cbeea07ce870fc53bedd94909941a4b-zybravgx2q47.jpeg"
-                        />
-                    </figure>
-                </div>
-                <div className="w-full h-[55%] flex justify-center items-center border-t-2 border-neutral-300">
-                    <ul className="text-black space-y-8">
-                        <li>
-                            <figure className="w-[3rem] h-[3rem] rounded-full bg-white flex justify-center items-center  hover:translate-x-2 transition-transform hover:bg-blue-50 hover:border-2 border-slate-300 cursor-pointer">
-                                <img
-                                    className="w-[80%] h-[80%] object-contain rounded-full  "
-                                    src="https://icons.veryicon.com/png/o/miscellaneous/swiss-team/home-home-7.png"
-                                />
-                            </figure>
-                        </li>
+"use client";
 
-                        <li>
-                            <figure className="w-[3rem] h-[3rem] rounded-full bg-white flex justify-center items-center  hover:translate-x-2 transition-transform hover:bg-blue-50 hover:border-2 border-slate-300 cursor-pointer">
-                                <img
-                                    className="w-[75%] h-[75%] object-cover rounded-full "
-                                    src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256.001%20256.001%22%3E%3Crect%20width%3D%22256%22%20height%3D%22256%22%20fill%3D%22none%22%2F%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%228%22%20d%3D%22M71.5834%2C144.00049l-39.58291%2C32v-128a8%2C8%2C0%2C0%2C1%2C8-8h128a8%2C8%2C0%2C0%2C1%2C8%2C8v88a8%2C8%2C0%2C0%2C1-8%2C8Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%228%22%20d%3D%22M80.00049%2C144.00048v40a8%2C8%2C0%2C0%2C0%2C8%2C8h96.41709l39.58291%2C32v-128a8%2C8%2C0%2C0%2C0-8-8h-40%22%2F%3E%3C%2Fsvg%3E"
-                                />
-                            </figure>
-                        </li>
-                        <li>
-                            <figure className="w-[3rem] h-[3rem] rounded-full bg-white flex justify-center items-center hover:translate-x-2 transition-transform hover:bg-blue-50 hover:border-2 border-slate-300 cursor-pointer">
-                                <img
-                                    className="w-[65%] h-[65%] object-contain"
-                                    src="https://icons.veryicon.com/png/o/business/2px-simple-icon/task-19.png"
-                                />
-                            </figure>
-                        </li>
-                        <li>
-                            <figure className="w-[3rem] h-[3rem] rounded-full bg-white flex justify-center items-center  hover:translate-x-2 transition-transform hover:bg-blue-50 hover:border-2 border-slate-300 cursor-pointer">
-                                <img
-                                    className="w-[75%] h-[75%] object-cover rounded-full "
-                                    src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20d%3D%22m32.43%2C4.19c-.55%2C0-1%2C.45-1%2C1v5.16c-3.75.14-7.23%2C1.61-9.94%2C4.24-2.95%2C2.87-4.58%2C6.71-4.58%2C10.82v4.61c0%2C7.88-2.63%2C15.65-7.41%2C21.9-.23.3-.27.71-.1%2C1.05.17.34.52.56.9.56h14.44c.52%2C3.54%2C3.59%2C6.28%2C7.27%2C6.28s6.74-2.74%2C7.26-6.28h14.44c.38%2C0%2C.73-.22.9-.56.17-.34.13-.75-.1-1.05-4.78-6.25-7.41-14.03-7.41-21.9v-4.01c0-1.14-.13-2.27-.36-3.36%2C1.96-1.29%2C3.26-3.52%2C3.26-6.04%2C0-3.99-3.24-7.23-7.23-7.23-1.99%2C0-3.79.81-5.1%2C2.11-1.35-.57-2.76-.94-4.22-1.08v-5.22c0-.55-.45-1-1-1Zm12.66%2C21.82v4.01c0%2C7.65%2C2.35%2C15.21%2C6.66%2C21.51h-13.4c-.55%2C0-.99.44-1%2C.99-.04%2C2.92-2.43%2C5.29-5.34%2C5.29s-5.32-2.37-5.34-5.29c0-.55-.45-.99-1-.99h-13.4c4.31-6.3%2C6.66-13.86%2C6.66-21.51v-4.61c0-3.56%2C1.41-6.9%2C3.97-9.38%2C2.56-2.49%2C5.94-3.79%2C9.51-3.69%2C0%2C0%2C.01%2C0%2C.02%2C0%2C0%2C0%2C.01%2C0%2C.02%2C0%2C0%2C0%2C0%2C0%2C0%2C0%2C1.38.05%2C2.71.32%2C3.98.8-.57%2C1.03-.89%2C2.22-.89%2C3.47%2C0%2C3.99%2C3.24%2C7.23%2C7.23%2C7.23.73%2C0%2C1.44-.11%2C2.11-.32.15.81.22%2C1.64.22%2C2.48Zm-2.33-14.63c2.88%2C0%2C5.23%2C2.35%2C5.23%2C5.23s-2.35%2C5.23-5.23%2C5.23-5.23-2.35-5.23-5.23%2C2.35-5.23%2C5.23-5.23Z%22%2F%3E%3C%2Fsvg%3E"
-                                />
-                            </figure>
-                        </li>
-                    </ul>
-                </div>
-                <div className="w-full h-[25%] flex justify-center items-center pt-10  border-t-2 border-neutral-300">
-                    <ul className="text-black space-y-7">
-                        <li>
-                            <figure className="w-[3rem] h-[3rem] rounded-full bg-white flex justify-center items-center hover:translate-x-2 transition-transform hover:bg-blue-100 hover:border-2 border-slate-300 cursor-pointer">
-                                <img
-                                    className="w-[85%] h-[85%] object-cover rounded-full"
-                                    src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20enable-background%3D%22new%200%200%2070%2070%22%20viewBox%3D%220%200%2070%2070%22%3E%3Cpath%20d%3D%22M58.0959473%2C39.0869141c0.4135742-0.1328125%2C0.6938477-0.5175781%2C0.6938477-0.9521484v-6.2402344%0D%0A%09c0-0.4345703-0.2807617-0.8193359-0.6943359-0.9521484l-5.8862305-1.8876953%0D%0A%09c-0.2607422-0.7246094-0.527832-1.3701172-0.8081055-1.9541016l2.8291016-5.5195313%0D%0A%09c0.1977539-0.3857422%2C0.1240234-0.8554688-0.1821289-1.1621094l-4.4101563-4.4199219%0D%0A%09c-0.3066406-0.3085938-0.7758789-0.3808594-1.1621094-0.1845703l-5.5205078%2C2.8154297%0D%0A%09c-0.6206055-0.3095703-1.2827148-0.5859375-1.9785156-0.8261719l-1.8842773-5.8935547%0D%0A%09c-0.1328125-0.4140625-0.5175781-0.6953125-0.9526367-0.6953125h-6.2397461c-0.4335938%2C0-0.8178711%2C0.2792969-0.9516602%2C0.6923828%0D%0A%09l-1.9047852%2C5.890625c-0.5966797%2C0.2070313-1.2832031%2C0.4716797-1.9794922%2C0.8193359l-5.4868164-2.8222656%0D%0A%09c-0.3876953-0.1982422-0.8583984-0.1240234-1.1655273%2C0.1835938l-4.4199219%2C4.4306641%0D%0A%09c-0.3056641%2C0.3066406-0.3793945%2C0.7744141-0.1826172%2C1.1601563l2.7973633%2C5.484375%0D%0A%09c-0.3144531%2C0.6396484-0.5869141%2C1.3017578-0.8139648%2C1.9775391l-5.8696289%2C1.8916016%0D%0A%09c-0.4121094%2C0.1328125-0.6918945%2C0.515625-0.6933594%2C0.9492188l-0.0195313%2C6.2402344%0D%0A%09c-0.0014648%2C0.4345703%2C0.277832%2C0.8193359%2C0.690918%2C0.9541016l5.8930664%2C1.9140625%0D%0A%09c0.2246094%2C0.6328125%2C0.4916992%2C1.2705078%2C0.8178711%2C1.9541016l-2.8125%2C5.5048828%0D%0A%09c-0.1967773%2C0.3857422-0.1235352%2C0.8535156%2C0.1821289%2C1.1601563l4.3999023%2C4.4199219%0D%0A%09c0.3061523%2C0.3076172%2C0.7758789%2C0.3857422%2C1.1621094%2C0.1855469l5.5175781-2.8095703%0D%0A%09c0.6499023%2C0.3183594%2C1.2954102%2C0.5888672%2C1.9541016%2C0.8183594l1.9140625%2C5.8808594%0D%0A%09c0.1337891%2C0.4121094%2C0.5175781%2C0.6904297%2C0.9506836%2C0.6904297h6.2397461c0.4331055%2C0%2C0.8168945-0.2783203%2C0.9506836-0.6904297%0D%0A%09l1.9160156-5.8847656c0.6914063-0.2451172%2C1.3354492-0.5107422%2C1.9482422-0.8046875l5.5107422%2C2.8105469%0D%0A%09c0.3876953%2C0.1962891%2C0.8540039%2C0.1220703%2C1.1611328-0.1826172l4.409668-4.4003906%0D%0A%09c0.3061523-0.3056641%2C0.3813477-0.7744141%2C0.1850586-1.1601563l-2.8071289-5.5322266%0D%0A%09c0.2939453-0.5927734%2C0.5625-1.2402344%2C0.8129883-1.9589844L58.0959473%2C39.0869141z%20M49.3781738%2C43.3867188l2.7114258%2C5.3427734%0D%0A%09l-3.3818359%2C3.375l-5.3129883-2.7099609c-0.2880859-0.1484375-0.6274414-0.1464844-0.9135742%2C0.0019531%0D%0A%09c-0.7924805%2C0.4101563-1.6445313%2C0.7626953-2.6040039%2C1.078125c-0.3022461%2C0.0996094-0.5395508%2C0.3378906-0.6376953%2C0.640625%0D%0A%09l-1.8457031%2C5.6699219h-4.7875977l-1.8457031-5.6699219c-0.0996094-0.3066406-0.3417969-0.546875-0.6494141-0.6435547%0D%0A%09c-0.8764648-0.2773438-1.7231445-0.6318359-2.5883789-1.0839844c-0.2861328-0.1484375-0.6279297-0.1513672-0.9165039-0.0039063%0D%0A%09l-5.3212891%2C2.7089844l-3.3740234-3.3896484l2.7094727-5.3037109c0.1445313-0.2832031%2C0.1459961-0.6181641%2C0.0039063-0.9023438%0D%0A%09c-0.4750977-0.9501953-0.8222656-1.7822266-1.0927734-2.6201172c-0.0986328-0.3046875-0.3374023-0.5439453-0.6425781-0.6435547%0D%0A%09l-5.6762695-1.84375l0.0146484-4.7851563l5.6694336-1.8271484c0.3134766-0.1015625%2C0.5571289-0.3505859%2C0.6513672-0.6660156%0D%0A%09c0.2675781-0.8945313%2C0.625-1.7636719%2C1.0639648-2.5859375c0.1538086-0.2880859%2C0.1572266-0.6337891%2C0.0083008-0.9248047%0D%0A%09l-2.699707-5.2929688l3.3911133-3.3994141l5.3007813%2C2.7265625c0.2983398%2C0.1513672%2C0.6523438%2C0.1464844%2C0.9443359-0.015625%0D%0A%09c0.7163086-0.3994141%2C1.4916992-0.7236328%2C2.59375-1.0839844c0.3041992-0.0986328%2C0.5424805-0.3378906%2C0.6411133-0.6425781%0D%0A%09l1.8359375-5.6777344h4.7822266l1.8173828%2C5.6845703c0.0996094%2C0.3105469%2C0.34375%2C0.5527344%2C0.6542969%2C0.6494141%0D%0A%09c0.9379883%2C0.2929688%2C1.809082%2C0.6582031%2C2.5888672%2C1.0839844c0.2900391%2C0.1572266%2C0.6396484%2C0.1630859%2C0.9335938%2C0.0126953%0D%0A%09l5.3320313-2.71875l3.3823242%2C3.3896484l-2.7285156%2C5.3222656c-0.1479492%2C0.2890625-0.1464844%2C0.6318359%2C0.0039063%2C0.9189453%0D%0A%09c0.3818359%2C0.7314453%2C0.7382813%2C1.5878906%2C1.0893555%2C2.6191406c0.1020508%2C0.2998047%2C0.3398438%2C0.5332031%2C0.6411133%2C0.6298828%0D%0A%09l5.6655273%2C1.8173828V37.40625l-5.6757813%2C1.8261719c-0.3066406%2C0.0986328-0.5463867%2C0.3388672-0.6455078%2C0.6445313%0D%0A%09c-0.3237305%2C1.0029297-0.6757813%2C1.8466797-1.0761719%2C2.5771484C49.2341309%2C42.7441406%2C49.2287598%2C43.0927734%2C49.3781738%2C43.3867188%0D%0A%09z%22%2F%3E%3Cpath%20d%3D%22M36.2541504%2C25.5644531c-5.2006836-0.6933594-9.9995117%2C2.9775391-10.6933594%2C8.1796875%0D%0A%09c-0.3364258%2C2.5244141%2C0.3271484%2C5.0292969%2C1.8691406%2C7.0517578c1.5439453%2C2.0244141%2C3.7836914%2C3.3251953%2C6.3076172%2C3.6611328%0D%0A%09c0.425293%2C0.0566406%2C0.8476563%2C0.0839844%2C1.265625%2C0.0839844c4.7050781%2C0%2C8.8120117-3.4921875%2C9.449707-8.2802734%0D%0A%09C45.1462402%2C31.0585938%2C41.4685059%2C26.2597656%2C36.2541504%2C25.5644531z%20M42.470459%2C35.9970703%0D%0A%09c-0.5483398%2C4.1201172-4.3393555%2C7.0273438-8.4692383%2C6.4775391c-1.9926758-0.265625-3.7617188-1.2919922-4.9804688-2.8916016%0D%0A%09c-1.21875-1.5986328-1.7436523-3.578125-1.4775391-5.5751953c0.5029297-3.7744141%2C3.7402344-6.5273438%2C7.4492188-6.5273438%0D%0A%09c0.3295898%2C0%2C0.6625977%2C0.0214844%2C0.9975586%2C0.0664063C40.111084%2C28.0966797%2C43.0178223%2C31.8867188%2C42.470459%2C35.9970703z%22%2F%3E%3C%2Fsvg%3E"
-                                />
-                            </figure>
-                        </li>
-                        <li>
-                            <figure className="w-[3rem] h-[3rem] rounded-full bg-white flex justify-center items-center hover:translate-x-2 transition-transform hover:bg-blue-100 hover:border-2 border-slate-300 cursor-pointer">
-                                <img
-                                    className="w-[70%] h-[70%] object-contain rounded-full"
-                                    src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20stroke%3D%22%23000%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M12%204L8%204C6.89543%204%206%204.89543%206%206V18C6%2019.1046%206.89543%2020%208%2020H12M19%2012H10M19%2012L16%209M19%2012L16%2015%22%2F%3E%3C%2Fsvg%3E"
-                                />
-                            </figure>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </>
-    );
+import Link from "next/link";
+
+export default function SideBar() {
+  return (
+    <>
+      <div className="w-full max-w-[7rem] h-full rounded-3xl bg-white shadow-xl py-5">
+        <div className="w-full h-[20%] py-5 flex justify-center">
+          <figure className="w-[5rem] h-[5rem] rounded-full bg-[#006bf8] flex justify-center items-center cursor-pointer">
+            <img
+              className="w-[90%] h-[90%] object-cover rounded-full border-2 border-white"
+              src="https://shotkit.com/wp-content/uploads/bb-plugin/cache/cool-profile-pic-matheus-ferrero-landscape-6cbeea07ce870fc53bedd94909941a4b-zybravgx2q47.jpeg"
+              alt="Profile"
+            />
+          </figure>
+        </div>
+        <div className="w-full h-[55%] flex justify-center items-center border-t-2 border-neutral-300">
+          <ul className="text-black space-y-6 flex flex-col items-center">
+            <li>
+              <Link href="/dashboard/parent">
+                <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 hover:border-2 border-slate-300 cursor-pointer  hover:text-white">
+                  <svg
+                    width="40px"
+                    height="40px"
+                    viewBox="0 0 64 64"
+                    xmlns="http://www.w3.org/2000/svg"
+                    strokeWidth="4"
+                    stroke="currentColor"
+                    fill="none"
+                  >
+                    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path d="M51.61,25.21,33.2,11.4a2,2,0,0,0-2.4,0L12.39,25.21a2,2,0,0,0-.8,1.6V53.45a2,2,0,0,0,2,2H25a2,2,0,0,0,2-2V45a2,2,0,0,1,2-2h7a2,2,0,0,1,2,2v8.45a2,2,0,0,0,2,2H50.41a2,2,0,0,0,2-2V26.81A2,2,0,0,0,51.61,25.21Z"></path>
+                    </g>
+                  </svg>
+                </figure>
+              </Link>
+            </li>
+            <li>
+              <Link href="/dashboard/parent/chat">
+                <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 hover:border-2 border-slate-300 cursor-pointer  hover:text-white">
+                  <svg
+                    width="37px"
+                    height="37px"
+                    viewBox="0 0 32 32"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    stroke="currentColor"
+                    strokeWidth="0.8"
+                  >
+                    <g strokeWidth="0"></g>
+                    <g strokeLinecap="round" strokeLinejoin="round"></g>
+                    <g>
+                      <path
+                        d="M21.331 10.669v-7.997h-18.659v14.394h7.997v7.997h11.063l4.265 4.264h0.665v-4.264h2.666v-14.394h-7.997zM3.738 16v-12.262h16.527v6.931h-9.596v5.331h-6.931zM28.262 23.997h-2.666v3.422l-3.423-3.422h-10.439v-12.262h16.527v12.262z"
+                        fill="currentColor"
+                      />
+                    </g>
+                  </svg>
+                </figure>
+              </Link>
+            </li>
+            <li>
+              <Link href="/dashboard/parent/assignment">
+                <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 hover:border-2 border-slate-300 cursor-pointer">
+                  <svg
+                    width="40px"
+                    height="40px"
+                    viewBox="0 0 28 28"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    stroke="currentColor"
+                    className="text-black hover:text-white"
+                  >
+                    <path
+                      d="M4 5.25C4 3.45508 5.45507 2 7.25 2H20.75C22.5449 2 24 3.45507 24 5.25V17.3787C23.8796 17.4592 23.7653 17.5527 23.659 17.659L22.5 18.818V5.25C22.5 4.2835 21.7165 3.5 20.75 3.5H7.25C6.2835 3.5 5.5 4.2835 5.5 5.25V22.7497C5.5 23.7162 6.2835 24.4997 7.25 24.4997H15.3177L16.8177 25.9997H7.25C5.45507 25.9997 4 24.5446 4 22.7497V5.25Z"
+                      strokeWidth="0.1"
+                    ></path>
+                    <path
+                      d="M10.5 8.75C10.5 9.44036 9.94036 10 9.25 10C8.55964 10 8 9.44036 8 8.75C8 8.05964 8.55964 7.5 9.25 7.5C9.94036 7.5 10.5 8.05964 10.5 8.75Z"
+                      strokeWidth="0.1"
+                    ></path>
+                    <path
+                      d="M9.25 15.2498C9.94036 15.2498 10.5 14.6902 10.5 13.9998C10.5 13.3095 9.94036 12.7498 9.25 12.7498C8.55964 12.7498 8 13.3095 8 13.9998C8 14.6902 8.55964 15.2498 9.25 15.2498Z"
+                      strokeWidth="0.1"
+                    ></path>
+                    <path
+                      d="M9.25 20.5C9.94036 20.5 10.5 19.9404 10.5 19.25C10.5 18.5596 9.94036 18 9.25 18C8.55964 18 8 18.5596 8 19.25C8 19.9404 8.55964 20.5 9.25 20.5Z"
+                      strokeWidth="0.1"
+                    ></path>
+                    <path
+                      d="M12.75 8C12.3358 8 12 8.33579 12 8.75C12 9.16421 12.3358 9.5 12.75 9.5H19.25C19.6642 9.5 20 9.16421 20 8.75C20 8.33579 19.6642 8 19.25 8H12.75Z"
+                      strokeWidth="0.1"
+                    ></path>
+                    <path
+                      d="M12 13.9998C12 13.5856 12.3358 13.2498 12.75 13.2498H19.25C19.6642 13.2498 20 13.5856 20 13.9998C20 14.414 19.6642 14.7498 19.25 14.7498H12.75C12.3358 14.7498 12 14.414 12 13.9998Z"
+                      strokeWidth="0.1"
+                    ></path>
+                    <path
+                      d="M12.75 18.5C12.3358 18.5 12 18.8358 12 19.25C12 19.6642 12.3358 20 12.75 20H19.25C19.6642 20 20 19.6642 20 19.25C20 18.8358 19.6642 18.5 19.25 18.5H12.75Z"
+                      strokeWidth="0.1"
+                    ></path>
+                    <path
+                      d="M25.7803 19.7803L19.7803 25.7803C19.6397 25.921 19.4489 26 19.25 26C19.0511 26 18.8603 25.921 18.7197 25.7803L15.7216 22.7823C15.4287 22.4894 15.4287 22.0145 15.7216 21.7216C16.0145 21.4287 16.4894 21.4287 16.7823 21.7216L19.25 24.1893L24.7197 18.7197C25.0126 18.4268 25.4874 18.4268 25.7803 18.7197C26.0732 19.0126 26.0732 19.4874 25.7803 19.7803Z"
+                      strokeWidth="0.1"
+                    ></path>
+                  </svg>
+                </figure>
+              </Link>
+            </li>
+            <li>
+              <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 hover:border-2 border-slate-300 cursor-pointer">
+                <svg
+                  width="43px"
+                  height="43px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  strokeWidth="1.3"
+                  className="text-black hover:text-white"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <g clip-path="url(#clip0_15_159)">
+                      <rect width="24" height="24"></rect>
+                      <path
+                        d="M9.5 19C8.89555 19 7.01237 19 5.61714 19C4.87375 19 4.39116 18.2177 4.72361 17.5528L5.57771 15.8446C5.85542 15.2892 6 14.6774 6 14.0564C6 13.2867 6 12.1434 6 11C6 9 7 5 12 5C17 5 18 9 18 11C18 12.1434 18 13.2867 18 14.0564C18 14.6774 18.1446 15.2892 18.4223 15.8446L19.2764 17.5528C19.6088 18.2177 19.1253 19 18.382 19H14.5M9.5 19C9.5 21 10.5 22 12 22C13.5 22 14.5 21 14.5 19M9.5 19C11.0621 19 14.5 19 14.5 19"
+                        stroke="currentColor"
+                        stroke-linejoin="round"
+                      ></path>
+                      <path
+                        d="M12 5V3"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_15_159">
+                        <rect width="24" height="24" fill="white"></rect>
+                      </clipPath>
+                    </defs>
+                  </g>
+                </svg>
+              </figure>
+            </li>
+            <li>
+              <Link href="/dashboard/parent/transaction">
+                <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 hover:border-2 border-slate-300 cursor-pointer text-black hover:text-white">
+                  <svg
+                    fill="currentColor"
+                    width="35px"
+                    height="35px"
+                    viewBox="0 -2.5 46 46"
+                    xmlns="http://www.w3.org/2000/svg"
+                    stroke-width="0.736"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      {" "}
+                      <path
+                        id="_07.Wallet"
+                        data-name="07.Wallet"
+                        d="M47,40h0a5,5,0,0,1-5,5H6a5,5,0,0,1-5-5V11A4,4,0,0,1,5,7H25.171l8.1-2.934a.99.99,0,0,1,1.268.589L35.391,7H39a4,4,0,0,1,4,4v2h0a4,4,0,0,1,4,4ZM5,9H5a2,2,0,0,0,0,4H8.634c.013-.005.021-.016.034-.021L19.65,9Zm29.078.181L33.016,6.257h0L30.964,7h0L25.453,9h-.01L14.4,13H35.466ZM41,11a2,2,0,0,0-2-2H36.117l1.454,4H41Zm2,4H5a3.955,3.955,0,0,1-2-.555V40a3,3,0,0,0,3,3H42a3,3,0,0,0,3-3V33H41a4,4,0,0,1,0-8h4V17A2,2,0,0,0,43,15Zm2,16V27H41a2,2,0,0,0,0,4Zm-4-3h2v2H41Z"
+                        transform="translate(-1 -4.006)"
+                        fill-rule="evenodd"
+                      ></path>{" "}
+                    </g>
+                  </svg>
+                </figure>
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="w-full h-[25%] flex justify-center items-center pt-10 border-t-2 border-neutral-300">
+          <ul className="text-black space-y-7 flex flex-col items-center">
+            <li>
+              <figure className="w-[3rem] h-[3rem] rounded-full bg-white flex justify-center items-center hover:translate-x-2 transition-transform hover:bg-blue-100 hover:border-2 border-slate-300 cursor-pointer">
+                <img
+                  className="w-[85%] h-[85%] object-cover rounded-full"
+                  src="https://icons.veryicon.com/png/o/application/icons_general/settings-121.png"
+                  alt="Icon"
+                />
+              </figure>
+            </li>
+            <li>
+              <figure className="w-[3rem] h-[3rem] rounded-full bg-white flex justify-center items-center hover:translate-x-2 transition-transform hover:bg-blue-100 hover:border-2 border-slate-300 cursor-pointer">
+                <img
+                  className="w-[75%] h-[75%] object-contain"
+                  src="https://icons.veryicon.com/png/o/internet--web/iview-3-x-icons/ios-log-out.png"
+                  alt="Icon"
+                />
+              </figure>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </>
+  );
 }
