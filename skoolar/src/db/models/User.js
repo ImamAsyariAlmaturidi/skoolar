@@ -20,6 +20,22 @@ export const getUser = async () => {
   return user;
 };
 
+// USER MODELS COLLECTION
+export const getUserByNIK = async (NIK) => {
+  console.log(NIK);
+  const db = await getDb();
+  const user = await db.collection(COLLECTION_USER).findOne({ NIK: NIK });
+  return user;
+};
+
+export const deleteUserById = async (id) => {
+  const db = await getDb();
+  await db.collection(COLLECTION_USER).insertOne({
+    _id: new ObjectId(id),
+  });
+  return "create data successfully";
+};
+
 export const createUser = async (user) => {
   const modifiedUser = {
     ...user,
