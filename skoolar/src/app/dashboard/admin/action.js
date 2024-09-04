@@ -8,7 +8,9 @@ import {
   getDocs,
   orderBy,
 } from "firebase/firestore";
+import { snap } from "../../../config/midtrans";
 
+// INI FIREBASE
 export async function createGroup(data) {
   try {
     await addDoc(collection(db, "group"), data);
@@ -33,7 +35,7 @@ export async function getAllMessagesByGroupId(groupId) {
       id: doc.id,
       ...doc.data(),
     }));
-
+    console.log(messages);
     return messages;
   } catch (error) {
     console.error("Error getting messages: ", error);
@@ -51,7 +53,7 @@ export async function deleteGroup(idGroup) {
 }
 
 export async function createGroupMessage({
-  channel_id,
+  group_id,
   content,
   created_at,
   message_id,
@@ -59,14 +61,50 @@ export async function createGroupMessage({
 }) {
   try {
     const res = await addDoc(collection(db, "group_message"), {
-      channel_id,
+      group_id,
       content,
       created_at,
       message_id,
       user_ref: doc(db, "users", user_id),
     });
+
+    console.log(res);
   } catch (error) {
     console.error("Error creating group message: ", error);
     throw error;
+  }
+}
+
+// INI MIDTRANS
+async function createTransaction(
+  gross_amount,
+  name,
+  price,
+  payment_name,
+  payment_category
+) {
+  try {
+    const parameter = {
+      transaction_details: {
+        order_id: transaction.order_id,
+        gross_amount,
+      },
+      credit_card: {
+        secure: true,
+      },
+      customer_details: {
+        name,
+      },
+      item_details: {
+        id: "ITEM1",
+        price,
+        name: payment_name,
+        category: payment_category,
+        merchant_name: "Skoolar",
+      },
+    };
+    const { token } = await snap.createTransaction(parameter);
+  } catch (error) {
+    console.log(error);
   }
 }

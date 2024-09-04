@@ -18,7 +18,7 @@ export default function InsertGroupMessage() {
   const handleInsertMessage = async () => {
     try {
       const data = await createGroupMessage({
-        channel_id: channelId,
+        group_id: channelId,
         content,
         created_at: new Date(createdAt),
         message_id: messageId,
@@ -64,7 +64,7 @@ export default function InsertGroupMessage() {
         value={createdAt}
         onChange={(e) => setCreatedAt(e.target.value)}
       />
-      <button onClick={() => get(1)}>Insert Group Message</button>
+      <button onClick={handleInsertMessage}>Insert Group Message</button>
     </div>
   );
 }
