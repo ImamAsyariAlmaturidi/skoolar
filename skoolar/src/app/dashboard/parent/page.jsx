@@ -42,3 +42,6 @@ export default function Dashboard() {
     </>
   );
 }
+
+
+export default page;

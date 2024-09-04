@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb";
+
 const DATABASE_NAME = process.env.DATABASE_NAME || "skoolar";
 const COLLECTION_USER = "school";
 export const getDb = async () => {
@@ -7,6 +9,7 @@ export const getDb = async () => {
   return db;
 };
 
+// SCHOOL MODELS COLLECTION
 export const createSchool = async () => {
   return;
 };
