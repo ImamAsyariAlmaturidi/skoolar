@@ -1,86 +1,52 @@
-// Karena ini menggunakan server actions, maka harus dideklarasikan bahwa ini hanya berjalan di server saja, maka dari itu, gunakan "use server"
+// import { signAccessToken, signRefreshToken } from "@/utils/jwt";
+// import { getUserByEmail } from "@/db/models/User";
+// import { compareTextWithHash } from "@/utils/bcrypt";
 "use server";
-
-import { getUserByEmail } from "@/db/models/User";
-import { compareTextWithHash } from "@/utils/bcrypt";
-import { signToken } from "@/utils/jwt";
+import { getParentByNISN } from "../../db/models/Parent";
+import { signAccessToken, signRefreshToken } from "../../db/utils/jwt";
 import { redirect } from "next/navigation";
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-// Di sini kita akan membuat schema inputan login, maka dari itu, sekalian kita validasi dengan zod
-import { z } from "zod";
-
-// Di sini kita akan menyimpan data token pada cookies, maka dari itu, kita akan menggunakan cookies dari next/headers
-// !! cookies tidak bisa di-import secara otomatis, jadi harus diketik manual yah
 import { cookies } from "next/headers";
+import { comparePassword } from "../../db/utils/bcrypt";
 
-// Pada action ini kita akan melakukan request ke server untuk login
-// Karena kita di sini belum memiliki backend yang bisa di-call, kita akan membuat logicnya di sini (asumsikan di sini se-akan-akan kita sedang berada di server)
-
-export const logout = async () => {
-  const cookieStore = cookies();
-  cookieStore.delete("token");
-
-  return redirect("/login");
-};
-
-export const doLogin = async (formData) => {
-  const loginInputSchema = z.object({
-    nis: z.string().nis({
-      message: "must be nis format",
-    }),
-    password: z.string({
-      message: "password cannot be empty",
-    }),
-  });
-
-  // Mengambil data dari form
-  const nis = formData.get("nis");
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+export const doLoginAsParent = async (formData) => {
+  console.log(formData);
+  const NISN = formData.get("NISN");
   const password = formData.get("password");
 
-  // Memvalidasi data input dengan zod
-  const parsedData = loginInputSchema.safeParse({
-    nis,
-    password,
-  });
+  // if (!parsedData.success) {
+  //   const errPath = parsedData.error.issues[0].path[0];
+  //   const errMessage = parsedData.error.issues[0].message;
+  //   const errFinalMessage = `${errPath} - ${errMessage}`;
 
-  if (!parsedData.success) {
-    // !! Ingat, jangan di-throw kecuali ingin menghandle error di sisi client via error.tsx !
-    const errPath = parsedData.error.issues[0].path[0];
-    const errMessage = parsedData.error.issues[0].message;
-    const errFinalMessage = `${errPath} - ${errMessage}`;
+  //   return redirect(`${BASE_URL}/login?error=${errFinalMessage}`);
+  // }
 
-    // Mengembalikan error via redirect
-    return redirect(`${BASE_URL}/login?error=${errFinalMessage}`);
-  }
+  const user = await getParentByNISN(NISN);
+  console.log(user);
 
-  // Memvalidasi data terhadap database
-  const user = await getUserByEmail(parsedData.data.nis);
-
-  if (!user || !compareTextWithHash(parsedData.data.password, user.password)) {
+  if (!user || !comparePassword(password, user.password)) {
     return redirect(`${BASE_URL}/login?error=Invalid%20credentials`);
   }
 
-  // Membuat Payload dan Token
-  const payload = {
-    id: user._id,
-    nis: user.nis,
-  };
+  const payload = { id: user._id, NISN: user.NISN, email: user.email };
 
-  const token = signToken(payload);
+  const accessToken = signAccessToken(payload);
+  const refreshToken = signRefreshToken(payload);
 
-  // Menyimpan token dengan menggunakan cookies
-  cookies().set("token", token, {
-    // Meng-set cookie agar hanya bisa diakses melalui HTTP(S)
+  cookies().set("access_token", accessToken, {
     httpOnly: true,
-    // Meng-set cookie agar hanya bisa diakses melalui HTTPS, karena ini hanya untuk development, maka kita akan set false
     secure: false,
-    // Meng-set expiration time dari cookies
-    expires: new Date(Date.now() + 1000 * 60 * 60), // 1 hour
-    // Meng-set cookie agar hanya bisa diakses melalui domain yang sama
+    expires: new Date(Date.now() + 1000 * 60 * 15),
     sameSite: "strict",
   });
 
-  // Melakukan redirect ke halaman "/"
+  cookies().set("refresh_token", refreshToken, {
+    httpOnly: true,
+    secure: false,
+    expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+    sameSite: "strict",
+  });
 
-  return redirect(`${BASE_URL}/`);
+  return redirect(`${BASE_URL}/dashboard/admin`);
 };
