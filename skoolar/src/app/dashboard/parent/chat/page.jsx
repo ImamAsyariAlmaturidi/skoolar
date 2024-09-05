@@ -1,6 +1,5 @@
-import ChatBox from "../../../../components/ChatBox";
-import ChatRoom from "../../../../components/ChatRoom";
-import SideBar from "../../../../components/sidebar";
+import ChatRoom from "../../../../components/parent/ChatRoom";
+import ChatBox from "../../../../components/teacher";
 
 export default function ChatPage() {
   return (

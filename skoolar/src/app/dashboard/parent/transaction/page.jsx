@@ -1,4 +1,4 @@
-import SideBar from "../../../../components/sidebar";
+import SideBar from "../../../../components/parent/Sidebar";
 
 export default function Pembayaran() {
   return (

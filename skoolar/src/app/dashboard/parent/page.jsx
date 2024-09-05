@@ -1,9 +1,8 @@
-"use client";
-import Pemberitahuan from "../../../components/pemberitahuan";
-import Pengumuman from "../../../components/pengumuman";
-import Percakapan from "../../../components/percakapan";
-import SideBar from "../../../components/sidebar";
-import Tugas from "../../../components/tugas";
+import Pemberitahuan from "../../../components/parent/pemberitahuan";
+import Pengumuman from "../../../components/parent/pengumuman";
+import Percakapan from "../../../components/parent/percakapan";
+import SideBar from "../../../components/parent/Sidebar";
+import Tugas from "../../../components/parent/tugas";
 
 export default function Dashboard() {
   return (
@@ -25,7 +24,7 @@ export default function Dashboard() {
             </div>
             <Pengumuman />
 
-            <div className="w-full h-[27rem] rounded-3xl flex gap-3">
+            <div className="w-full h-[27rem] rounded-3xl flex gap-3 mt-1">
               <div className="w-1/2 h-full bg-white rounded-3xl px-7 py-4">
                 <Percakapan />
               </div>

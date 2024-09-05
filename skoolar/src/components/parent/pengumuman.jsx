@@ -35,14 +35,14 @@ export default function Pengumuman() {
           </span>
         </section>
         <div
-          className="w-full h-[10rem] flex items-center gap-3 overflow-x-auto bg-none rounded-2xl"
+          className="w-full py-4 flex items-center gap-3 overflow-x-auto bg-none rounded-2xl"
           id="scroll-container"
         >
-          <div className="w-[15rem] h-[8rem] bg-white flex-shrink-0 rounded-2xl"></div>
-          <div className="w-[15rem] h-[8rem] bg-white flex-shrink-0 rounded-2xl"></div>
-          <div className="w-[15rem] h-[8rem] bg-white flex-shrink-0 rounded-2xl"></div>
-          <div className="w-[15rem] h-[8rem] bg-white flex-shrink-0 rounded-2xl"></div>
-          <div className="w-[15rem] h-[8rem] bg-white flex-shrink-0 rounded-2xl"></div>
+          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
+          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
+          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
+          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
+          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
         </div>
       </div>
     </>

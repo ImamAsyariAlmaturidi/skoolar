@@ -1,4 +1,4 @@
-import SideBar from "../../../../components/Sidebar";
+import SideBar from "../../../../components/parent/Sidebar";
 
 export default function AssignmentPage() {
   return (
