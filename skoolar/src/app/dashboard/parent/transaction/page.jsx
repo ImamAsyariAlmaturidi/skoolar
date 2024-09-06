@@ -9,7 +9,7 @@ export default function Pembayaran() {
     <>
       <div className="w-full h-screen bg-[#f0ecea] flex gap-3 px-5 py-10 ">
         <SideBar className="w-1/4 lg:w-1/5" />
-        <div className="w-[90%] bg-white rounded-3xl px-10 py-5">
+        <div className="w-[90%] bg-white rounded-3xl px-10 py-6">
           <section className="text-black font-semibold bg-white h-[9rem] pt-2 relative">
             <span className="text-3xl">Payments</span>
             <div className="flex gap-6 px-4 py-2 absolute bottom-2 rounded-2xl bg-neutral-100">
