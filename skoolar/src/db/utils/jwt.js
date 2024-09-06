@@ -15,7 +15,8 @@ export const signRefreshToken = (payload) => {
 
 // Function to verify an access token
 export const verifyAccessToken = (token) => {
-  return jwt.verify(token, ACCESS_TOKEN_SECRET);
+  const access_token = jwt.verify(token, ACCESS_TOKEN_SECRET);
+  return access_token;
 };
 
 // Function to verify a refresh token

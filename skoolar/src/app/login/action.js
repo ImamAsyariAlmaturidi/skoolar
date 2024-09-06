@@ -9,7 +9,7 @@ import Joi from "joi";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const schemaParentInput = Joi.object({
-  NISN: Joi.string().required().min(5),
+  NISN: Joi.string().required().min(2),
   password: Joi.string().required().min(4),
 });
 export const doLoginAsParent = async (formData) => {
@@ -58,7 +58,7 @@ const schemaSchoolInput = Joi.object({
   password: Joi.string().required().min(4),
 });
 export const doLoginAsSchool = async (formData) => {
-  console.log(formData);
+  // console.log(formData);
   const NIK = formData.get("NIK");
   const password = formData.get("password");
 
@@ -108,3 +108,13 @@ export const doLoginAsSchool = async (formData) => {
   }
   return redirect(`${BASE_URL}/dashboard/parent`);
 };
+
+export async function doLogout() {
+  const store = cookies();
+  const token = store.get("access_token");
+  // console.log(token);
+  if (token) {
+    store.delete("access_token");
+  }
+  redirect("login");
+}
