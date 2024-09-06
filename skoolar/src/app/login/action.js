@@ -9,12 +9,15 @@ import Joi from "joi";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const schemaParentInput = Joi.object({
-  NISN: Joi.string().required().min(2),
+  NISN: Joi.string().required().min(3),
   password: Joi.string().required().min(4),
 });
 export const doLoginAsParent = async (formData) => {
   const NISN = formData.get("NISN");
   const password = formData.get("password");
+
+  console.log(NISN, password);
+
 
   const parsedData = schemaParentInput.validate({ NISN, password });
   if (parsedData.error) {
