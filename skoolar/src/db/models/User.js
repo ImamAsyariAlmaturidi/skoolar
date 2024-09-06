@@ -22,7 +22,7 @@ export const getUser = async () => {
 
 // USER MODELS COLLECTION
 export const getUserByNIK = async (NIK) => {
-  console.log(NIK);
+  // console.log(NIK);
   const db = await getDb();
   const user = await db.collection(COLLECTION_USER).findOne({ NIK: NIK });
   return user;

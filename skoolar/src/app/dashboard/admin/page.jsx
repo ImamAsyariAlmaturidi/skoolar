@@ -14,28 +14,10 @@ export default function InsertGroupMessage() {
   async function get() {
     const getChats = await getAllMessagesByGroupId();
     console.log(getChats);
-
   }
-
-  const handleInsertMessage = async () => {
-    try {
-      const data = await createGroupMessage({
-        group_id: channelId,
-        content,
-        created_at: new Date(createdAt),
-        message_id: messageId,
-        user_id: userId,
-      });
-      setChannelId("");
-      setContent("");
-      setMessageId("");
-      setUserId("");
-      console.log(data);
-    } catch (error) {
-      alert("Error creating group message.");
-    }
-  };
-
+  // async function get(id) {
+  //   await getAllMessagesByGroupId(1);
+  // }
   return (
     <div>
       <input

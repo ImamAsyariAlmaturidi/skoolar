@@ -29,12 +29,19 @@ export const createParent = async (parent) => {
 
   return result;
 };
-// export const getParentByEmail = async (email) => {
-//   const db = await getDb();
-//   const parent = await db.collection(COLLECTION_USER).findOne({ email: email });
 
-//   return parent;
-// };
+export const getAllParents = async () => {
+  const db = await getDb();
+  const parent = await db.collection(COLLECTION_USER).find().toArray();
+  return parent;
+};
+
+export const getParentByName = async (name) => {
+  const db = await getDb();
+  const parent = await db.collection(COLLECTION_USER).findOne({ name: name });
+
+  return parent;
+};
 
 export const getParentByNISN = async (NISN) => {
   const db = await getDb();
