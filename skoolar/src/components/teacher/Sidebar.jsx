@@ -1,5 +1,6 @@
+"use client";
 import Link from "next/link";
-
+import { doLogout } from "../../app/login/action";
 export default function TeacherSideBar() {
   return (
     <>
@@ -205,58 +206,60 @@ export default function TeacherSideBar() {
               </figure>
             </li>
             <li>
-              <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 cursor-pointer hover:text-white">
-                <svg
-                  width="40px"
-                  height="40px"
-                  viewBox="0 0 512 512"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="transition-colors duration-300"
-                >
-                  <g id="SVGRepo_bgCarrier" strokeWidth={0} />
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <g id="SVGRepo_iconCarrier">
-                    <title>ionicons-v5-o</title>
-                    <path
-                      d="M304,336v40a40,40,0,0,1-40,40H104a40,40,0,0,1-40-40V136a40,40,0,0,1,40-40H256c22.09,0,48,17.91,48,40v40"
-                      style={{
-                        fill: "none",
-                        stroke: "currentColor",
-                        strokeLinecap: "round",
-                        strokeLinejoin: "round",
-                        strokeWidth: 32,
-                      }}
+              <button onClick={() => doLogout()}>
+                <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 cursor-pointer hover:text-white">
+                  <svg
+                    width="40px"
+                    height="40px"
+                    viewBox="0 0 512 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="transition-colors duration-300"
+                  >
+                    <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
-                    <polyline
-                      points="368 336 448 256 368 176"
-                      style={{
-                        fill: "none",
-                        stroke: "currentColor",
-                        strokeLinecap: "round",
-                        strokeLinejoin: "round",
-                        strokeWidth: 32,
-                      }}
-                    />
-                    <line
-                      x1={176}
-                      y1={256}
-                      x2={432}
-                      y2={256}
-                      style={{
-                        fill: "none",
-                        stroke: "currentColor",
-                        strokeLinecap: "round",
-                        strokeLinejoin: "round",
-                        strokeWidth: 32,
-                      }}
-                    />
-                  </g>
-                </svg>
-              </figure>
+                    <g id="SVGRepo_iconCarrier">
+                      <title>ionicons-v5-o</title>
+                      <path
+                        d="M304,336v40a40,40,0,0,1-40,40H104a40,40,0,0,1-40-40V136a40,40,0,0,1,40-40H256c22.09,0,48,17.91,48,40v40"
+                        style={{
+                          fill: "none",
+                          stroke: "currentColor",
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 32,
+                        }}
+                      />
+                      <polyline
+                        points="368 336 448 256 368 176"
+                        style={{
+                          fill: "none",
+                          stroke: "currentColor",
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 32,
+                        }}
+                      />
+                      <line
+                        x1={176}
+                        y1={256}
+                        x2={432}
+                        y2={256}
+                        style={{
+                          fill: "none",
+                          stroke: "currentColor",
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 32,
+                        }}
+                      />
+                    </g>
+                  </svg>
+                </figure>
+              </button>
             </li>
           </ul>
         </div>
