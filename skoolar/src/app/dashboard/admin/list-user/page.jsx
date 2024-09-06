@@ -15,29 +15,46 @@ export default function TeacherStudentList() {
         { name: "Charlie", grade: "4C" },
     ]);
 
-    // State untuk modal
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [newEntry, setNewEntry] = useState({ type: "", name: "", subjectOrGrade: "" });
+    // State untuk modal guru dan murid
+    const [isTeacherModalOpen, setIsTeacherModalOpen] = useState(false);
+    const [isStudentModalOpen, setIsStudentModalOpen] = useState(false);
 
-    // Fungsi untuk membuka modal
-    const toggleModal = (type) => {
-        setNewEntry({ type, name: "", subjectOrGrade: "" });
-        setIsModalOpen(!isModalOpen);
+    // State untuk inputan baru (guru atau murid)
+    const [newTeacher, setNewTeacher] = useState({ name: "", subject: "" });
+    const [newStudent, setNewStudent] = useState({ name: "", grade: "" });
+
+    // Fungsi untuk membuka modal guru
+    const toggleTeacherModal = () => {
+        setIsTeacherModalOpen(!isTeacherModalOpen);
+        setNewTeacher({ name: "", subject: "" }); // Reset inputan modal guru
     };
 
-    // Fungsi untuk mengubah input modal
-    const handleInputChange = (e) => {
-        setNewEntry({ ...newEntry, [e.target.name]: e.target.value });
+    // Fungsi untuk membuka modal murid
+    const toggleStudentModal = () => {
+        setIsStudentModalOpen(!isStudentModalOpen);
+        setNewStudent({ name: "", grade: "" }); // Reset inputan modal murid
     };
 
-    // Fungsi untuk menambahkan guru atau murid
-    const handleAddEntry = () => {
-        if (newEntry.type === "teacher") {
-            setTeachers([...teachers, { name: newEntry.name, subject: newEntry.subjectOrGrade }]);
-        } else if (newEntry.type === "student") {
-            setStudents([...students, { name: newEntry.name, grade: newEntry.subjectOrGrade }]);
-        }
-        toggleModal(""); // Tutup modal setelah menambahkan
+    // Fungsi untuk mengubah input modal guru
+    const handleTeacherInputChange = (e) => {
+        setNewTeacher({ ...newTeacher, [e.target.name]: e.target.value });
+    };
+
+    // Fungsi untuk mengubah input modal murid
+    const handleStudentInputChange = (e) => {
+        setNewStudent({ ...newStudent, [e.target.name]: e.target.value });
+    };
+
+    // Fungsi untuk menambahkan guru
+    const handleAddTeacher = () => {
+        setTeachers([...teachers, { name: newTeacher.name, subject: newTeacher.subject }]);
+        toggleTeacherModal(); // Tutup modal setelah menambahkan
+    };
+
+    // Fungsi untuk menambahkan murid
+    const handleAddStudent = () => {
+        setStudents([...students, { name: newStudent.name, grade: newStudent.grade }]);
+        toggleStudentModal(); // Tutup modal setelah menambahkan
     };
 
     return (
@@ -61,27 +78,29 @@ export default function TeacherStudentList() {
                                         <h3 className="text-lg font-medium">Teachers</h3>
                                         <button
                                             className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
-                                            onClick={() => toggleModal("teacher")}
+                                            onClick={toggleTeacherModal}
                                         >
                                             Add Teacher
                                         </button>
                                     </div>
-                                    <table className="min-w-full table-auto border-collapse">
-                                        <thead>
-                                            <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
-                                                <th className="border px-4 py-2">Name</th>
-                                                <th className="border px-4 py-2">Subject</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {teachers.map((teacher, index) => (
-                                                <tr key={index} className="text-sm text-gray-700">
-                                                    <td className="border px-4 py-2">{teacher.name}</td>
-                                                    <td className="border px-4 py-2">{teacher.subject}</td>
+                                    <div className="max-h-64 overflow-y-auto">
+                                        <table className="min-w-full table-auto border-collapse">
+                                            <thead>
+                                                <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
+                                                    <th className="border px-4 py-2">Name</th>
+                                                    <th className="border px-4 py-2">Subject</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {teachers.map((teacher, index) => (
+                                                    <tr key={index} className="text-sm text-gray-700">
+                                                        <td className="border px-4 py-2">{teacher.name}</td>
+                                                        <td className="border px-4 py-2">{teacher.subject}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
 
                                 {/* List Murid */}
@@ -90,62 +109,64 @@ export default function TeacherStudentList() {
                                         <h3 className="text-lg font-medium">Students</h3>
                                         <button
                                             className="rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600"
-                                            onClick={() => toggleModal("student")}
+                                            onClick={toggleStudentModal}
                                         >
                                             Add Student
                                         </button>
                                     </div>
-                                    <table className="min-w-full table-auto border-collapse">
-                                        <thead>
-                                            <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
-                                                <th className="border px-4 py-2">Name</th>
-                                                <th className="border px-4 py-2">Grade</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {students.map((student, index) => (
-                                                <tr key={index} className="text-sm text-gray-700">
-                                                    <td className="border px-4 py-2">{student.name}</td>
-                                                    <td className="border px-4 py-2">{student.grade}</td>
+                                    <div className="max-h-64 overflow-y-auto">
+                                        <table className="min-w-full table-auto border-collapse">
+                                            <thead>
+                                                <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
+                                                    <th className="border px-4 py-2">Name</th>
+                                                    <th className="border px-4 py-2">Grade</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {students.map((student, index) => (
+                                                    <tr key={index} className="text-sm text-gray-700">
+                                                        <td className="border px-4 py-2">{student.name}</td>
+                                                        <td className="border px-4 py-2">{student.grade}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </section>
                         </div>
                     </main>
 
-                    {/* Modal untuk Menambahkan Guru atau Murid */}
-                    {isModalOpen && (
+                    {/* Modal untuk Menambahkan Guru */}
+                    {isTeacherModalOpen && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                             <div className="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
-                                <h2 className="text-lg font-medium mb-4">Add {newEntry.type === "teacher" ? "Teacher" : "Student"}</h2>
+                                <h2 className="text-lg font-medium mb-4">Add Teacher</h2>
 
                                 <div className="mb-4">
-                                    <label htmlFor="entryName" className="block text-sm font-medium text-gray-700">
-                                        {newEntry.type === "teacher" ? "Teacher Name" : "Student Name"}
+                                    <label htmlFor="teacherName" className="block text-sm font-medium text-gray-700">
+                                        Teacher Name
                                     </label>
                                     <input
                                         type="text"
-                                        id="entryName"
+                                        id="teacherName"
                                         name="name"
-                                        value={newEntry.name}
-                                        onChange={handleInputChange}
+                                        value={newTeacher.name}
+                                        onChange={handleTeacherInputChange}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
                                     />
                                 </div>
 
                                 <div className="mb-4">
-                                    <label htmlFor="subjectOrGrade" className="block text-sm font-medium text-gray-700">
-                                        {newEntry.type === "teacher" ? "Subject" : "Grade"}
+                                    <label htmlFor="teacherSubject" className="block text-sm font-medium text-gray-700">
+                                        Subject
                                     </label>
                                     <input
                                         type="text"
-                                        id="subjectOrGrade"
-                                        name="subjectOrGrade"
-                                        value={newEntry.subjectOrGrade}
-                                        onChange={handleInputChange}
+                                        id="teacherSubject"
+                                        name="subject"
+                                        value={newTeacher.subject}
+                                        onChange={handleTeacherInputChange}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
                                     />
                                 </div>
@@ -153,16 +174,67 @@ export default function TeacherStudentList() {
                                 <div className="flex justify-end gap-2">
                                     <button
                                         className="rounded-md bg-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-400"
-                                        onClick={toggleModal}
+                                        onClick={toggleTeacherModal}
                                     >
                                         Cancel
                                     </button>
                                     <button
-                                        className={`rounded-md ${newEntry.type === "teacher" ? "bg-blue-500 hover:bg-blue-600" : "bg-green-500 hover:bg-green-600"
-                                            } px-4 py-2 text-sm font-medium text-white`}
-                                        onClick={handleAddEntry}
+                                        className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
+                                        onClick={handleAddTeacher}
                                     >
-                                        Add {newEntry.type === "teacher" ? "Teacher" : "Student"}
+                                        Add Teacher
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Modal untuk Menambahkan Murid */}
+                    {isStudentModalOpen && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                            <div className="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
+                                <h2 className="text-lg font-medium mb-4">Add Student</h2>
+
+                                <div className="mb-4">
+                                    <label htmlFor="studentName" className="block text-sm font-medium text-gray-700">
+                                        Student Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="studentName"
+                                        name="name"
+                                        value={newStudent.name}
+                                        onChange={handleStudentInputChange}
+                                        className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
+                                    />
+                                </div>
+
+                                <div className="mb-4">
+                                    <label htmlFor="studentGrade" className="block text-sm font-medium text-gray-700">
+                                        Grade
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="studentGrade"
+                                        name="grade"
+                                        value={newStudent.grade}
+                                        onChange={handleStudentInputChange}
+                                        className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
+                                    />
+                                </div>
+
+                                <div className="flex justify-end gap-2">
+                                    <button
+                                        className="rounded-md bg-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-400"
+                                        onClick={toggleStudentModal}
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        className="rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600"
+                                        onClick={handleAddStudent}
+                                    >
+                                        Add Student
                                     </button>
                                 </div>
                             </div>
