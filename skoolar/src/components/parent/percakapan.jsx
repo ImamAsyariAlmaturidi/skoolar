@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Percakapan() {
   return (
     <>
-      <div className="w-full h-[20rem] rounded-3xl bg-white mt-3">
+      <div className="w-full h-[21rem] rounded-3xl ">
         <section className="w-full h-[3rem] text-black text-[17px] font-medium flex items-start justify-between gap-4 px-3">
           <section className="flex items-center gap-3">
             <svg
@@ -25,7 +25,7 @@ export default function Percakapan() {
             </svg>
             <span>Percakapan</span>
           </section>
-          <Link href={"/tugas"}>
+          <Link href={"/dashboard/parent/chat"}>
             <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
               Lihat Semua
             </span>
