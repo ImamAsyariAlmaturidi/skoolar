@@ -5,9 +5,9 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const oauth2Client = new google.auth.OAuth2(
-    "964083973412-t80v9ccvbv27pa00n5l8rg8adlqn5jnr.apps.googleusercontent.com",
-    "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",
-    "http://localhost:3000/api/auth/callback/google"
+    process.env.GOOGLE_AUTH_CLIENT_ID,
+    process.env.GOOGLE_AUTH_CLIENT_SECRET,
+    process.env.GOOGLE_AUTH_REDIRECT_URI
   );
   oauth2Client.setCredentials({ access_token: session.accessToken });
 
