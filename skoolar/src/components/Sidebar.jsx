@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-
+import { doLogout } from "../app/login/action";
 export default function SideBar() {
   return (
     <>
@@ -126,25 +126,25 @@ export default function SideBar() {
                   strokeWidth="1.3"
                   className="text-black hover:text-white"
                 >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                   <g
                     id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></g>
                   <g id="SVGRepo_iconCarrier">
-                    <g clip-path="url(#clip0_15_159)">
+                    <g clipPath="url(#clip0_15_159)">
                       <rect width="24" height="24"></rect>
                       <path
                         d="M9.5 19C8.89555 19 7.01237 19 5.61714 19C4.87375 19 4.39116 18.2177 4.72361 17.5528L5.57771 15.8446C5.85542 15.2892 6 14.6774 6 14.0564C6 13.2867 6 12.1434 6 11C6 9 7 5 12 5C17 5 18 9 18 11C18 12.1434 18 13.2867 18 14.0564C18 14.6774 18.1446 15.2892 18.4223 15.8446L19.2764 17.5528C19.6088 18.2177 19.1253 19 18.382 19H14.5M9.5 19C9.5 21 10.5 22 12 22C13.5 22 14.5 21 14.5 19M9.5 19C11.0621 19 14.5 19 14.5 19"
                         stroke="currentColor"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                       ></path>
                       <path
                         d="M12 5V3"
                         stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       ></path>
                     </g>
                     <defs>
@@ -165,13 +165,13 @@ export default function SideBar() {
                     height="35px"
                     viewBox="0 -2.5 46 46"
                     xmlns="http://www.w3.org/2000/svg"
-                    stroke-width="0.736"
+                    strokeWidth="0.736"
                   >
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                     <g
                       id="SVGRepo_tracerCarrier"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></g>
                     <g id="SVGRepo_iconCarrier">
                       {" "}
@@ -180,7 +180,7 @@ export default function SideBar() {
                         data-name="07.Wallet"
                         d="M47,40h0a5,5,0,0,1-5,5H6a5,5,0,0,1-5-5V11A4,4,0,0,1,5,7H25.171l8.1-2.934a.99.99,0,0,1,1.268.589L35.391,7H39a4,4,0,0,1,4,4v2h0a4,4,0,0,1,4,4ZM5,9H5a2,2,0,0,0,0,4H8.634c.013-.005.021-.016.034-.021L19.65,9Zm29.078.181L33.016,6.257h0L30.964,7h0L25.453,9h-.01L14.4,13H35.466ZM41,11a2,2,0,0,0-2-2H36.117l1.454,4H41Zm2,4H5a3.955,3.955,0,0,1-2-.555V40a3,3,0,0,0,3,3H42a3,3,0,0,0,3-3V33H41a4,4,0,0,1,0-8h4V17A2,2,0,0,0,43,15Zm2,16V27H41a2,2,0,0,0,0,4Zm-4-3h2v2H41Z"
                         transform="translate(-1 -4.006)"
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                       ></path>{" "}
                     </g>
                   </svg>

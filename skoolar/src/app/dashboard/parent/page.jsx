@@ -1,11 +1,11 @@
-"use client";
 import Pemberitahuan from "../../../components/pemberitahuan";
 import Pengumuman from "../../../components/pengumuman";
 import Percakapan from "../../../components/percakapan";
 import SideBar from "../../../components/sidebar";
 import Tugas from "../../../components/tugas";
-
-export default function Dashboard() {
+import { getMe } from "./action";
+export default async function Dashboard() {
+  const { data } = await getMe();
   return (
     <>
       <div className="w-full h-screen bg-[#f0f6fe] flex gap-3 px-5 py-10">
@@ -15,7 +15,7 @@ export default function Dashboard() {
             <div className="h-[9rem] w-full pl-14 pt-8 mb-4 bg-[#006bf8] rounded-3xl text-white relative flex">
               <div>
                 <p className="text-white text-3xl  font-bold">
-                  Hello, Samsudinho ! 👋
+                  Hello, {data?.studentName} ! 👋
                 </p>
                 <p className="text-sm mt-3 font-light">
                   Setiap pelajaran yang kamu pelajari hari ini adalah <br />
@@ -42,6 +42,3 @@ export default function Dashboard() {
     </>
   );
 }
-
-
-export default page;

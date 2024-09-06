@@ -1,6 +1,7 @@
 import React from "react";
-
-const page = () => {
+// import { test } from "./action";
+const page = async () => {
+  // await test();
   return <div>page</div>;
 };
 

@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MessageBoxOther from "./MessageBoxOther";
 import MessageBoxMe from "./MessageBoxMe";
+// import { getAllMessagesByGroupId } from "../app/dashboard/parent/chat/action";
 
 export default function ChatRoom() {
   // State untuk menyimpan daftar pesan
@@ -12,6 +13,14 @@ export default function ChatRoom() {
     { id: 4, text: "I'm good, thanks!", sender: "me" },
   ]);
 
+  // async function getChats() {
+  //   try {
+  //     const res = await getAllMessagesByGroupId();
+  //     console.log(res);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   // State untuk input pesan baru
   const [newMessage, setNewMessage] = useState("");
 
@@ -25,6 +34,10 @@ export default function ChatRoom() {
       setNewMessage("");
     }
   };
+
+  useEffect(() => {
+    // getChats();
+  }, []);
 
   return (
     <div className="flex antialiased text-gray-800 w-full h-full">
