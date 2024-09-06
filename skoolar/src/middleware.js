@@ -8,6 +8,9 @@ const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 export const middleware = async (request) => {
   // console.log("Middleware triggered for URL:", request.url);
 
+  if (request.url.includes("/api/auth")) {
+    return NextResponse.next();
+  }
   // Memeriksa apakah URL mengandung `/api`
   if (request.url.includes("/api")) {
     // console.log("Processing /api request");
