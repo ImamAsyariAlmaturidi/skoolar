@@ -1,6 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import SideBar from "../../../../components/teacher/Sidebar";
 
 export default function TeacherAssignment() {
+  const [tugas, setTugas] = useState(false);
   return (
     <>
       <div className="w-full h-screen bg-[#f0ecea] flex gap-3 px-5 py-10">
@@ -8,7 +12,7 @@ export default function TeacherAssignment() {
         <div className="w-[90%] bg-white rounded-3xl px-10 py-5">
           <section className="text-black font-semibold h-[20rem] relative pt-2  border-b-2">
             <span className="text-3xl">Class 6A Assignments</span>
-            <div className="flex w-[80%] justify-evenly items-center h-16 px-4 mt-9">
+            <div className="flex w-[90%] justify-evenly items-center h-16 px-4 mt-11">
               <div className="w-[10rem]  flex justify-evenly items-center h-full border-2 border-[#0f828c] border-l-8 text-black rounded-sm relative">
                 <img
                   className="w-9 h-9"
@@ -50,19 +54,22 @@ export default function TeacherAssignment() {
                 </div>
               </div>
             </div>
-            <div className="flex px-4 h-8  mt-16 items-end gap-2">
+            <div className="flex px-4 h-8  mt-14 items-end gap-2">
               <img
                 className="w-8 h-8"
                 src="https://www.svgrepo.com/show/522120/flag.svg"
               />
               <span className="text-2xl">Challenges</span>
             </div>
-            <div className="flex w-full px-4 justify-between items-end  mt-4 absolute bottom-1">
+            <div className="flex w-full px-4 justify-between items-end  mt-4 absolute bottom-2">
               <div className="flex gap-10">
                 <span>Ongoing</span>
                 <span>Completed</span>
               </div>
-              <button className="px-4 py-3 border-2 border-[#66b2b1] text-[#66b2b1] text-[14px] rounded-md">
+              <button
+                onClick={() => setTugas(true)}
+                className="px-4 py-3 border-2 border-[#66b2b1] text-[#66b2b1] text-[14px] rounded-md"
+              >
                 Add New Challenge
               </button>
             </div>
@@ -178,6 +185,34 @@ export default function TeacherAssignment() {
           </div>
         </div>
       </div>
+      {tugas && (
+        <div className="fixed inset-0 h-screen w-full bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center">
+          <div className="flex w-[50rem] h-[20rem] rounded-2xl justify-center items-center gap-10 bg-white">
+            <div className="w-[10rem] h-[10rem] flex flex-col gap-3 items-center ">
+              <img
+                className="h-full w-full border-[0.5px] border-neutral-300 p-4 rounded-2xl"
+                src="/Artist-amico.png"
+              />
+              <span className="text-black">Science</span>
+            </div>
+            <div className="w-[10rem] h-[10rem] flex flex-col gap-3 items-center ">
+              <img
+                className="w-[10rem] h-[10rem] border-[0.5px] border-neutral-300 p-4 rounded-2xl"
+                src="/English teacher-amico.png"
+              />
+              <span className="text-black">English</span>
+            </div>
+            <img
+              className="w-[10rem] h-[10rem] border-[0.5px] border-neutral-300 p-4 rounded-2xl"
+              src="/Artist-amico.png"
+            />
+            <img
+              className="w-[10rem] h-[10rem] border-[0.5px] border-neutral-300 p-4 rounded-2xl"
+              src="/Artist-amico.png"
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }

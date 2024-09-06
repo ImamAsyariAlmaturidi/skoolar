@@ -1,10 +1,11 @@
 import ChatRoom from "../../../../components/parent/ChatRoom";
-import ChatBox from "../../../../components/teacher";
+import ChatBox from "../../../../components/teacher/Chatbox";
+import SideBar from "../../../../components/parent/Sidebar";
 
 export default function ChatPage() {
   return (
     <>
-      <div className="flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">
+      <div className="w-full flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">
         <SideBar />
         <div className="flex w-full">
           <div className=" bg-white w-[30rem]  rounded-2xl  rounded-r-none border-r border-neutral-200 border-solid">

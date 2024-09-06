@@ -3,11 +3,11 @@ import Link from "next/link";
 export default function TeacherDashboard() {
   return (
     <>
-      <div className="w-full h-screen bg-[#f0f6fe] flex px-10 py-10 overflow-hidden gap-3">
+      <div className="w-full h-screen bg-[black] flex px-10 py-10 overflow-hidden gap-4">
         <TeacherSideBar />
         <div className=" h-full w-[90%] rounded-2xl rounded-tl-none rounded-bl-none">
-          <div className="w-full h-1/2 flex gap-3 ">
-            <div className="w-1/3 h-[90%] bg-white rounded-2xl">
+          <div className="w-full h-1/2 flex gap-4">
+            <div className="w-1/3 h-[95%] bg-white rounded-2xl">
               <div className="w-full h-full rounded-2xl px-4 py-4">
                 <div className="w-[8rem] h-[8rem] rounded-full border-slate-300 border flex items-center justify-center">
                   <img
@@ -34,7 +34,7 @@ export default function TeacherDashboard() {
                 </div>
               </div>
             </div>
-            <div className="w-2/3 h-full rounded-2xl px-4 py-4">
+            <div className="w-2/3 h-[95%] rounded-2xl px-4 py-4 bg-white">
               <section className="text-black text-[17px] h-12 font-medium flex items-center justify-between gap-4 mt-2">
                 <section className="flex items-center gap-3">
                   <svg
@@ -71,16 +71,16 @@ export default function TeacherDashboard() {
                 className="w-full py-5 flex items-center gap-3 overflow-x-auto bg-none rounded-2xl mt-3"
                 id="scroll-container"
               >
-                <div className="w-[15rem] h-[12rem] bg-white flex-shrink-0 rounded-2xl"></div>
-                <div className="w-[15rem] h-[12rem] bg-white flex-shrink-0 rounded-2xl"></div>
-                <div className="w-[15rem] h-[12rem] bg-white flex-shrink-0 rounded-2xl"></div>
-                <div className="w-[15rem] h-[12rem] bg-white flex-shrink-0 rounded-2xl"></div>
-                <div className="w-[15rem] h-[12rem] bg-white flex-shrink-0 rounded-2xl"></div>
+                <div className="w-[15rem] h-[13rem] bg-neutral-200 flex-shrink-0 rounded-2xl"></div>
+                <div className="w-[15rem] h-[13rem] bg-neutral-200 flex-shrink-0 rounded-2xl"></div>
+                <div className="w-[15rem] h-[13rem] bg-neutral-200 flex-shrink-0 rounded-2xl"></div>
+                <div className="w-[15rem] h-[13rem] bg-neutral-200 flex-shrink-0 rounded-2xl"></div>
+                <div className="w-[15rem] h-[13rem] bg-neutral-200 flex-shrink-0 rounded-2xl"></div>
               </div>
             </div>
           </div>
-          <div className="w-full h-1/2  flex gap-4">
-            <div className="w-2/3 h-full rounded-2xl ">
+          <div className="w-full h-1/2 flex gap-4 rounded-2xl">
+            <div className="w-2/3 h-full rounded-2xl bg-white ">
               <section className="w-full h-[4rem] text-black text-[17px] font-medium flex items-center justify-between gap-4 px-6">
                 <section className="flex items-center gap-3">
                   <svg
@@ -137,7 +137,7 @@ export default function TeacherDashboard() {
                 id="scroll-container"
               >
                 <div className="flex flex-col gap-4">
-                  <section className="w-full h-[10rem] bg-[#e9f3ff] hover:scale-95 transition-transform pt-5 py-3 px-5  rounded-2xl relative">
+                  <section className="w-full h-[10rem] bg-neutral-200 hover:scale-95 transition-transform pt-5 py-3 px-5  rounded-2xl relative">
                     <span className="text-black text-2xl">IPA</span>
                     <p className="text-neutral-600 mt-1 text-[13px]">
                       Hai murid murid , tolong kerjakan tugas IPA bab 3 ,
@@ -147,7 +147,7 @@ export default function TeacherDashboard() {
                       Lebih Lanjut
                     </span>
                   </section>
-                  <section className="w-full h-[10rem] py-3 px-4 bg-[#e9f3ff] rounded-2xl relative">
+                  <section className="w-full h-[10rem] py-3 px-4 bg-neutral-200 rounded-2xl relative">
                     <span className="text-black text-2xl">IPS</span>
                     <p className="text-neutral-600 mt-1 text-[13px]">
                       Hai murid murid , tolong kerjakan tugas IPA bab 3 ,
@@ -157,7 +157,7 @@ export default function TeacherDashboard() {
                       Lebih Lanjut
                     </span>
                   </section>
-                  <section className="w-full h-[10rem] py-2 px-4 bg-[#e9f3ff] rounded-2xl relative">
+                  <section className="w-full h-[10rem] py-2 px-4 bg-neutral-200 rounded-2xl relative">
                     <span className="text-black text-2xl">Matematika</span>
                     <p className="text-neutral-600 mt-1 text-[13px]">
                       Hai murid murid , tolong kerjakan tugas IPA bab 3 ,
@@ -167,7 +167,7 @@ export default function TeacherDashboard() {
                       Lebih Lanjut
                     </span>
                   </section>
-                  <section className="w-full h-[10rem] py-2 px-4 bg-[#e9f3ff] rounded-2xl relative">
+                  <section className="w-full h-[10rem] py-2 px-4 bg-neutral-200 rounded-2xl relative">
                     <span className="text-black text-2xl">Prakarya</span>
                     <p className="text-neutral-600 mt-1 text-[13px]">
                       Hai murid murid , tolong kerjakan tugas IPA bab 3 ,
@@ -177,7 +177,7 @@ export default function TeacherDashboard() {
                       Lebih Lanjut
                     </span>
                   </section>
-                  <section className="w-full h-[10rem] py-2 px-4 bg-[#e9f3ff] rounded-2xl relative">
+                  <section className="w-full h-[10rem] py-2 px-4 bg-neutral-200 rounded-2xl relative">
                     <span className="text-black text-2xl">IPA</span>
                     <p className="text-neutral-600 mt-1 text-[13px]">
                       Hai murid murid , tolong kerjakan tugas IPA bab 3 ,

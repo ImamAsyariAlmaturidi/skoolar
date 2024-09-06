@@ -49,7 +49,7 @@ export default function Tugas() {
             </svg>
             <span>Tugas Hari Ini</span>
           </section>
-          <Link href={"/tugas"}>
+          <Link href={"/dashboard/parent/assignment"}>
             <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
               Lihat Semua
             </span>

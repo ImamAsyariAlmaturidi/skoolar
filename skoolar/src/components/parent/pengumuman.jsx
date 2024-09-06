@@ -1,4 +1,8 @@
+"use client";
+import { useState } from "react";
+
 export default function Pengumuman() {
+  const [modal, setModal] = useState(false);
   return (
     <>
       <div className="w-full rounded-2xl px-2 bg-none">
@@ -28,7 +32,7 @@ export default function Pengumuman() {
               </g>
             </svg>
 
-            <span>Pengumuman</span>
+            <span onClick={() => setModal(true)}>Pengumuman</span>
           </section>
           <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
             Lihat Semua
@@ -45,6 +49,11 @@ export default function Pengumuman() {
           <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
         </div>
       </div>
+      {modal && (
+        <div className="w-full h-screen absolute backdrop-blur-md z-30 flex justify-center items-center">
+          <div className="w-36 h-64 bg-white rounded-2xl"></div>
+        </div>
+      )}
     </>
   );
 }
