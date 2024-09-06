@@ -16,9 +16,30 @@ const testimonials = [
   {
     quote:
       "Using Skoolar has been a game-changer for me as a parent. The direct messaging feature with teachers allows me to keep a close eye on my child's progress and assignments in real-time. Knowing what my child is working on at school makes them feel more supported, and it enhances our ability to stay connected. Skoolar makes it easy to communicate and track my child's achievements, helping me be more engaged in their educational journey.",
-    name: "John Doe",
-    role: "Full-stack Developer at Amazon",
+    name: "William",
+    role: "Alexandra parents",
     avatar: "/alex.jpg",
+  },
+  {
+    quote:
+      "Skoolar has truly transformed the way I support my child's education. The real-time messaging feature with teachers keeps me updated on my child's progress and assignments, making it easier to stay involved. My child feels more encouraged knowing that I am aware of their school activities. Skoolar simplifies communication and tracking, allowing me to be an active participant in their learning journey and fostering a stronger connection between us.",
+    name: "Naufal",
+    role: "Kiara parents",
+    avatar: "/naufal.jpg",
+  },
+  {
+    quote:
+      "Using Skoolar has been incredibly beneficial for me as a parent. The platform’s direct communication with teachers helps me monitor my child's academic progress and assignments effortlessly. This transparency makes my child feel more supported and motivated, knowing that I am informed about their schoolwork. Skoolar’s ease of use in tracking achievements and staying connected with teachers has significantly enhanced my involvement in my child’s educational experience.",
+    name: "Zaky",
+    role: "Ahmad parents",
+    avatar: "/zaky.jpg",
+  },
+  {
+    quote:
+      "Using Skoolar has been a game-changer for me as a parent. The direct messaging feature with teachers allows me to keep a close eye on my child's progress and assignments in real-time. Knowing what my child is working on at school makes them feel more supported, and it enhances our ability to stay connected. Skoolar makes it easy to communicate and track my child's achievements, helping me be more engaged in their educational journey.",
+    name: "Fajri",
+    role: "Dylan parents",
+    avatar: "/fajri.jpg",
   },
 ];
 
@@ -232,16 +253,16 @@ export default function Home() {
                   key={index}
                   className="bg-white rounded-lg overflow-hidden shadow-lg"
                 >
-                  <div className={`${innovation.color} relative h-48`}>
+                  <div className={`${innovation.color} p-6 relative h-48`}>
                     <span className="absolute top-4 right-4 bg-white bg-opacity-25 text-white px-2 py-1 rounded text-sm">
                       {innovation.tag}
                     </span>
                     <Image
                       src={innovation.image}
                       alt={innovation.title}
-                      layout="fill"
-                      objectFit="cover"
-                      className="absolute inset-0"
+                      width={200}
+                      height={200}
+                      className="w-full h-full object-contain"
                     />
                   </div>
                   <div className="p-6">
@@ -266,7 +287,7 @@ export default function Home() {
                 <br />
                 Have to Say About
                 <br />
-                <span className="text-blue-500">Skoolar?</span>
+                <span className="text-[#2B478B]">Skoolar?</span>
               </h2>
               <p className="text-gray-600 mb-12 max-w-2xl">
                 Skoolar is a web-based application that allows teachers and
@@ -315,10 +336,11 @@ export default function Home() {
         <section className="bg-[#2B478B] py-16 text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-4">
-              Ready to Start Learning?
+              Educate Today, Innovate Tomorrow
             </h2>
             <p className="mb-8">
-              Join Skoolar today and unlock your potential!
+              Join Skoolar today and unlock your potential to shape a brighter
+              future!
             </p>
             <button className="px-6 py-3 bg-white text-[#2B478B] rounded-md hover:bg-gray-100 text-lg font-semibold">
               Enroll Now
@@ -332,9 +354,7 @@ export default function Home() {
           <div className="flex flex-wrap justify-between">
             <div className="w-full md:w-1/4 mb-6 md:mb-0">
               <h3 className="text-xl font-bold mb-4">Skoolar</h3>
-              <p className="text-gray-400">
-                Empowering minds, shaping futures.
-              </p>
+              <p className="text-gray-400">Educate Today, Innovate Tomorrow</p>
             </div>
             <div className="w-full md:w-1/4 mb-6 md:mb-0">
               <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
@@ -346,7 +366,7 @@ export default function Home() {
                 </li>
                 <li>
                   <Link href="#" className="text-gray-400 hover:text-white">
-                    Courses
+                    Pricese
                   </Link>
                 </li>
                 <li>
@@ -363,9 +383,7 @@ export default function Home() {
             </div>
             <div className="w-full md:w-1/4 mb-6 md:mb-0">
               <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-              <p className="text-gray-400">
-                123 Education St, Learning City, 12345
-              </p>
+              <p className="text-gray-400">08111-909-089</p>
               <p className="text-gray-400">contact@skoolar.com</p>
             </div>
             <div className="w-full md:w-1/4">
