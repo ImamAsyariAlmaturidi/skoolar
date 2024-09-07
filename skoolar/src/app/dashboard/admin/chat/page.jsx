@@ -1,8 +1,10 @@
 import React from "react";
-import ChatBox from "../../../../components/ChatBox";
-import ChatRoom from "../../../../components/ChatRoom";
+import ChatRoom from "../../../../components/parent/ChatRoom";
+import ChatBox from "../../../../components/parent/Chatbox";
+import { getAllGroup } from "../../parent/chat/action";
 
-const page = () => {
+const page = async () => {
+  const { data } = getAllGroup();
   return (
     <div className="flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">
       <div className="flex w-full">
