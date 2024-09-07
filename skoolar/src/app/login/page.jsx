@@ -1,36 +1,28 @@
-"use client"
+"use client";
 
-import { useEffect } from 'react';
-import './style.scss';
-import { doLoginAsParent, doLoginAsSchool } from './action';
+import { useEffect } from "react";
+import "./style.scss";
+import { doLoginAsParent, doLoginAsSchool } from "./action";
 
 export default function Login() {
-
   useEffect(() => {
-    const signupButton = document.getElementById('signup-button');
-    const loginButton = document.getElementById('login-button');
-    const userForms = document.getElementById('user_options-forms');
+    const signupButton = document.getElementById("signup-button");
+    const loginButton = document.getElementById("login-button");
+    const userForms = document.getElementById("user_options-forms");
 
-    /**
-     * Add event listener to the "Sign Up" button
-     */
-    signupButton.addEventListener('click', () => {
-      userForms.classList.remove('bounceRight');
-      userForms.classList.add('bounceLeft');
+    signupButton.addEventListener("click", () => {
+      userForms.classList.remove("bounceRight");
+      userForms.classList.add("bounceLeft");
     });
 
-    /**
-     * Add event listener to the "Login" button
-     */
-    loginButton.addEventListener('click', () => {
-      userForms.classList.remove('bounceLeft');
-      userForms.classList.add('bounceRight');
+    loginButton.addEventListener("click", () => {
+      userForms.classList.remove("bounceLeft");
+      userForms.classList.add("bounceRight");
     });
 
-    // Cleanup event listeners when component unmounts
     return () => {
-      signupButton.removeEventListener('click', () => { });
-      loginButton.removeEventListener('click', () => { });
+      signupButton.removeEventListener("click", () => {});
+      loginButton.removeEventListener("click", () => {});
     };
   }, []);
 
@@ -48,7 +40,11 @@ export default function Login() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <g id="SVGRepo_bgCarrier" strokeWidth={0} />
-                <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
                 <g id="SVGRepo_iconCarrier">
                   {" "}
                   <path
@@ -61,9 +57,9 @@ export default function Login() {
                 </g>
               </svg>
 
-
-
-              <h2 className=" font-base text-2xl mt-3 font-medium">Login as School</h2>
+              <h2 className=" font-base text-2xl mt-3 font-medium">
+                Login as School
+              </h2>
 
               <button className="user_registered-login" id="signup-button">
                 CHANGE
@@ -82,12 +78,18 @@ export default function Login() {
                 fill="#000000"
               >
                 <g id="SVGRepo_bgCarrier" strokeWidth={0} />
-                <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
                 <g id="SVGRepo_iconCarrier">
                   {" "}
                   <style
                     type="text/css"
-                    dangerouslySetInnerHTML={{ __html: " .st0{fill:#ffffff;} " }}
+                    dangerouslySetInnerHTML={{
+                      __html: " .st0{fill:#ffffff;} ",
+                    }}
                   />{" "}
                   <g>
                     {" "}
@@ -111,7 +113,9 @@ export default function Login() {
                 </g>
               </svg>
 
-              <h2 className="font-base text-2xl mt-3 font-medium">Login as Parent</h2>
+              <h2 className="font-base text-2xl mt-3 font-medium">
+                Login as Parent
+              </h2>
               <button className="user_registered-login" id="login-button">
                 CHANGE
               </button>
@@ -119,8 +123,14 @@ export default function Login() {
           </div>
           <div className="user_options-forms" id="user_options-forms">
             <div className="user_forms-login">
-              <img className='h-10 scale-102' src="https://res.cloudinary.com/dqrmcom6v/image/upload/v1725532172/SKOOLAR_trw2yi.png" alt="" />
-              <h2 className="forms_title pl-3">Parent <br /> account</h2>
+              <img
+                className="h-10 scale-102"
+                src="https://res.cloudinary.com/dqrmcom6v/image/upload/v1725532172/SKOOLAR_trw2yi.png"
+                alt=""
+              />
+              <h2 className="forms_title pl-3">
+                Parent <br /> account
+              </h2>
 
               {/* Parent Form Login */}
               <form className="forms_form pl-3" action={doLoginAsParent}>
@@ -128,7 +138,7 @@ export default function Login() {
                   <div className="forms_field">
                     <input
                       type="text"
-                      name='NISN'
+                      name="NISN"
                       placeholder="NISN"
                       className="forms_field-input"
                       required
@@ -137,7 +147,7 @@ export default function Login() {
                   </div>
                   <div className="forms_field">
                     <input
-                      name='password'
+                      name="password"
                       type="password"
                       placeholder="Password"
                       className="forms_field-input"
@@ -146,7 +156,6 @@ export default function Login() {
                   </div>
                 </fieldset>
                 <div className="forms_buttons">
-
                   <input
                     type="submit"
                     defaultValue="Log In"
@@ -155,21 +164,24 @@ export default function Login() {
                 </div>
               </form>
               {/* Paren Login End */}
-
-
             </div>
             <div className="user_forms-signup">
-              <img className='h-10 scale-102' src="https://res.cloudinary.com/dqrmcom6v/image/upload/v1725532172/SKOOLAR_trw2yi.png" alt="" />
-              <h2 className="forms_title pl-3">School <br /> Account</h2>
+              <img
+                className="h-10 scale-102"
+                src="https://res.cloudinary.com/dqrmcom6v/image/upload/v1725532172/SKOOLAR_trw2yi.png"
+                alt=""
+              />
+              <h2 className="forms_title pl-3">
+                School <br /> Account
+              </h2>
 
               {/* School Login Form */}
               <form className="forms_form pl-3" action={doLoginAsSchool}>
                 <fieldset className="forms_fieldset">
-
                   <div className="forms_field">
                     <input
                       type="text"
-                      name='NIK'
+                      name="NIK"
                       placeholder="NIK"
                       className="forms_field-input"
                       required
@@ -179,6 +191,9 @@ export default function Login() {
                     <input
                       type="password"
                       name='password'
+
+                      name="password"
+
                       placeholder="Password"
                       className="forms_field-input"
                       required
@@ -194,7 +209,6 @@ export default function Login() {
                 </div>
               </form>
               {/* School Login Form End */}
-
             </div>
           </div>
         </div>

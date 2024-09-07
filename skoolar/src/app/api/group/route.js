@@ -47,6 +47,7 @@ export async function GET(request) {
       );
     }
     const data = await getGroupWhereIncludeUserId(userId);
+
     return NextResponse.json({
       statusCode: 200,
       message: "Success get data",

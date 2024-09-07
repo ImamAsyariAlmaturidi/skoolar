@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { verifyAccessToken } from "../db/utils/jwt";
 
-const ServerProtectedComponents = ({ children }) => {
+const DashboardParentProtected = ({ children }) => {
   // Membaca cookies
   const cookiesStore = cookies();
 
@@ -21,8 +21,8 @@ const ServerProtectedComponents = ({ children }) => {
     redirect("/dashboard/teacher");
   }
 
-  redirect("/dashboaed/parent");
+  // redirect("/dashboard/parent");
   return <>{children}</>;
 };
 
-export default ServerProtectedComponents;
+export default DashboardParentProtected;

@@ -18,7 +18,6 @@ export const doLoginAsParent = async (formData) => {
 
   console.log(NISN, password);
 
-
   const parsedData = schemaParentInput.validate({ NISN, password });
   if (parsedData.error) {
     const errPath = parsedData.error.details[0].path[0];
@@ -122,5 +121,5 @@ export async function doLogout() {
   if (token) {
     store.delete("access_token");
   }
-  redirect("login");
+  redirect("/login");
 }

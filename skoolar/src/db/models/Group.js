@@ -11,7 +11,6 @@ export const getDb = async () => {
   return db;
 };
 
-// Function to get a group by userId
 export const getGroupWhereIncludeUserId = async (userId) => {
   const db = await getDb();
   const collection = db.collection(COLLECTION_GROUP);

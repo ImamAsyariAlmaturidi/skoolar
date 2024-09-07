@@ -1,4 +1,5 @@
 export default async function ChatBox({ data }) {
+  // console.log(data, "ini data");
   return (
     <>
       <div className="pl-8 pt-2 pb-2 flex hover:bg-neutral-200 cursor-pointer">
@@ -11,7 +12,9 @@ export default async function ChatBox({ data }) {
         </div>
         <div className="w-full mr-4">
           <div className="flex justify-between w-full">
-            <p className="ml-4 font-semibold text-[0.9rem]">{data?.name}</p>
+            <p className="ml-4 font-semibold text-[0.9rem] text-black">
+              {data?.name}
+            </p>
             <p className="text-neutral-500 text-[0.8rem]">05.50</p>
           </div>
           <p className="ml-4  text-[0.8rem] text-neutral-500">

@@ -39,6 +39,7 @@ export const deleteUserById = async (id) => {
 export const createUser = async (user) => {
   const modifiedUser = {
     ...user,
+    role: "teacher",
     password: hashingPassword(user.password),
   };
   const db = await getDb();
