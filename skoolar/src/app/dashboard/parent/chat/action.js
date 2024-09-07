@@ -81,7 +81,6 @@ export async function sendMessage(groupId, messageData) {
   }
 }
 
-// Function to get all groups
 export async function getAllGroup() {
   try {
     const res = await fetch("http://localhost:3000/api/group", {
@@ -111,6 +110,7 @@ export async function getUserIdOther(id) {
       method: "GET",
       headers: {
         Cookie: cookies().toString(),
+        id: id,
       },
     });
     if (!res.ok) {
