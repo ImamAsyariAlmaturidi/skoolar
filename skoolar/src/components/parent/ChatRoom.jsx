@@ -2,42 +2,100 @@
 import { useEffect, useState } from "react";
 import MessageBoxOther from "./MessageBoxOther";
 import MessageBoxMe from "./MessageBoxMe";
-// import { getAllMessagesByGroupId } from "../app/dashboard/parent/chat/action";
+import {
+  getAllMessagesByGroupId,
+  sendMessage,
+} from "../../app/dashboard/parent/chat/action"; // Pastikan path ini benar
+import { getMe } from "../../app/dashboard/parent/action";
+import { Timestamp } from "firebase/firestore";
 
 export default function ChatRoom() {
-  // State untuk menyimpan daftar pesan
-  const [messages, setMessages] = useState([
-    { id: 1, text: "Hello!", sender: "other" },
-    { id: 2, text: "Hi there!", sender: "me" },
-    { id: 3, text: "How are you?", sender: "other" },
-    { id: 4, text: "I'm good, thanks!", sender: "me" },
-  ]);
+  const [messages, setMessages] = useState([]);
 
-  // async function getChats() {
-  //   try {
-  //     const res = await getAllMessagesByGroupId();
-  //     console.log(res);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  // State untuk input pesan baru
+  const [currentUserId, setCurrentUserId] = useState(null);
   const [newMessage, setNewMessage] = useState("");
-
-  // Fungsi untuk mengirim pesan
-  const sendMessage = () => {
-    if (newMessage.trim() !== "") {
-      setMessages([
-        ...messages,
-        { id: messages.length + 1, text: newMessage, sender: "me" },
-      ]);
-      setNewMessage("");
-    }
-  };
+  const [currentUserName, setCurrentUserName] = useState("");
+  const groupId = "12345";
 
   useEffect(() => {
-    // getChats();
+    async function fetchCurrentUser() {
+      try {
+        const { data } = await getMe();
+        if (data) {
+          setCurrentUserId(data?._id);
+          setCurrentUserName(data?.studentName);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchCurrentUser();
   }, []);
+
+  useEffect(() => {
+    if (currentUserId) {
+      async function fetchMessages() {
+        try {
+          const res = await getAllMessagesByGroupId(groupId);
+
+          const formattedMessages = res.flatMap((doc) =>
+            doc.messages.map((msg) => ({
+              id: new Date(),
+              text: msg.content,
+              sender:
+                msg.sender_id === currentUserId
+                  ? currentUserName
+                  : msg.sender_id,
+            }))
+          );
+
+          setMessages(formattedMessages);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      fetchMessages();
+    }
+  }, [currentUserId]);
+
+  const handleSendMessage = async () => {
+    if (newMessage.trim() !== "") {
+      try {
+        const timestamp = Timestamp.now();
+        const messageData = {
+          group_id: groupId,
+          last_sender_id: currentUserId,
+          last_sender_name: currentUserName,
+          last_text: newMessage,
+          last_timestamp: timestamp,
+          messages: [
+            {
+              content: newMessage,
+              sender_id: currentUserId,
+              timestamp: timestamp,
+              type: "text",
+            },
+          ],
+        };
+
+        await sendMessage(groupId, messageData);
+
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            id: timestamp.toMillis(),
+            text: newMessage,
+            sender: currentUserName,
+          },
+        ]);
+        setNewMessage("");
+      } catch (error) {
+        console.log("Error sending message: ", error);
+      }
+    }
+  };
 
   return (
     <div className="flex antialiased text-gray-800 w-full h-full">
@@ -46,18 +104,26 @@ export default function ChatRoom() {
           <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-white h-[10px] relative">
             <div className="flex flex-col h-full overflow-x-auto mb-20">
               <div className="flex flex-col h-full">
-                <div className="grid grid-cols-12 ">
+                <div className="grid grid-cols-12">
                   {messages.map((message) =>
-                    message.sender === "me" ? (
-                      <MessageBoxMe key={message.id} text={message.text} />
+                    message.sender === currentUserName ? (
+                      <MessageBoxMe
+                        key={message.id}
+                        text={message.text}
+                        sender={message.sender}
+                      />
                     ) : (
-                      <MessageBoxOther key={message.id} text={message.text} />
+                      <MessageBoxOther
+                        key={message.id}
+                        text={message.text}
+                        sender={message.sender}
+                      />
                     )
                   )}
                 </div>
               </div>
             </div>
-            <div className="flex flex-row items-center h-16 rounded-xl absolute bottom-0  w-full px-4">
+            <div className="flex flex-row items-center h-16 rounded-xl absolute bottom-0 w-full px-4">
               <div>
                 <button className="flex items-center justify-center text-gray-400 hover:text-gray-600">
                   <svg
@@ -83,11 +149,11 @@ export default function ChatRoom() {
                     className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 py-3 bg-white"
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
-                    onKeyPress={(e) => e.key === "Enter" && sendMessage()}
+                    onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                   />
                   <button
                     className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600"
-                    onClick={sendMessage}
+                    onClick={handleSendMessage}
                   >
                     <svg
                       className="w-6 h-6"
@@ -109,7 +175,7 @@ export default function ChatRoom() {
               <div className="ml-4">
                 <button
                   className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-2 flex-shrink-0"
-                  onClick={sendMessage}
+                  onClick={handleSendMessage}
                 >
                   <span>Send</span>
                   <span className="ml-2">

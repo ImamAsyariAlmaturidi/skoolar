@@ -1,5 +1,5 @@
 export default async function ChatBox({ data }) {
-  console.log(data, "ini data");
+  // console.log(data, "ini data");
   return (
     <>
       <div className="pl-8 pt-2 pb-2 flex hover:bg-neutral-200 cursor-pointer">

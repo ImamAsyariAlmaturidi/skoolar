@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { getMongoClientInstance } from "../../config/mongo";
 const DATABASE_NAME = process.env.DATABASE_NAME || "skoolar";
 const COLLECTION_USER = "parent";
@@ -46,5 +47,13 @@ export const getParentByName = async (name) => {
 export const getParentByNISN = async (NISN) => {
   const db = await getDb();
   const parent = await db.collection(COLLECTION_USER).findOne({ NISN: NISN });
+  return parent;
+};
+
+export const getParentById = async (id) => {
+  const db = await getDb();
+  const parent = await db
+    .collection(COLLECTION_USER)
+    .findOne({ _id: new ObjectId(id) });
   return parent;
 };
