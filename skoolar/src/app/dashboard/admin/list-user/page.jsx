@@ -192,6 +192,22 @@ export default function TeacherStudentList() {
                             <div className="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
                                 <h2 className="text-lg font-medium mb-4">Add Student</h2>
 
+                                {/* Input Parent Name */}
+                                <div className="mb-4">
+                                    <label htmlFor="parentName" className="block text-sm font-medium text-gray-700">
+                                        Parent Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="parentName"
+                                        name="parentName"
+                                        value={newStudent.parentName}
+                                        onChange={handleStudentInputChange}
+                                        className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
+                                    />
+                                </div>
+
+                                {/* Input Student Name */}
                                 <div className="mb-4">
                                     <label htmlFor="studentName" className="block text-sm font-medium text-gray-700">
                                         Student Name
@@ -199,22 +215,60 @@ export default function TeacherStudentList() {
                                     <input
                                         type="text"
                                         id="studentName"
-                                        name="name"
-                                        value={newStudent.name}
+                                        name="studentName"
+                                        value={newStudent.studentName}
                                         onChange={handleStudentInputChange}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
                                     />
                                 </div>
 
+                                {/* Input NISN */}
                                 <div className="mb-4">
-                                    <label htmlFor="studentGrade" className="block text-sm font-medium text-gray-700">
-                                        Grade
+                                    <label htmlFor="nisn" className="block text-sm font-medium text-gray-700">
+                                        NISN
                                     </label>
                                     <input
                                         type="text"
-                                        id="studentGrade"
-                                        name="grade"
-                                        value={newStudent.grade}
+                                        id="nisn"
+                                        name="NISN"
+                                        value={newStudent.nisn}
+                                        onChange={handleStudentInputChange}
+                                        className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
+                                    />
+                                </div>
+
+                                {/* Group Checkbox */}
+                                <div className="mb-4">
+                                    <label htmlFor="group" className="block text-sm font-medium text-gray-700">
+                                        Group
+                                    </label>
+                                    <div className="mt-2">
+                                        {["6A", "4C", "3B", "1A"].map((group, index) => (
+                                            <div key={index} className="flex items-center">
+                                                <input
+                                                    type="checkbox"
+                                                    id={`group-${group}`}
+                                                    name="group"
+                                                    value={group}
+                                                    className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                                />
+                                                <label htmlFor={`group-${group}`} className="ml-2 block text-sm text-gray-700">
+                                                    {group}
+                                                </label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Input Password */}
+                                <div className="mb-4">
+                                    <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                                        Password
+                                    </label>
+                                    <input
+                                        id="password"
+                                        name="password"
+                                        value={newStudent.password}
                                         onChange={handleStudentInputChange}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
                                     />
@@ -237,6 +291,7 @@ export default function TeacherStudentList() {
                             </div>
                         </div>
                     )}
+
                 </div>
             </div>
         </>
