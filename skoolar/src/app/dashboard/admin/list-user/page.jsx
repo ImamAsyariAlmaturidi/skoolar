@@ -59,21 +59,18 @@ export default function TeacherStudentList() {
 
     return (
         <>
-            <div className="flex min-h-screen w-full bg-white">
-                <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-white sm:flex">
-                    {/* Sidebar */}
-                </aside>
-                <div className="flex flex-1 flex-col sm:gap-4 sm:py-4 sm:pl-14">
-                    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-                        {/* Header */}
+            <div className="flex ml-4  w-full bg-white rounded-2xl">
+                <div className="flex flex-1 flex-col  ">
+                    <header className="sticky top-0 z-30 flex h-14 pt-7 pb-7 items-center gap-4 border-b bg-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+
                         <h1 className="text-lg font-medium">Teachers & Students</h1>
                     </header>
 
-                    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+                    <main className="grid flex-1 items-start gap-4 pt-5 p-4 sm:px-6 sm:py-0 md:gap-8">
                         <div className="grid auto-rows-max items-start">
                             <section className="grid items-start gap-4 lg:grid-cols-2">
                                 {/* List Guru */}
-                                <div className="rounded-lg border border-gray-300 bg-white p-6 shadow-sm">
+                                <div className="rounded-lg border border-gray-300 bg-white p-6 ">
                                     <div className="mb-5 flex items-center justify-between">
                                         <h3 className="text-lg font-medium">Teachers</h3>
                                         <button
@@ -108,7 +105,7 @@ export default function TeacherStudentList() {
                                     <div className="mb-5 flex items-center justify-between">
                                         <h3 className="text-lg font-medium">Students</h3>
                                         <button
-                                            className="rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600"
+                                            className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
                                             onClick={toggleStudentModal}
                                         >
                                             Add Student
@@ -231,7 +228,7 @@ export default function TeacherStudentList() {
                                         Cancel
                                     </button>
                                     <button
-                                        className="rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600"
+                                        className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
                                         onClick={handleAddStudent}
                                     >
                                         Add Student

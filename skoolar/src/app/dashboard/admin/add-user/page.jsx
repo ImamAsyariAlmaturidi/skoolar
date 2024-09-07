@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function AddUser() {
+export default function Group() {
     const [products, setProducts] = useState([
         { name: "6A", teacher: "Ms Lita", member: "12" },
         { name: "5A", teacher: "Ms Rina", member: "12" },
@@ -48,20 +48,18 @@ export default function AddUser() {
 
     return (
         <>
-            <div className="flex min-h-screen w-full bg-white">
-                <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-white sm:flex">
-                    {/* Sidebar code here */}
-                </aside>
-                <div className="flex flex-1 flex-col sm:gap-4 sm:py-4 sm:pl-14">
+            <div className="flex  w-full bg-[#F0F6FE]">
+
+                <div className="flex flex-1 flex-col ">
                     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
                         {/* Header code here */}
                     </header>
 
-                    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
-                        <div className="grid auto-rows-max items-start ">
-                            <section className="grid items-start gap-4 lg:grid-cols-4">
-                                <div className="grid grid-cols-1 gap-4 lg:col-span-4">
-                                    <div className="rounded-lg border border-gray-300 bg-white p-6 shadow-sm">
+                    <main className="grid flex-1 items-start p-4 py-0 h-screen">
+                        <div className="grid auto-rows-max items-start h-full">
+                            <section className="grid items-start gap-4 lg:grid-cols-4 h-full">
+                                <div className="grid grid-cols-1 gap-4 lg:col-span-4 h-full">
+                                    <div className="rounded-2xl  bg-white p-6 shadow-sm h-full  ">
                                         <div className="mb-5 flex items-center justify-between">
                                             <h3 className="text-lg font-medium">All Groups</h3>
                                             <button
