@@ -11,28 +11,28 @@ import {
 } from "firebase/firestore";
 // import { snap } from "../../../config/midtrans";
 
-// export async function getAllMessagesByGroupId(groupId) {
-//   try {
-//     const messagesRef = collection(db, "chats");
+export async function getAllMessagesByGroupId(groupId) {
+  try {
+    const messagesRef = collection(db, "chats");
 
-//     const q = query(
-//       messagesRef,
-//       where("group_id", "==", groupId),
-//       orderBy("last_timestamp")
-//     );
+    const q = query(
+      messagesRef,
+      where("group_id", "==", groupId),
+      orderBy("last_timestamp")
+    );
 
-//     const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(q);
 
-//     const messages = querySnapshot.docs.map((doc) => ({
-//       id: doc.id,
-//       ...doc.data(),
-//     }));
-//     return messages;
-//   } catch (error) {
-//     console.error("Error getting messages: ", error);
-//     throw error;
-//   }
-// }
+    const messages = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    return messages;
+  } catch (error) {
+    console.error("Error getting messages: ", error);
+    throw error;
+  }
+}
 
 // export async function sendMessage(groupId, messageData) {
 //   console.log(messageData);
