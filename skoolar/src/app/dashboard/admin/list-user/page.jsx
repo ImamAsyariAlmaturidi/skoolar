@@ -59,21 +59,18 @@ export default function TeacherStudentList() {
 
     return (
         <>
-            <div className="flex min-h-screen w-full bg-white">
-                <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-white sm:flex">
-                    {/* Sidebar */}
-                </aside>
-                <div className="flex flex-1 flex-col sm:gap-4 sm:py-4 sm:pl-14">
-                    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-                        {/* Header */}
+            <div className="flex ml-4  w-full bg-white rounded-2xl">
+                <div className="flex flex-1 flex-col  ">
+                    <header className="sticky top-0 z-30 flex h-14 pt-7 pb-7 items-center gap-4 border-b bg-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+
                         <h1 className="text-lg font-medium">Teachers & Students</h1>
                     </header>
 
-                    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+                    <main className="grid flex-1 items-start gap-4 pt-5 p-4 sm:px-6 sm:py-0 md:gap-8">
                         <div className="grid auto-rows-max items-start">
                             <section className="grid items-start gap-4 lg:grid-cols-2">
                                 {/* List Guru */}
-                                <div className="rounded-lg border border-gray-300 bg-white p-6 shadow-sm">
+                                <div className="rounded-lg border border-gray-300 bg-white p-6 ">
                                     <div className="mb-5 flex items-center justify-between">
                                         <h3 className="text-lg font-medium">Teachers</h3>
                                         <button
@@ -108,7 +105,7 @@ export default function TeacherStudentList() {
                                     <div className="mb-5 flex items-center justify-between">
                                         <h3 className="text-lg font-medium">Students</h3>
                                         <button
-                                            className="rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600"
+                                            className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
                                             onClick={toggleStudentModal}
                                         >
                                             Add Student
@@ -195,6 +192,22 @@ export default function TeacherStudentList() {
                             <div className="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
                                 <h2 className="text-lg font-medium mb-4">Add Student</h2>
 
+                                {/* Input Parent Name */}
+                                <div className="mb-4">
+                                    <label htmlFor="parentName" className="block text-sm font-medium text-gray-700">
+                                        Parent Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="parentName"
+                                        name="parentName"
+                                        value={newStudent.parentName}
+                                        onChange={handleStudentInputChange}
+                                        className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
+                                    />
+                                </div>
+
+                                {/* Input Student Name */}
                                 <div className="mb-4">
                                     <label htmlFor="studentName" className="block text-sm font-medium text-gray-700">
                                         Student Name
@@ -202,22 +215,60 @@ export default function TeacherStudentList() {
                                     <input
                                         type="text"
                                         id="studentName"
-                                        name="name"
-                                        value={newStudent.name}
+                                        name="studentName"
+                                        value={newStudent.studentName}
                                         onChange={handleStudentInputChange}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
                                     />
                                 </div>
 
+                                {/* Input NISN */}
                                 <div className="mb-4">
-                                    <label htmlFor="studentGrade" className="block text-sm font-medium text-gray-700">
-                                        Grade
+                                    <label htmlFor="nisn" className="block text-sm font-medium text-gray-700">
+                                        NISN
                                     </label>
                                     <input
                                         type="text"
-                                        id="studentGrade"
-                                        name="grade"
-                                        value={newStudent.grade}
+                                        id="nisn"
+                                        name="NISN"
+                                        value={newStudent.nisn}
+                                        onChange={handleStudentInputChange}
+                                        className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
+                                    />
+                                </div>
+
+                                {/* Group Checkbox */}
+                                <div className="mb-4">
+                                    <label htmlFor="group" className="block text-sm font-medium text-gray-700">
+                                        Group
+                                    </label>
+                                    <div className="mt-2">
+                                        {["6A", "4C", "3B", "1A"].map((group, index) => (
+                                            <div key={index} className="flex items-center">
+                                                <input
+                                                    type="checkbox"
+                                                    id={`group-${group}`}
+                                                    name="group"
+                                                    value={group}
+                                                    className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                                />
+                                                <label htmlFor={`group-${group}`} className="ml-2 block text-sm text-gray-700">
+                                                    {group}
+                                                </label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Input Password */}
+                                <div className="mb-4">
+                                    <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                                        Password
+                                    </label>
+                                    <input
+                                        id="password"
+                                        name="password"
+                                        value={newStudent.password}
                                         onChange={handleStudentInputChange}
                                         className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
                                     />
@@ -231,7 +282,7 @@ export default function TeacherStudentList() {
                                         Cancel
                                     </button>
                                     <button
-                                        className="rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white hover:bg-green-600"
+                                        className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
                                         onClick={handleAddStudent}
                                     >
                                         Add Student
@@ -240,6 +291,7 @@ export default function TeacherStudentList() {
                             </div>
                         </div>
                     )}
+
                 </div>
             </div>
         </>

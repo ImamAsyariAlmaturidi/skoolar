@@ -190,7 +190,10 @@ export default function Login() {
                   <div className="forms_field">
                     <input
                       type="password"
+                      name='password'
+
                       name="password"
+
                       placeholder="Password"
                       className="forms_field-input"
                       required
