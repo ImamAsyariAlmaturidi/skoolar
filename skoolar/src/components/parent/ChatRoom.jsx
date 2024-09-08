@@ -7,7 +7,15 @@ import {
   sendMessage,
 } from "../../app/dashboard/parent/chat/action"; // Pastikan path ini benar
 import { getMe } from "../../app/dashboard/parent/action";
-import { Timestamp } from "firebase/firestore";
+import {
+  collection,
+  orderBy,
+  query,
+  Timestamp,
+  onSnapshot,
+  where,
+} from "firebase/firestore";
+import { db } from "../../config/firebase";
 
 export default function ChatRoom() {
   const [messages, setMessages] = useState([]);
@@ -32,6 +40,25 @@ export default function ChatRoom() {
 
     fetchCurrentUser();
   }, []);
+
+  useEffect(() => {
+    const messagesRef = collection(db, "chats");
+    const q = query(
+      messagesRef,
+      where("group_id", "==", groupId),
+      orderBy("last_timestamp", "asc")
+    );
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const messagesData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setMessages(messagesData);
+    });
+
+    return () => unsubscribe();
+  }, [groupId]);
 
   useEffect(() => {
     if (currentUserId) {
