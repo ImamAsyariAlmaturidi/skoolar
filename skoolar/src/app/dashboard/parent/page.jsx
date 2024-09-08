@@ -26,7 +26,7 @@ export default async function Dashboard() {
             </div>
             <Pengumuman />
 
-            <div className="w-full h-[27rem]  rounded-3xl flex gap-3 mt-1">
+            <div className="w-full h-[27rem] rounded-3xl flex gap-3 mt-1">
               <div className="w-1/2 h-[90%] bg-white rounded-3xl px-7 py-4">
                 <Percakapan />
               </div>

@@ -1,9 +1,10 @@
 import Link from "next/link";
-import ChatRoom from "../../../../components/parent/ChatRoom";
-import ChatBox from "../../../../components/parent/Chatbox";
-import SideBar from "../../../../components/parent/Sidebar";
-import { getAllGroup } from "./action";
-export default async function ChatPage() {
+import ChatBox from "../../../../../components/parent/Chatbox";
+import ChatRoom from "../../../../../components/parent/ChatRoom";
+import SideBar from "../../../../../components/parent/Sidebar";
+import { getAllGroup } from "../action";
+
+export default async function ParentDetailPage({ params }) {
   const { data } = await getAllGroup();
   return (
     <>
@@ -57,10 +58,8 @@ export default async function ChatPage() {
                 </p>
               </div>
             </div>
-            <div className="w-full h-[88%] flex items-center justify-center">
-              <span className="text-3xl font-bold text-slate-300">
-                Select your message
-              </span>
+            <div className="w-full h-[88%]">
+              <ChatRoom id={params.slug} />
             </div>
           </div>
         </div>

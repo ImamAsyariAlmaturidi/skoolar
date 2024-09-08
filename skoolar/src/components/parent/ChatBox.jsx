@@ -1,6 +1,8 @@
-export default async function ChatBox({ data = "Alfin" }) {
+export default async function ChatBox({ data }) {
+  console.log(data, "ini datanya yaa");
   return (
     <>
+      {/* <Link href={`/dashboard/parent/chat/${data._id}`}></Link> */}
       <div className="pl-8 pt-2 pb-2 flex hover:bg-neutral-200 cursor-pointer">
         <div className="rounded-full bg-orange-200 border border-neutral-200 w-14 h-11 flex items-center justify-center">
           <img
