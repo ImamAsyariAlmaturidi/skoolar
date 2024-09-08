@@ -103,7 +103,7 @@ export async function getAllGroup() {
 }
 
 export async function getUserIdOther(id) {
-  // console.log(id);
+  console.log(id);
   try {
     const res = await fetch(`http://localhost:3000/api/parent/${id}`, {
       cache: "no-store",

@@ -5,7 +5,7 @@ import MessageBoxMe from "./MessageBoxMe";
 import {
   getAllMessagesByGroupId,
   sendMessage,
-} from "../../app/dashboard/parent/chat/action"; // Pastikan path ini benar
+} from "../../app/dashboard/parent/chat/action"; // Ensure this path is correct
 import { getMe } from "../../app/dashboard/parent/action";
 import {
   collection,
@@ -19,7 +19,6 @@ import { db } from "../../config/firebase";
 
 export default function ChatRoom() {
   const [messages, setMessages] = useState([]);
-
   const [currentUserId, setCurrentUserId] = useState(null);
   const [newMessage, setNewMessage] = useState("");
   const [currentUserName, setCurrentUserName] = useState("");
@@ -34,14 +33,15 @@ export default function ChatRoom() {
           setCurrentUserName(data?.studentName);
         }
       } catch (error) {
-        console.log(error);
+        console.log("Error fetching current user: ", error);
       }
     }
-
     fetchCurrentUser();
   }, []);
 
   useEffect(() => {
+    if (!currentUserId) return;
+
     const messagesRef = collection(db, "chats");
     const q = query(
       messagesRef,
@@ -54,73 +54,56 @@ export default function ChatRoom() {
         id: doc.id,
         ...doc.data(),
       }));
-      setMessages(messagesData);
+
+      const formattedMessages = messagesData.flatMap((doc) =>
+        doc.messages.map((msg) => ({
+          id: msg.timestamp,
+          text: msg.content,
+          sender:
+            msg.sender_id === currentUserId ? currentUserName : msg.sender_id,
+        }))
+      );
+
+      setMessages(formattedMessages);
     });
 
     return () => unsubscribe();
-  }, [groupId]);
-
-  useEffect(() => {
-    if (currentUserId) {
-      async function fetchMessages() {
-        try {
-          const res = await getAllMessagesByGroupId(groupId);
-
-          const formattedMessages = res.flatMap((doc) =>
-            doc.messages.map((msg) => ({
-              id: new Date(),
-              text: msg.content,
-              sender:
-                msg.sender_id === currentUserId
-                  ? currentUserName
-                  : msg.sender_id,
-            }))
-          );
-
-          setMessages(formattedMessages);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-
-      fetchMessages();
-    }
-  }, [currentUserId]);
+  }, [groupId, currentUserId]);
 
   const handleSendMessage = async () => {
-    if (newMessage.trim() !== "") {
-      try {
-        const timestamp = Timestamp.now();
-        const messageData = {
-          group_id: groupId,
-          last_sender_id: currentUserId,
-          last_sender_name: currentUserName,
-          last_text: newMessage,
-          last_timestamp: timestamp,
-          messages: [
-            {
-              content: newMessage,
-              sender_id: currentUserId,
-              timestamp: timestamp,
-              type: "text",
-            },
-          ],
-        };
+    if (newMessage.trim() === "") return;
 
-        await sendMessage(groupId, messageData);
-
-        setMessages((prevMessages) => [
-          ...prevMessages,
+    try {
+      const timestamp = Timestamp.now();
+      const messageData = {
+        group_id: groupId,
+        last_sender_id: currentUserId,
+        last_sender_name: currentUserName,
+        last_text: newMessage,
+        last_timestamp: timestamp,
+        messages: [
           {
-            id: timestamp.toMillis(),
-            text: newMessage,
-            sender: currentUserName,
+            content: newMessage,
+            sender_id: currentUserId,
+            timestamp: timestamp,
+            type: "text",
           },
-        ]);
-        setNewMessage("");
-      } catch (error) {
-        console.log("Error sending message: ", error);
-      }
+        ],
+      };
+
+      await sendMessage(groupId, messageData);
+
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          id: timestamp.toMillis(),
+          text: newMessage,
+          sender: currentUserName,
+        },
+      ]);
+      setNewMessage("");
+    } catch (error) {
+      console.log("Error sending message: ", error);
     }
   };
 
@@ -128,10 +111,10 @@ export default function ChatRoom() {
     <div className="flex antialiased text-gray-800 w-full h-full">
       <div className="flex flex-row h-full w-full overflow-x-hidden">
         <div className="flex flex-col flex-auto h-[45rem] p-6">
-          <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-white h-[10px] relative">
+          <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-white h-full relative">
             <div className="flex flex-col h-full overflow-x-auto mb-20">
               <div className="flex flex-col h-full">
-                <div className="grid grid-cols-12">
+                <div className="grid grid-cols-12 gap-4">
                   {messages.map((message) =>
                     message.sender === currentUserName ? (
                       <MessageBoxMe
