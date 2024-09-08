@@ -25,18 +25,19 @@
     "next-auth": "^5.0.0-beta.20",
     "react": "^18",
     "react-dom": "^18",
-    "sass": "^1.78.0"
+    "sass": "^1.78.0",
+    "sweetalert2": "^11.13.3"
   },
   "devDependencies": {
     "@types/react": "18.3.5",
     "daisyui": "^4.12.10",
-    "lucide-react": "^0.438.0",
-    "next": "14.2.7",
-    "react": "^18",
-    "react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.7",
+    "lucide-react": "^0.438.0",
+    "next": "14.2.7",
     "postcss": "^8",
+    "react": "^18",
+    "react-dom": "^18",
     "tailwindcss": "^3.4.1"
   }
 }
