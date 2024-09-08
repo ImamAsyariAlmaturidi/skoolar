@@ -49,7 +49,7 @@ export default function TeacherClassroom() {
               </div>
             </div>
             <div className="w-full h-[88%]">
-              <TeacherChatRoom />
+              <span>Select your chat</span>
             </div>
           </div>
         </div>

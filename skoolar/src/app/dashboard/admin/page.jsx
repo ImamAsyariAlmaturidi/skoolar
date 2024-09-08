@@ -37,26 +37,24 @@ export default function AdminDashboard() {
 
   return (
     <>
-      <div className="flex flex-col w-full bg-[#F0F6FE]">
-        <header className="flex justify-between items-center px-6 py- pt-4">
+      <div className="flex flex-col w-full  rounded-3xl ">
+        <header className="flex justify-between items-center px-6 py-5 pt-4">
           <h1 className="text-2xl font-medium">Admin Dashboard</h1>
         </header>
 
-        <div className="grid grid-cols-2 gap-6 p-6 h-full">
+        <div className="grid grid-cols-2 gap-6 px-6 h-full">
           {/* Teachers Table */}
-          <div className="bg-white  rounded-lg p-4">
+          <div className="bg-white  rounded-2xl p-4">
             <div className="flex justify-between items-center mb-4">
               <h2 className="font-medium">Teachers</h2>
-              <Link href={'/dashboard/admin/list-user'}>
+              <Link href={"/dashboard/admin/list-user"}>
                 <button
                   onClick={toggleTeacherModal}
                   className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600"
-
                 >
                   Details
                 </button>
               </Link>
-
             </div>
             <table className="min-w-full table-auto border-collapse">
               <thead>
@@ -77,14 +75,13 @@ export default function AdminDashboard() {
           </div>
 
           {/* Students Table */}
-          <div className="bg-white rounded-lg p-4">
+          <div className="bg-white rounded-2xl p-4">
             <div className="flex justify-between items-center mb-4">
               <h2 className="font-medium">Students</h2>
-              <Link href={'/dashboard/admin/list-user'}>
+              <Link href={"/dashboard/admin/list-user"}>
                 <button
                   onClick={toggleStudentModal}
                   className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600"
-
                 >
                   Details
                 </button>
@@ -109,10 +106,10 @@ export default function AdminDashboard() {
           </div>
 
           {/* Groups Table */}
-          <div className="bg-white  rounded-lg p-4">
+          <div className="bg-white  rounded-2xl p-4">
             <div className="flex justify-between items-center mb-4">
               <h2 className="font-medium">Groups</h2>
-              <Link href={'/dashboard/admin/add-user'}>
+              <Link href={"/dashboard/admin/add-user"}>
                 <button
                   onClick={toggleGroupModal}
                   className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600"
@@ -142,17 +139,15 @@ export default function AdminDashboard() {
           </div>
 
           {/* Payments Table */}
-          <div className="bg-white  rounded-lg p-4">
+          <div className="bg-white  rounded-2xl p-4">
             <div className="flex justify-between items-center mb-4">
               <h2 className="font-medium">Payments</h2>
               <button
                 onClick={toggleStudentModal}
                 className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600"
-
               >
                 Details
               </button>
-
             </div>
             <table className="min-w-full table-auto border-collapse">
               <thead>
