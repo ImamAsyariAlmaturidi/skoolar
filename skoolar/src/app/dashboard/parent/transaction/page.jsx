@@ -11,7 +11,7 @@ const formatCurrency = (amount) => {
     minimumFractionDigits: 0,
   }).format(amount);
 };
-
+// trasanction
 export default function Pembayaran() {
   const [dataTransaction, setDataTransaction] = useState([]);
   const [totalAmount, setTotalAmount] = useState("");
