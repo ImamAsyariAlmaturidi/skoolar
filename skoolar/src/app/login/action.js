@@ -66,7 +66,6 @@ export const doLoginAsSchool = async (formData) => {
 
   console.log(NIK, password);
 
-
   const parsedData = schemaSchoolInput.validate({ NIK, password });
   if (parsedData.error) {
     const errPath = parsedData.error.details[0].path[0];

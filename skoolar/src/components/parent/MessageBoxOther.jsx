@@ -8,7 +8,11 @@ export default function MessageBoxOther({ text, sender }) {
     async function getOther(sender) {
       try {
         const { data } = await getUserIdOther(sender);
-        setName(data.studentName);
+        if (data.studentName) {
+          setName(data.studentName);
+        } else {
+          setName(`Mr/Ms.${data.name}`);
+        }
       } catch (error) {
         console.log(error);
       }

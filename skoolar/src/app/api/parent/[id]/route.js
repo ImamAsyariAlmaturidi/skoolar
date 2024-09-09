@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { getParentById } from "../../../../db/models/Parent";
+import { getParentById, getParentOrUser } from "../../../../db/models/Parent";
 
 export async function GET(request) {
   const otherId = request.headers.get("id");
   try {
-    const data = await getParentById(otherId);
+    const data = await getParentOrUser(otherId);
     return NextResponse.json({
       statusCode: 200,
       message: "Succes create Parent User",

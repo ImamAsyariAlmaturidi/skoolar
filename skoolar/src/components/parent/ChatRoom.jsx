@@ -25,14 +25,13 @@ export default function ChatRoom({ id }) {
   const [currentUserName, setCurrentUserName] = useState("");
   const groupId = id;
 
-
   useEffect(() => {
     async function fetchCurrentUser() {
       try {
-        const { data } = await getMe();
+        const data = await getMe();
         if (data) {
           setCurrentUserId(data?._id);
-          setCurrentUserName(data?.studentName);
+          setCurrentUserName(data?.name);
         }
       } catch (error) {
         console.log("Error fetching current user: ", error);
@@ -92,6 +91,8 @@ export default function ChatRoom({ id }) {
           },
         ],
       };
+
+      console.log(messageData, "ini message datanya");
 
       await sendMessage(groupId, messageData);
 

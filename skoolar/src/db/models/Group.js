@@ -51,7 +51,10 @@ export const getGroupWhereIncludeUserId = async (userId) => {
     },
     {
       $match: {
-        "parents._id": new ObjectId(userId),
+        $or: [
+          { "parents._id": new ObjectId(userId) },
+          { "teacher._id": new ObjectId(userId) },
+        ],
       },
     },
   ];

@@ -1,4 +1,3 @@
-
 "use client";
 import {
   collection,
@@ -9,7 +8,7 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
-import { format } from "date-fns"; 
+import { format } from "date-fns";
 
 export default function ChatBox({ data }) {
   const [latestMessage, setLatestMessage] = useState(null);
@@ -21,7 +20,7 @@ export default function ChatBox({ data }) {
     const q = query(
       messagesRef,
       where("group_id", "==", data._id),
-      orderBy("last_timestamp", "desc") 
+      orderBy("last_timestamp", "desc")
     );
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -31,18 +30,17 @@ export default function ChatBox({ data }) {
       }));
 
       const formattedMessages = messagesData.map((doc) => ({
-        id: doc.last_timestamp.toDate(), 
+        id: doc.last_timestamp.toDate(),
         text: doc.last_text,
         sender: doc.last_sender_name,
       }));
 
-      setLatestMessage(formattedMessages[0] || null); 
+      setLatestMessage(formattedMessages[0] || null);
     });
 
     return () => unsubscribe();
   }, [data?._id]);
 
-  
   const formattedTime = latestMessage
     ? format(new Date(latestMessage.id), "HH:mm")
     : "";
