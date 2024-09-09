@@ -50,15 +50,11 @@ export async function POST(request) {
     },
   };
 
-  await createTransaction(transaction);
-
+  const result = await createTransaction(transaction);
+  console.log(result);
   const token = await snap.createTransactionToken(parameter);
 
   return Response.json({
     token,
   });
-}
-
-export async function PATCH(request) {
-  const parent_id = request.headers.get("x-user-id");
 }
