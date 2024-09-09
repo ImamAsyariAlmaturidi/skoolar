@@ -55,10 +55,6 @@ export const getParentOrUser = async (id) => {
   const db = await getDb();
 
   try {
-    if (!ObjectId.isValid(id)) {
-      throw new Error("Invalid ID format");
-    }
-
     let document = await db
       .collection(COLLECTION_PARENT)
       .findOne({ _id: new ObjectId(id) });
@@ -71,8 +67,7 @@ export const getParentOrUser = async (id) => {
 
     return document;
   } catch (error) {
-    console.error("Error fetching document:", error);
-    throw new Error("Error fetching document");
+    throw error;
   }
 };
 
