@@ -1,9 +1,9 @@
 "use server";
 import { cookies } from "next/headers";
 
-export async function getMe() {
+export async function getTransactions() {
   try {
-    const res = await fetch("http://localhost:3000/api/parent", {
+    const res = await fetch("http://localhost:3000/api/transaction", {
       cache: "no-store",
       method: "GET",
       headers: {
@@ -12,29 +12,27 @@ export async function getMe() {
     });
 
     const result = await res.json();
+
     return result;
   } catch (error) {
     throw error;
   }
 }
 
-export async function getAllGroup() {
+export async function createTransaction() {
   try {
-    const res = await fetch("http://localhost:3000/api/group", {
+    const res = await fetch("http://localhost:3000/api/transaction", {
       cache: "no-store",
-      method: "GET",
+      method: "POST",
       headers: {
         Cookie: cookies().toString(),
       },
     });
 
-    if (!res.ok) {
-      throw new Error(`Error fetching groups: ${res.statusText}`);
-    }
+    const result = await res.json();
 
-    return await res.json();
+    return result;
   } catch (error) {
-    console.error("Error fetching groups: ", error);
     throw error;
   }
 }

@@ -113,7 +113,6 @@ export default function Home() {
                 Reviews
               </ScrollLink>
             </li>
-
           </ul>
         </nav>
         <div className="flex">
