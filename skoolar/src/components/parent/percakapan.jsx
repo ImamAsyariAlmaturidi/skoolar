@@ -5,9 +5,9 @@ export default async function Percakapan({ data }) {
   // console.log(data, "ini data di sini");
   return (
     <>
-      <div className="w-full h-[21rem] rounded-3xl ">
+      <div className="w-full h-full rounded-3xl ">
         <section className="w-full  h-[15%] text-black text-[17px] font-medium flex items-center justify-between gap-4 px-3">
-          <section className="flex items-center gap-3">
+          <section className="flex items-center gap-3 w-full">
             <svg
               width="33px"
               height="33px"
@@ -27,11 +27,13 @@ export default async function Percakapan({ data }) {
             </svg>
             <span>Classroom</span>
           </section>
-          <Link href={"/dashboard/parent/chat"}>
-            <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
-              See All
-            </span>
-          </Link>
+          <div className="w-1/3 flex justify-end items-center">
+            <Link href={"/dashboard/parent/chat"}>
+              <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
+                See All
+              </span>
+            </Link>
+          </div>
         </section>
         {data?.map((el, index) => (
           <Link href={`/dashboard/parent/chat/${el._id}`} key={index}>
@@ -41,5 +43,4 @@ export default async function Percakapan({ data }) {
       </div>
     </>
   );
-  // for
 }

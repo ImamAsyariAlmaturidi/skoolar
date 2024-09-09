@@ -5,7 +5,7 @@ export default function Tugas() {
     <>
       <div className="w-full h-full rounded-3xl bg-white ">
         <section className="w-full h-[15%]  text-black text-[17px] font-medium flex items-center justify-between gap-4 px-6">
-          <section className="flex items-center gap-3">
+          <section className="flex items-center gap-3 w-full">
             <svg
               width="30px"
               height="30px"
@@ -49,11 +49,14 @@ export default function Tugas() {
             </svg>
             <span>Today's Assignment</span>
           </section>
-          <Link href={"/dashboard/parent/assignment"}>
-            <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
+
+          <div className="w-1/3 flex justify-end items-center">
+          <Link href={"/dashboard/parent/assignment"} className="w-1/3">
+            <span className="text-[12px] text-nowrap text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
               See All
             </span>
           </Link>
+          </div>
         </section>
         <div
           className="w-full h-[80%] py-3 overflow-auto px-4 bg-white rounded-2xl"
