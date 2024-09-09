@@ -1,6 +1,8 @@
 import Link from "next/link";
+import ChatBox from "../../components/parent/ChatBox";
 
-export default function Percakapan() {
+export default async function Percakapan({ data }) {
+  // console.log(data, "ini data di sini");
   return (
     <>
       <div className="w-full h-[21rem] rounded-3xl ">
@@ -31,46 +33,11 @@ export default function Percakapan() {
             </span>
           </Link>
         </section>
-        <div className="mt-5 pt-2 px-2 pb-2 flex hover:bg-neutral-200 hover:rounded-2xl cursor-pointer">
-          <div className="rounded-full bg-orange-200 border border-neutral-200 w-14 h-11 flex items-center justify-center">
-            <img
-              className="h-7 "
-              src="https://www.iconpacks.net/icons/2/free-apple-icon-2327-thumb.png"
-              alt=""
-            />
-          </div>
-          <div className="w-full mr-4 ">
-            <div className="flex justify-between w-full">
-              <p className="ml-4 font-semibold text-[0.9rem] text-black">
-                Class 6A
-              </p>
-              <p className="text-neutral-500 text-[0.8rem]">05.50</p>
-            </div>
-            <p className="ml-4  text-[0.8rem] text-neutral-500">
-              Ms.Lita: Okay moms
-            </p>
-          </div>
-        </div>
-        <div className="pt-2 px-2 pb-2 flex hover:bg-neutral-200 hover:rounded-2xl cursor-pointer">
-          <div className="rounded-full bg-orange-200 border border-neutral-200 w-14 h-11 flex items-center justify-center">
-            <img
-              className="h-7 "
-              src="https://www.iconpacks.net/icons/2/free-apple-icon-2327-thumb.png"
-              alt=""
-            />
-          </div>
-          <div className="w-full mr-4">
-            <div className="flex justify-between w-full">
-              <p className="ml-4 font-semibold text-[0.9rem] text-black">
-                Class 6A
-              </p>
-              <p className="text-neutral-500 text-[0.8rem]">05.50</p>
-            </div>
-            <p className="ml-4  text-[0.8rem] text-neutral-500">
-              Ms.Lita: Okay moms
-            </p>
-          </div>
-        </div>
+        {data?.map((el, index) => (
+          <Link href={`/dashboard/parent/chat/${el._id}`} key={index}>
+            <ChatBox data={el} />
+          </Link>
+        ))}
       </div>
     </>
   );

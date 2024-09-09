@@ -4,9 +4,12 @@ import Pengumuman from "../../../components/parent/pengumuman";
 import Percakapan from "../../../components/parent/percakapan";
 import SideBar from "../../../components/parent/Sidebar";
 import Tugas from "../../../components/parent/tugas";
-
+import { getAllGroup } from "./action";
 export default async function Dashboard() {
   const { data } = await getMe();
+  const groups = await getAllGroup();
+  const groupData = groups.data;
+  console.log(groupData, "jvjfd");
   return (
     <>
       <div className="w-full h-screen bg-[#f0f6fe] flex gap-3 px-5 py-10">
@@ -28,7 +31,7 @@ export default async function Dashboard() {
 
             <div className="w-full h-[27rem] rounded-3xl flex gap-3 mt-1">
               <div className="w-1/2 h-[90%] bg-white rounded-xl px-7 py-4">
-                <Percakapan />
+                <Percakapan data={groupData} />
               </div>
               <div className="w-1/2 h-[90%] bg-white rounded-xl px-7 py-4">
                 <Tugas />
