@@ -242,6 +242,7 @@ export default function Home() {
                       <h3 className="text-xl font-semibold mb-2">
                         Enhanced Parental Involvement
                       </h3>
+
                       <p className="text-neutral-400 ">
                         Skoolar lets parents track their child’s school activities and assignments, helping them support their child’s education.
                       </p>
