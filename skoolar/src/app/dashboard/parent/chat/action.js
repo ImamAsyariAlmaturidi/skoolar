@@ -123,3 +123,25 @@ export async function getUserIdOther(id) {
     throw error;
   }
 }
+
+export async function getTeaacherIdOther(id) {
+  console.log(id);
+  try {
+    const res = await fetch(`http://localhost:3000/api/parent/${id}`, {
+      cache: "no-store",
+      method: "GET",
+      headers: {
+        Cookie: cookies().toString(),
+        id: id,
+      },
+    });
+    if (!res.ok) {
+      throw new Error(`Error fetching groups: ${res.statusText}`);
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}

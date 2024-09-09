@@ -11,8 +11,26 @@ export async function getMe() {
       },
     });
 
-    const result = await res.json();
-    return result;
+    const { data } = await res.json();
+
+    console.log(data);
+    let newData;
+    if (!data.role) {
+      newData = {
+        _id: data._id,
+        name: data.studentName,
+        GroupId: data.GroupId,
+        NISN: data.NISN,
+      };
+    } else {
+      newData = {
+        _id: data._id,
+        name: data.name,
+        GroupId: data.GroupId,
+      };
+    }
+
+    return newData;
   } catch (error) {
     throw error;
   }
