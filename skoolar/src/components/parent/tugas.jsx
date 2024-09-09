@@ -59,7 +59,7 @@ export default function Tugas() {
           className="w-full h-[80%] py-3 overflow-auto px-4 bg-white rounded-2xl"
           id="scroll-container"
         >
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 py-11">
             <section className="w-full h-[10rem] bg-[#f6f8fc] hover:scale-105 transition-transform pt-5 py-3 px-5  rounded-2xl relative">
               <span className="text-black text-2xl">IPA</span>
               <p className="text-neutral-600 mt-1 text-[13px]">

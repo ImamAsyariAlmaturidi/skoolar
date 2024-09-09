@@ -3,9 +3,8 @@ import ChatBox from "../../../../../components/parent/Chatbox";
 import ChatRoom from "../../../../../components/parent/ChatRoom";
 import SideBar from "../../../../../components/parent/Sidebar";
 import { getAllGroup } from "../action";
-
+import HeaderChat from "../../../../../components/parent/HeaderChat";
 export default async function ParentDetailPage({ params }) {
-  // console.log(params, "ini paramsnyaaa");
   const { data } = await getAllGroup();
   return (
     <>
@@ -51,12 +50,7 @@ export default async function ParentDetailPage({ params }) {
                 />
               </div>
               <div>
-                <p className="ml-5 mt-5 text-black font-medium text-lg">
-                  Class 6A
-                </p>
-                <p className="ml-5 text-neutral-400 font-normal text-sm">
-                  21 Participant
-                </p>
+                <HeaderChat slug={params.slug} />
               </div>
             </div>
             <div className="w-full h-[88%]">
