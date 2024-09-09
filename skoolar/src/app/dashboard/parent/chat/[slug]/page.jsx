@@ -5,6 +5,7 @@ import SideBar from "../../../../../components/parent/Sidebar";
 import { getAllGroup } from "../action";
 
 export default async function ParentDetailPage({ params }) {
+  // console.log(params, "ini paramsnyaaa");
   const { data } = await getAllGroup();
   return (
     <>
@@ -12,7 +13,7 @@ export default async function ParentDetailPage({ params }) {
         <SideBar />
         <div className="flex w-full">
           <div className=" bg-white w-[30rem]  rounded-2xl  rounded-r-none border-r border-neutral-200 border-solid">
-            <div className="border-b border-neutral-200 pb-5 pt-3 ">
+            <div className="border-b border-neutral-200 pb-5 pt-3 h-[11%]">
               <p className="ml-8 mt-5 text-[#3166ec] font-semibold text-2xl">
                 Message
               </p>

@@ -13,7 +13,7 @@ export default async function Dashboard() {
         <SideBar />
         <div className="w-[91%] h-full flex gap-3 ">
           <div className="w-3/4 h-full overflow-hidden">
-            <div className="h-[9rem] w-full pl-14 pt-8 mb-4 bg-[#006bf8] rounded-3xl text-white relative flex">
+            <div className="h-[9rem] w-full pl-10 pt-8 mb-4 bg-[#006bf8] rounded-3xl text-white relative flex">
               <div>
                 <p className="text-white text-3xl  font-bold">
                   Hello, {data?.studentName}👋
@@ -27,10 +27,10 @@ export default async function Dashboard() {
             <Pengumuman />
 
             <div className="w-full h-[27rem] rounded-3xl flex gap-3 mt-1">
-              <div className="w-1/2 h-[90%] bg-white rounded-3xl px-7 py-4">
+              <div className="w-1/2 h-[90%] bg-white rounded-xl px-7 py-4">
                 <Percakapan />
               </div>
-              <div className="w-1/2 h-[90%] bg-white rounded-3xl px-7 py-4">
+              <div className="w-1/2 h-[90%] bg-white rounded-xl px-7 py-4">
                 <Tugas />
               </div>
             </div>

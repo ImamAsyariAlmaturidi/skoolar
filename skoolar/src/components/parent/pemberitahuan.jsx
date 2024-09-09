@@ -3,7 +3,7 @@ import PrentNotification from "../../components/parent/Notifications";
 export default function Pemberitahuan() {
   return (
     <>
-      <section className="flex items-center gap-3 text-[#006bf8] text-[17px] font-medium  mt-2 mb-4">
+      <section className="flex items-center gap-3 text-[#006bf8] text-[17px] font-medium h-[10%] ">
         <svg
           width="36px"
           height="36px"
@@ -47,12 +47,12 @@ export default function Pemberitahuan() {
           All Notifications
         </p>
       </Link>
-      <div className="w-full h-[40rem] py-3 overflow-y-auto">
-        <div className="flex flex-col gap-4 mt-2">
+      <div className="w-full h-[80%] py-3 overflow-y-auto">
+        <div className="flex flex-col gap-4 ">
           <PrentNotification />
           <PrentNotification />
           <PrentNotification />
-          <PrentNotification />
+         
 
         </div>
       </div>

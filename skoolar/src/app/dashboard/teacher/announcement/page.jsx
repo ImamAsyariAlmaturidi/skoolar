@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import SideBar from "../../../../components/parent/Sidebar";
+import SideBar from "../../../../components/teacher/Sidebar";
 import Link from "next/link";
 
 export default function ParentAnnouncement() {
@@ -70,12 +70,12 @@ export default function ParentAnnouncement() {
                 School Announcemennt
               </span>
             </header>
-            <div className="w-full py-3 overflow-y-auto px-4">
+            <div className="w-full  overflow-y-auto px-4 py-10">
               <div className="flex flex-col gap-4 ">
                 {announcement.map((el, index) => (
-                  <Link href={`/dashboard/parent/announcement/${el.title}`}>
+                  <Link href={`/dashboard/teacher/announcement/${el.title}`}>
                     <div
-                      className="flex justify-start items- gap-3 w-full h-[5rem]  border-neutral-200 border-b-[0.3px]"
+                      className="flex justify-start items-start gap-3 w-full h-[5rem]  border-neutral-200 border-b-[0.3px]"
                       key={index}
                     >
                       <section className="w-1/3 h-full flex items-start">
@@ -118,14 +118,14 @@ export default function ParentAnnouncement() {
                         </svg>
                       </section>
 
-                      <section className="overflow-hidden relative mr-2 ">
+                      <section className="overflow-hidden relative mr-2">
                         <span className="text-black text-[15px] font-medium">
                           {el.title}
                         </span>{" "}
-                        <span className="text-[#006bf8] text-[12px] absolute right-3 mt-1">
+                        <span className="text-[#006bf8] text-[12px] absolute right-3">
                           17.30
                         </span>
-                        <p className="text-neutral-600 text-[12px] line-clamp-2 mt-1 ">
+                        <p className="text-neutral-600 text-[12px] line-clamp-2 mt-2 leading-tight ">
                           {el.content}
                         </p>
                       </section>
