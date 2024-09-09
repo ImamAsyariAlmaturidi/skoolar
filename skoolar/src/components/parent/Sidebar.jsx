@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function SideBar() {
   return (
     <>
-      <div className="w-full max-w-[7rem] h-full rounded-3xl bg-white shadow-xl py-5">
-        <div className="w-full h-[20%] py-5 flex justify-center">
+      <div className="w-full flex flex-col max-w-[7rem] h-full rounded-3xl bg-white shadow-xl py-5" >
+        <div className="w-full py-5 flex justify-center" >
           <figure className="w-[5rem] h-[5rem] rounded-full bg-[#006bf8] flex justify-center items-center cursor-pointer">
             <img
               className="w-[90%] h-[90%] object-cover rounded-full border-2 border-white"
@@ -15,11 +15,11 @@ export default function SideBar() {
             />
           </figure>
         </div>
-        <div className="w-full h-[75%] flex justify-center items-center border-t-2 border-neutral-300">
-          <ul className="text-black space-y-6 flex flex-col items-center">
+        <div className="w-full border-t-2 border-neutral-300  overflow-y-auto overflow-x-hidden" >
+          <ul className="text-black flex flex-col items-center gap-y-5 mt-3">
             <li>
               <Link href="/dashboard/parent">
-                <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 cursor-pointer hover:text-white">
+                <figure className="lg:w-[3.3rem] lg:h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 cursor-pointer hover:text-white">
                   <svg
                     width="35px"
                     height="35px"

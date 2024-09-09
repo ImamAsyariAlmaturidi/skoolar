@@ -28,12 +28,13 @@ export default function Pembayaran() {
             <table className="w-full min-w-[640px] mt-6 border-collapse">
               <thead className="text-neutral-600 bg-neutral-100 sticky top-0 z-10 rounded-t-2xl border-slate-400 border-b-2">
                 <tr className="h-[4rem] mb-10">
-                  <th className="px-4 py-2 text-left w-[10%]">
-                    Transaction ID
+                  <th className="px-4 py-2 text-left w-[8%]">
+                    Trx ID
                   </th>
-                  <th className="px-4 py-2 text-left w-[10%]">Date</th>
+                  <th className="px-4 py-2 text-left w-[15%]">Date</th>
                   <th className="px-4 py-2 text-left w-[50%]">Description</th>
                   <th className="px-4 py-2 text-left w-[15%]">Amount</th>
+                  <th className="px-4 py-2 text-left">Status</th>
                   <th className="px-4 py-2 text-left">Status</th>
                 </tr>
               </thead>
