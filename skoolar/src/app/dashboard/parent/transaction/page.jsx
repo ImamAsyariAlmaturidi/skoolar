@@ -151,7 +151,7 @@ export default function Pembayaran() {
                     <td className="px-4 py-2">{transaction.createdAt}</td>
                     <td className="px-4 py-2">{transaction.description}</td>
                     <td className="px-4 py-2">{transaction.dueDate}</td>
-                    <td className="px-4 py-2"> Rp.{totalAmount}</td>
+                    <td className="px-4 py-2"> Rp.{transaction.amount}</td>
                     <td className="text-red-500 px-4 py-2">
                       {transaction.status}
                     </td>

@@ -110,9 +110,12 @@ export default function Home() {
           </ul>
         </nav>
         <div className="flex space-x-2">
-          <button className="px-4 py-2 text-base text-[#2B478B] hover:text-[#1E3A8A]">
+          <Link
+            href={"/login"}
+            className="px-4 py-2 text-base text-[#2B478B] hover:text-[#1E3A8A]"
+          >
             Login
-          </button>
+          </Link>
           <button className="px-4 py-2 text-base bg-[#2B478B] text-white rounded-md hover:bg-[#1E3A8A]">
             Signup
           </button>
