@@ -12,7 +12,20 @@ const firebaseConfig = {
   measurementId: process.env.MEASUREMENTID_FIREBASE,
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseApp); // jika menggunakan Firestore
+// const firebaseApp = initializeApp(firebaseConfig);
+// const db = getFirestore(firebaseApp); // jika menggunakan Firestore
 
-export { firebaseApp, db };
+//ubah
+//ganti
+const firebaseAssignmentConfig = {
+  apiKey: "AIzaSyDyuQ943dPpDHPVvJO_CZxTWX-I_Yftt0c",
+  authDomain: "skoolar-testing.firebaseapp.com",
+  projectId: "skoolar-testing",
+  storageBucket: "skoolar-testing.appspot.com",
+  messagingSenderId: "442512337748",
+  appId: "1:442512337748:web:86dad9324870a766b076c1",
+};
+
+const firebaseAssagimentApp = initializeApp(firebaseAssignmentConfig);
+const dbAssignment = getFirestore(firebaseAssagimentApp); // jika menggunakan Firestore
+export { firebaseAssagimentApp, dbAssignment };
