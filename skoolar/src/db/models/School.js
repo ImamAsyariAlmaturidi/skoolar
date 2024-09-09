@@ -1,4 +1,5 @@
 import { ObjectId } from "mongodb";
+import { getMongoClientInstance } from "../../config/mongo";
 
 const DATABASE_NAME = process.env.DATABASE_NAME || "skoolar";
 const COLLECTION_USER = "school";

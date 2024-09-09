@@ -25,6 +25,7 @@ export default function ChatRoom({ id }) {
   const [currentUserName, setCurrentUserName] = useState("");
   const groupId = id;
 
+
   useEffect(() => {
     async function fetchCurrentUser() {
       try {

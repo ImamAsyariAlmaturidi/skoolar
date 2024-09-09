@@ -12,8 +12,8 @@ export default async function ChatBox({ data }) {
           />
         </div>
         <div className="w-full mr-4">
-          <div className="flex justify-between w-full">
-            <p className="ml-4 font-semibold text-[0.9rem] text-black">
+          <div className="flex justify-between w-full mb-4">
+            <p className="ml-4 font-semibold text-[0.9rem] text-neutral-700 ">
               {data?.name}
             </p>
             <p className="text-neutral-500 text-[0.8rem]">05.50</p>
