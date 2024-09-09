@@ -1,9 +1,40 @@
 "use client";
 
 import Image from "next/image";
+import illustration from "../../public/Untitled.svg"
+import illustration2 from "../../public/illustration_2.svg"
+import feature from "../../public/Feature2.svg"
+import feature2 from "../../public/Feature4.svg"
 import Link from "next/link";
 import { BookOpen, Users, Trophy, ChevronRight } from "lucide-react";
 import { useState } from "react";
+
+import { motion } from 'framer-motion';
+import { useInView } from "react-intersection-observer";
+
+const slideIn = {
+  hidden: { x: '-100vw', opacity: 0 },
+  visible: { x: 0, opacity: 1, transition: { duration: 0.5 } },
+};
+
+const fadeIn = {
+  hidden: {
+    opacity: 0,
+    y: 20, // Bergerak dari bawah
+    scale: 0.95, // Ukuran sedikit lebih kecil
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      opacity: { duration: 0.5 },
+      y: { duration: 0.7 },
+      scale: { duration: 0.7 },
+    },
+  },
+};
+
 
 const testimonials = [
   {
@@ -76,6 +107,11 @@ export default function Home() {
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };
+
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Animasi hanya dipicu sekali
+    threshold: 0.1, // 10% elemen harus terlihat sebelum animasi dimulai
+  });
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <header className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -119,10 +155,13 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="flex-grow">
-        <section className="container mx-auto px-4 py-12 flex items-center">
-          <div className="w-full md:w-1/2 pr-0 md:pr-8">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2B478B] mb-2 md:mb-4">
+      <main className="flex-grow bg-white">
+        <section className="container mx-auto py-12 flex items-center px-7">
+          <motion.div ref={ref} initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+            transition={{ delay: 0.2 }} className="w-full md:w-1/2 pr-0 md:pr-8">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-800 mb-2 md:mb-4">
               Educate Today,
               <br />
               Innovate Tomorrow
@@ -132,10 +171,10 @@ export default function Home() {
               preparing them for success, with the skills for a bright future."
             </p>
             <div className="flex space-x-4">
-              <button className="px-4 py-2 bg-[#2B478B] text-white rounded-md hover:bg-[#1E3A8A] text-sm md:text-base">
+              <button className="px-4 py-2 bg-[#0165FF] text-white rounded-md hover:bg-[#0167ffc1] text-sm md:text-base">
                 Start
               </button>
-              <button className="px-4 py-2 border border-[#2B478B] text-[#2B478B] rounded-md hover:bg-gray-100 flex items-center text-sm md:text-base">
+              <button className="px-4 py-2 border border-[#0165FF] text-[#0165FF] rounded-md hover:bg-gray-100 flex items-center text-sm md:text-base">
                 Find More
                 <svg
                   className="w-4 h-4 ml-2"
@@ -153,70 +192,108 @@ export default function Home() {
                 </svg>
               </button>
             </div>
-          </div>
-          <div className="hidden md:block w-1/2">
+          </motion.div>
+          <motion.div initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+            transition={{ delay: 3 }} className="hidden md:block w-1/2">
             <Image
-              src="/book.jpg"
+              src={illustration2}
               alt="Education Illustration"
               width={500}
               height={500}
               className="w-full h-auto"
             />
-          </div>
+          </motion.div>
         </section>
 
-        <section className="py-16 bg-gray-50">
+        <motion.section ref={ref} initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          transition={{ delay: 0.2 }} className="flex flex-col justify-center items-center w-full px-28">
+          <p className="text-center font-semibold text-4xl">
+            We Collaborate With Various <br /> Big <span className="underline">School</span>
+          </p>
+          <div className="relative w-full overflow-hidden">
+            <div className="logo-slider flex items-center gap-16">
+              <img className="h-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsUUlpksqQ5ZC0o-RIDUUklHC2CUHjfzJXlA&s" alt="School 1" />
+              <img className="w-60 h-20" src="https://karirlab-prod-bucket.s3.ap-southeast-1.amazonaws.com/files/privates/xMoyiqJZLwCdkNjOrKVoIChaFAjpKGMEHrrxvUQJ.png" alt="School 2" />
+              <img className="h-24" src="https://www.cikal.co.id/file/2021/07/01c2113f0f485074ab8ed4ffd2da582f3c91431f.jpg" alt="School 3" />
+              <img className="h-20" src="https://yt3.googleusercontent.com/ytc/AIdro_mXvd5X-cPcPgYGhRnxbpOLLS1bpbicBtONFGd_6yvKVw=s900-c-k-c0x00ffffff-no-rj" alt="School 4" />
+              <img className="h-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsUUlpksqQ5ZC0o-RIDUUklHC2CUHjfzJXlA&s" alt="School 1" />
+              <img className="w-60 h-20" src="https://karirlab-prod-bucket.s3.ap-southeast-1.amazonaws.com/files/privates/xMoyiqJZLwCdkNjOrKVoIChaFAjpKGMEHrrxvUQJ.png" alt="School 2" />
+              <img className="h-24" src="https://www.cikal.co.id/file/2021/07/01c2113f0f485074ab8ed4ffd2da582f3c91431f.jpg" alt="School 3" />
+              <img className="h-20" src="https://yt3.googleusercontent.com/ytc/AIdro_mXvd5X-cPcPgYGhRnxbpOLLS1bpbicBtONFGd_6yvKVw=s900-c-k-c0x00ffffff-no-rj" alt="School 4" />
+            </div>
+          </div>
+        </motion.section>
+
+        <style jsx>{`
+  .logo-slider {
+    animation: slide 15s linear infinite;
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+`}</style>
+
+        <motion.section ref={ref} initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          transition={{ delay: 0.2 }} className="py-16 bg-white px-28">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-4">
-              Why Choose <span style={{ color: "#1e3a8a" }}>Skoolar?</span>
-            </h2>
-            <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-              Skoolar is a communication platform designed to improve
-              collaboration between parents and teachers, ensuring private and
-              effective communication for better involvement in a child's
-              education.
-            </p>
-            <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="flex justify-between">
               <div className="w-full md:w-1/2 space-y-8 mb-8 md:mb-0">
-                <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-full mr-4">
-                    <Users className="w-6 h-6 text-blue-500" />
+                <div className="">
+                  <h2 className="text-2xl font-semibold w-full pl-5">
+                    Why Choose
+                  </h2>
+                  <img className="h-20" src="https://res.cloudinary.com/dqrmcom6v/image/upload/v1725532172/SKOOLAR_trw2yi.png" alt="" />
+                  <p className=" text-neutral-400 mb-12 w-[35rem] pl-5">
+                    Skoolar is a platform that improves collaboration between parents and teachers for better involvement in a child's education.
+                  </p>
+                </div>
+                <div className="flex items-start pl-3">
+                  <div className="bg-blue-500 p-3 rounded-full mr-6">
+                    <Users className="w-6 h-6 text-blue-100" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">
                       Private and Secure Communication
                     </h3>
-                    <p className="text-gray-600">
-                      Skoolar makes communication between parents and teachers
-                      more private, ensuring that sensitive information is
-                      shared securely.
+                    <p className="text-neutral-400 ">
+                      Skoolar ensures private communication between parents and teachers, keeping sensitive information secure.
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-full mr-4">
-                    <BookOpen className="w-6 h-6 text-blue-500" />
+                <div className="flex items-start pl-3">
+                  <div className="bg-[#EC5A53] p-3 rounded-full mr-6">
+                    <BookOpen className="w-6 h-6  text-[#F7BDBA]" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">
                       Enhanced Parental Involvement
                     </h3>
-                    <p className="text-gray-600">
-                      With Skoolar, parents can monitor their child’s school
-                      activities and assignments, allowing them to contribute to
-                      their child's education effectively.
+                    <p className="text-neutral-400 ">
+                      Skoolar lets parents track their child’s school activities and assignments, helping them support their child’s education.
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-full mr-4">
-                    <Trophy className="w-6 h-6 text-blue-500" />
+                <div className="flex items-start pl-3">
+                  <div className="bg-[#FFAB11] p-3 rounded-full mr-6">
+                    <Trophy className="w-6 h-6 text-[#FFDFA0]" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">
                       Better Learning Control
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-neutral-400">
                       Learning is more controlled as parents and teachers work
                       together to ensure a smooth learning process for the
                       student.
@@ -224,62 +301,49 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="w-full md:w-1/2 flex justify-center">
+              <div className="w-full md:w-1/2 flex pl-7 justify-center">
                 <Image
-                  src="/colaborate-teacher-and-parent.jpg"
+                  src={illustration}
                   alt="Learning and Communication Illustration"
                   width={500}
                   height={400}
-                  className="max-w-full h-auto"
+                  className="max-w-full h-auto scale-105"
                 />
               </div>
             </div>
           </div>
+        </motion.section>
+
+        <section className="w-full h-auto mt-10 relative">
+          <Image
+            className=""
+            height={1000}
+            src={feature2}
+          />
         </section>
 
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-4">
-              How Skoolar Innovates in Education
-            </h2>
-            <p className="text-center text-gray-600 mb-12">
-              Skoolar is transforming education by enhancing communication
-              between teachers, students, and parents for a more engaging and
-              personalized learning experience.
+        <section className="px-32  mt-12 flex w-full mb-20 bg-blue-50 py-16 bg-opacity-70">
+          <div className="w-[37%]">
+            <p className="text-5xl font-medium tracking-wide">
+              What Our Alumni <br /> Parents Said About <br /> <span className="text-blue-700">Skoolar?</span>
             </p>
-            <div className="grid md:grid-cols-3 gap-8">
-              {innovations.map((innovation, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-lg overflow-hidden shadow-lg"
-                >
-                  <div className={`${innovation.color} p-6 relative h-48`}>
-                    <span className="absolute top-4 right-4 bg-white bg-opacity-25 text-white px-2 py-1 rounded text-sm">
-                      {innovation.tag}
-                    </span>
-                    <Image
-                      src={innovation.image}
-                      alt={innovation.title}
-                      width={200}
-                      height={200}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">
-                      {innovation.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 h-24 overflow-hidden">
-                      {innovation.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+            <p className=" pt-5 text-neutral-400">
+              Skoolar is a web app that connects teachers and parents, allowing parents to track their children's school activities and stay involved in their education.
+            </p>
+          </div>
+          <div className="ml-32">
+            <div className="bg-white h-64 w-96 rounded-xl ">
+              <p className="p-7">
+                As a parent, Skoolar helps me monitor my child's progress and assignments in real-time through direct communication with teachers.
+              </p>
             </div>
           </div>
         </section>
 
-        <section className="py-16 bg-gray-50">
+
+
+
+        {/* <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -331,7 +395,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section>  */}
 
         <section className="bg-[#2B478B] py-16 text-white">
           <div className="container mx-auto px-4 text-center">

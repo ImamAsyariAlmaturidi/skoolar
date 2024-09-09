@@ -48,14 +48,12 @@ export default function Pemberitahuan() {
         </p>
       </Link>
       <div className="w-full h-[40rem] py-3 overflow-y-auto">
-        <div className="flex flex-col gap-4 ">
+        <div className="flex flex-col gap-4 mt-2">
           <PrentNotification />
           <PrentNotification />
           <PrentNotification />
           <PrentNotification />
-          <PrentNotification />
-          <PrentNotification />
-          <PrentNotification />
+
         </div>
       </div>
     </>
