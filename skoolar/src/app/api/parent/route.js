@@ -35,11 +35,13 @@ export async function POST(request) {
     });
   }
 }
+
+
 export async function GET(request) {
+  const parent = await getAllParents();
   const id = request.headers.get("x-user-id");
   try {
     const data = await getParentOrUser(id);
-
     return NextResponse.json({
       statusCode: 200,
       message: "Success get data parent",
@@ -53,6 +55,8 @@ export async function GET(request) {
     });
   }
 }
+
+
 export async function DELETE(request) {
   try {
     return NextResponse.json({
