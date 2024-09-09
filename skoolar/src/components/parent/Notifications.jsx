@@ -47,7 +47,7 @@ export default function PrentNotification() {
           <span className="text-[#006bf8] text-[12px] absolute right-3 mt-1">
             17.30
           </span>
-          <p className="text-neutral-600 text-[12px] line-clamp-2 mt-1">
+          <p className="text-neutral-600 text-[12px] line-clamp-2 mt-3">
             Dear Mr. Fathan, we respectfully inform you that the payment is
             overdue by 3 months...
           </p>
