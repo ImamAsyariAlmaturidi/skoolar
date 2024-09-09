@@ -15,7 +15,6 @@ export async function GET(request) {
   const parent_id = request.headers.get("x-user-id");
   try {
     const data = await getTransactionByParentId(parent_id);
-    console.log(data);
     return NextResponse.json({
       statusCode: 200,
       message: "success get all transaction by parentid",

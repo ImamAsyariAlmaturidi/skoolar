@@ -13,9 +13,8 @@ export async function getMe() {
 
     const { data } = await res.json();
 
-    console.log(data);
     let newData;
-    if (!data.role) {
+    if (!data?.role) {
       newData = {
         _id: data._id,
         name: data.studentName,

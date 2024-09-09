@@ -4,6 +4,7 @@ import { getUser } from "../../../db/models/User";
 export async function GET() {
   try {
     const data = await getUser();
+    console.log(data);
 
     return NextResponse.json({
       statusCode: 200,
@@ -29,6 +30,7 @@ export async function POST() {
     });
   }
 }
+
 export async function PUT() {
   try {
   } catch (error) {
