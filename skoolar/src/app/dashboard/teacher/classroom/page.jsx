@@ -1,4 +1,4 @@
-import { auth, signIn, signOut } from "../../auth";
+import { auth, signIn, signOut } from "../../../../auth";
 import ButtonSign from "./ButtonSign";
 
 export default async function UserAvatar() {

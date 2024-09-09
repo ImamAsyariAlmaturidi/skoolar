@@ -1,13 +1,13 @@
 "use server";
-import { auth } from "../../../auth";
+import { auth } from "../../../../../auth";
 import { cookies } from "next/headers";
 import { jwtVerify } from "jose";
 import { google } from "googleapis";
 import Joi from "joi";
 import { redirect } from "next/navigation";
-import { getGroup } from "../../../db/models/Group";
+import { getGroup } from "../../../../../db/models/Group";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../../config/firebase";
+import { db } from "../../../../../config/firebase";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
