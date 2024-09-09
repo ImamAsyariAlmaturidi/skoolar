@@ -65,6 +65,14 @@ export const getGroupWhereIncludeUserId = async (userId) => {
   return groups;
 };
 
+// BARU
+export const getGroup = async () => {
+  const db = await getDb();
+
+  const groups = await db.collection(COLLECTION_GROUP).find().toArray();
+  return groups;
+};
+
 export const createGroup = async (groupData) => {
   const db = await getDb();
   const collection = db.collection(COLLECTION_GROUP);

@@ -81,8 +81,11 @@ export const doLoginAsSchool = async (formData) => {
     return redirect(`${BASE_URL}/login?error=Invalid%20credentials`);
   }
 
+  //baru
+  //ubah
   const payload = {
     id: user._id,
+    GroupId: user.GroupId,
     NIK: user.NIK,
     email: user.email,
     role: user.role,
