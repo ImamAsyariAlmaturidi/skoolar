@@ -4,7 +4,7 @@ export default function Percakapan() {
   return (
     <>
       <div className="w-full h-[21rem] rounded-3xl ">
-        <section className="w-full h-[3rem] text-black text-[17px] font-medium flex items-start justify-between gap-4 px-3">
+        <section className="w-full  h-[15%] text-black text-[17px] font-medium flex items-center justify-between gap-4 px-3">
           <section className="flex items-center gap-3">
             <svg
               width="33px"
@@ -23,15 +23,15 @@ export default function Percakapan() {
                 />
               </g>
             </svg>
-            <span>Percakapan</span>
+            <span>Classroom</span>
           </section>
           <Link href={"/dashboard/parent/chat"}>
             <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
-              Lihat Semua
+              See All
             </span>
           </Link>
         </section>
-        <div className="mt-2 pt-2 px-2 pb-2 flex hover:bg-neutral-200 hover:rounded-2xl cursor-pointer">
+        <div className="mt-5 pt-2 px-2 pb-2 flex hover:bg-neutral-200 hover:rounded-2xl cursor-pointer">
           <div className="rounded-full bg-orange-200 border border-neutral-200 w-14 h-11 flex items-center justify-center">
             <img
               className="h-7 "
@@ -39,7 +39,7 @@ export default function Percakapan() {
               alt=""
             />
           </div>
-          <div className="w-full mr-4">
+          <div className="w-full mr-4 ">
             <div className="flex justify-between w-full">
               <p className="ml-4 font-semibold text-[0.9rem] text-black">
                 Class 6A

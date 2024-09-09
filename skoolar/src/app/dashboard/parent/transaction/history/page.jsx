@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SideBar from "../../../../components/parent/Sidebar";
+import SideBar from "../../../../../components/parent/Sidebar";
 import Link from "next/link";
 
 export default function Pembayaran() {
@@ -14,25 +14,27 @@ export default function Pembayaran() {
           <section className="text-black font-semibold bg-white h-[9rem] pt-2 relative">
             <span className="text-3xl">Payments</span>
             <div className="flex gap-6 px-4 py-2 absolute bottom-2 rounded-2xl bg-neutral-100">
-              <span className="px-3 py-1 text-neutral-400 rounded-2xl hover:bg-white hover:text-black transition-transform focus:text-black focus:bg-white">
-                Ongoing Transactions
-              </span>
-              <Link href={"/dashboard/parent/transaction/history"}>
+              <Link href={"/dashboard/parent/transaction"}>
                 <span className="px-3 py-1 text-neutral-400 rounded-2xl hover:bg-white hover:text-black transition-transform focus:text-black focus:bg-white">
-                  History
+                  Ongoing Transactions
                 </span>
               </Link>
+              <span className="px-3 py-1 text-neutral-400 rounded-2xl hover:bg-white hover:text-black transition-transform focus:text-black focus:bg-white">
+                History
+              </span>
             </div>
           </section>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[640px] mt-6 border-collapse">
               <thead className="text-neutral-600 bg-neutral-100 sticky top-0 z-10 rounded-t-2xl border-slate-400 border-b-2">
                 <tr className="h-[4rem] mb-10">
-                  <th className="px-4 py-2 text-left w-[5%]">No</th>
-                  <th className="px-4 py-2 text-left w-[15%]">Date</th>
+                  <th className="px-4 py-2 text-left w-[10%]">
+                    Transaction ID
+                  </th>
+                  <th className="px-4 py-2 text-left w-[10%]">Date</th>
                   <th className="px-4 py-2 text-left w-[50%]">Description</th>
-                  <th className="px-4 py-2 text-left w-[15%]">Due Date</th>
-                  <th className="px-4 py-2 text-left">Amount</th>
+                  <th className="px-4 py-2 text-left w-[15%]">Amount</th>
+                  <th className="px-4 py-2 text-left">Status</th>
                 </tr>
               </thead>
               <tbody className="text-black text-[15px]">
