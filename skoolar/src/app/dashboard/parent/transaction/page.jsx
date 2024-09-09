@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import SideBar from "../../../../components/parent/Sidebar";
+import Link from "next/link";
+
 import { getTransactions } from "./action";
 import Swal from "sweetalert2";
 const formatCurrency = (amount) => {
@@ -11,7 +13,6 @@ const formatCurrency = (amount) => {
     minimumFractionDigits: 0,
   }).format(amount);
 };
-// trasanction
 export default function Pembayaran() {
   const [dataTransaction, setDataTransaction] = useState([]);
   const [totalAmount, setTotalAmount] = useState("");
@@ -124,9 +125,11 @@ export default function Pembayaran() {
               <span className="px-3 py-1 text-neutral-400 rounded-2xl hover:bg-white hover:text-black transition-transform focus:text-black focus:bg-white">
                 Ongoing Transactions
               </span>
-              <span className="px-3 py-1 text-neutral-400 rounded-2xl hover:bg-white hover:text-black transition-transform focus:text-black focus:bg-white">
-                History
-              </span>
+              <Link href={"/dashboard/parent/transaction/history"}>
+                <span className="px-3 py-1 text-neutral-400 rounded-2xl hover:bg-white hover:text-black transition-transform focus:text-black focus:bg-white">
+                  History
+                </span>
+              </Link>
             </div>
           </section>
           <div className="overflow-x-auto">
