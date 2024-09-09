@@ -7,7 +7,7 @@ import Joi from "joi";
 import { redirect } from "next/navigation";
 import { getGroup } from "../../../db/models/Group";
 import { collection, addDoc } from "firebase/firestore";
-import { dbAssignment } from "../../../config/firebase";
+import { db } from "../../../config/firebase";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
@@ -157,7 +157,7 @@ export const createCourseWork = async (formData) => {
       courseId: parsedData.value.course,
       requestBody: coursework,
     });
-    const colRef = collection(dbAssignment, "assignment");
+    const colRef = collection(db, "assignment");
 
     addDoc(colRef, {
       courseId: response?.data.courseId,
