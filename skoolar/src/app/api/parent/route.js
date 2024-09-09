@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Joi from "joi";
-import { getParentByNISN } from "../../../db/models/Parent";
+import { getParentOrUser } from "../../../db/models/Parent";
 const schema = Joi.object({
   parentName: Joi.string().min(2).required(),
   parentName: Joi.string().required().min(2),
@@ -35,11 +35,11 @@ export async function POST(request) {
     });
   }
 }
-export async function GET(request) {
-  const NISN = request.headers.get("x-user-nisn");
-  try {
-    const data = await getParentByNISN(NISN);
 
+export async function GET(request) {
+  const id = request.headers.get("x-user-id");
+  try {
+    const data = await getParentOrUser(id);
     return NextResponse.json({
       statusCode: 200,
       message: "Success get data parent",
@@ -53,6 +53,7 @@ export async function GET(request) {
     });
   }
 }
+
 export async function DELETE(request) {
   try {
     return NextResponse.json({

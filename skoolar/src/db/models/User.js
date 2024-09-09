@@ -10,6 +10,8 @@ export const getDb = async () => {
 };
 
 export const getUser = async () => {
+  console.log("ini di model");
+
   const db = await getDb();
 
   const user = await db
@@ -17,6 +19,8 @@ export const getUser = async () => {
     .find()
     .project({ password: 0, createdAt: 0, updatedAt: 0 })
     .toArray();
+
+
   return user;
 };
 
@@ -39,6 +43,7 @@ export const deleteUserById = async (id) => {
 export const createUser = async (user) => {
   const modifiedUser = {
     ...user,
+    role: "teacher",
     password: hashingPassword(user.password),
   };
   const db = await getDb();

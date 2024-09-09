@@ -7,7 +7,7 @@ import {
   where,
   getDocs,
   orderBy,
-  doc
+  doc,
 } from "firebase/firestore";
 import { snap } from "../../../config/midtrans";
 
@@ -36,7 +36,7 @@ export async function getAllMessagesByGroupId() {
       id: doc.id,
       ...doc.data(),
     }));
-    console.log(messages);
+    // console.log(messages);
     return messages;
   } catch (error) {
     console.error("Error getting messages: ", error);
@@ -69,7 +69,7 @@ export async function createGroupMessage({
       user_ref: doc(db, "users", user_id),
     });
 
-    console.log(res);
+    // console.log(res);
   } catch (error) {
     console.error("Error creating group message: ", error);
     throw error;

@@ -8,7 +8,7 @@ export default function NotificationPage() {
         <SideBar />
         <div className="w-full h-full bg-white rounded-2xl flex">
           <div className="w-1/4 h-full border-r border-neutral-200 rounded-2xl rounded-tr-none rounded-br-none">
-            <header className="flex items-center p-3 pb-4  gap-3  text-[#006bf8] border-b border-neutral-300 ">
+            <header className="flex items-center p-3 pb-4 h-[10%]  gap-3  text-[#006bf8] border-b border-neutral-300 ">
               <svg
                 width="36px"
                 height="36px"
@@ -49,7 +49,7 @@ export default function NotificationPage() {
                 All Notifications
               </span>
             </header>
-            <div className="h-[44rem] w-full py-3 overflow-y-auto px-4">
+            <div className="h-[86%] w-full py-3 overflow-y-auto px-4">
               <div className="flex flex-col gap-4 ">
                 <PrentNotification />
                 <PrentNotification />
@@ -65,13 +65,13 @@ export default function NotificationPage() {
             </div>
           </div>
           <div className="w-3/4 h-full ">
-            <header className="flex justify-end px-4 py-3 gap-3 bg-white border-b border-neutral-300 ">
+            <header className="flex justify-end px-4 py-3 gap-3 bg-white border-b border-neutral-300 h-[10%]">
               <input
                 placeholder="Search for any messages"
-                className="w-[20rem] py-[7px] px-3 bg-slate-50 rounded-md border border-neutral-300"
+                className="w-[20rem] py-[7px] px-3 bg-slate-50 rounded-md border border-neutral-400"
               />
             </header>
-            <div className="w-full h-[92%] bg-neutral-50 flex justify-center items-center">
+            <div className="w-full h-[88%] bg-neutral-50 flex justify-center items-center">
               <span className="text-4xl text-neutral-200">
                 Choose Your Message
               </span>

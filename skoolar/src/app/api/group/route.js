@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import Joi from "joi";
-import { getGroupWhereIncludeUserId } from "../../../db/models/Group";
+import {
+  createGroup,
+  getGroupWhereIncludeUserId,
+} from "../../../db/models/Group";
 const schema = Joi.object({
   groupName: Joi.string().required().min(4).max(30),
   userId: Joi.string().required(),
@@ -14,10 +17,10 @@ export async function POST(request) {
       return NextResponse.json({
         statusCode: 400,
         message: parsedData.error,
-        data,
+        data: [],
       });
     }
-    const data = "ini data";
+    const data = createGroup();
     return NextResponse.json({
       statusCode: 201,
       message: "Succes Created Group!",

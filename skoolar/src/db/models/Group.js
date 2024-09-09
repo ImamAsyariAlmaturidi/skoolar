@@ -11,7 +11,17 @@ export const getDb = async () => {
   return db;
 };
 
-// Function to get a group by userId
+export const getGroupById = async (group_id) => {
+  const db = await getDb();
+  const collection = db.collection(COLLECTION_GROUP);
+
+  const group = await collection.findOne({
+    _id: new ObjectId(group_id),
+  });
+
+  return group;
+};
+
 export const getGroupWhereIncludeUserId = async (userId) => {
   const db = await getDb();
   const collection = db.collection(COLLECTION_GROUP);
@@ -41,7 +51,10 @@ export const getGroupWhereIncludeUserId = async (userId) => {
     },
     {
       $match: {
-        "parents._id": new ObjectId(userId),
+        $or: [
+          { "parents._id": new ObjectId(userId) },
+          { "teacher._id": new ObjectId(userId) },
+        ],
       },
     },
   ];

@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function TeacherDashboard() {
   return (
     <>
-      <div className="w-full h-screen bg-[black] flex px-10 py-10 overflow-hidden gap-4">
+      <div className="w-full flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">
         <TeacherSideBar />
-        <div className=" h-full w-[90%] rounded-2xl rounded-tl-none rounded-bl-none">
+        <div className=" h-full w-[91%] rounded-2xl rounded-tl-none rounded-bl-none">
           <div className="w-full h-1/2 flex gap-4">
             <div className="w-1/3 h-[95%] bg-white rounded-2xl">
               <div className="w-full h-full rounded-2xl px-4 py-4">
@@ -126,9 +126,9 @@ export default function TeacherDashboard() {
                   </svg>
                   <span>Class 6A Assignment</span>
                 </section>
-                <Link href={"/tugas"}>
+                <Link href={"/dashboard/teacher/assignment"}>
                   <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
-                    Lihat Semua
+                    See All
                   </span>
                 </Link>
               </section>
