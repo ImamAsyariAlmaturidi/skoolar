@@ -135,8 +135,8 @@ export default function Home() {
               Innovate Tomorrow
             </h1>
             <p className="text-gray-600 mb-4 md:mb-6 max-w-md text-sm md:text-base">
-              "We provide the best facilities for your child's education,
-              preparing them for success, with the skills for a bright future."
+              We provide the best facilities for your childs education,
+              preparing them for success, with the skills for a bright future.
             </p>
             <div className="flex space-x-4">
               <Link href={'/login'} className="px-4 py-2 bg-[#0165FF] text-white rounded-md hover:bg-[#0167ffc1] text-sm md:text-base">
@@ -218,7 +218,7 @@ export default function Home() {
                     </h2>
                     <img className="h-20" src="https://res.cloudinary.com/dqrmcom6v/image/upload/v1725532172/SKOOLAR_trw2yi.png" alt="" />
                     <p className=" text-neutral-400 mb-12 w-[35rem] pl-5">
-                      Skoolar is a platform that improves collaboration between parents and teachers for better involvement in a child's education.
+                      Skoolar is a platform that improves collaboration between parents and teachers for better involvement in a childs education.
                     </p>
                   </div>
                   <div className="flex items-start pl-3">
@@ -244,10 +244,11 @@ export default function Home() {
                       </h3>
 
                       <p className="text-neutral-400 ">
-                        Skoolar lets parents track their child’s school activities and assignments, helping them support their child’s education.
+                        Skoolar lets parents track their childs school activities and assignments, helping them support their childs education.
                       </p>
                     </div>
                   </div>
+
                   <div className="flex items-start pl-3">
                     <div className="bg-[#FFAB11] p-3 rounded-full mr-6">
                       <Trophy className="w-6 h-6 text-[#FFDFA0]" />
@@ -302,7 +303,7 @@ export default function Home() {
                 What Our Alumni <br /> Parents Said About  <span className="text-blue-700">Skoolar?</span>
               </p>
               <p className="pt-5 text-neutral-400">
-                Skoolar is a web app that connects teachers and parents, allowing parents to track their children's school activities and stay involved in their education.
+                Skoolar is a web app that connects teachers and parents, allowing parents to track their childrens school activities and stay involved in their education.
               </p>
             </div>
 
