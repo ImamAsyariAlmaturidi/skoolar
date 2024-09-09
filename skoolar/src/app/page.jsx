@@ -331,6 +331,7 @@ export default function Home() {
               Skoolar is a web app that connects teachers and parents, allowing parents to track their children's school activities and stay involved in their education.
             </p>
           </div>
+
           <div className="ml-32">
             <div className="bg-white h-64 w-96 rounded-xl ">
               <p className="p-7">
