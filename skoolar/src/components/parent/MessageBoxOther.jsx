@@ -8,7 +8,11 @@ export default function MessageBoxOther({ text, sender }) {
     async function getOther(sender) {
       try {
         const { data } = await getUserIdOther(sender);
-        setName(data.studentName);
+        if (data.studentName) {
+          setName(data.studentName);
+        } else {
+          setName(`Mr/Ms.${data.name}`);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -23,7 +27,7 @@ export default function MessageBoxOther({ text, sender }) {
             A
           </div>
           <div>
-            <p className="ml-3 text-sm mb-2 text-black">{name}</p>
+            <p className="ml-3 text-sm mb-2 text-black">{name || "teacher"}</p>
             <div className="relative ml-3 text-sm bg-neutral-200 py-2 px-4 rounded-lg rounded-tl-none text-neutral-800">
               {text}
             </div>

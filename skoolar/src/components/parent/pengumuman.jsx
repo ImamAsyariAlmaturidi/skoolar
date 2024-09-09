@@ -1,8 +1,6 @@
-"use client";
-import { useState } from "react";
+import Link from "next/link";
 
 export default function Pengumuman() {
-  const [modal, setModal] = useState(false);
   return (
     <>
       <div className="w-full rounded-2xl px-2 bg-none">
@@ -32,11 +30,13 @@ export default function Pengumuman() {
               </g>
             </svg>
 
-            <span onClick={() => setModal(true)}>Pengumuman</span>
+            <span>School Announcement</span>
           </section>
-          <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
-            Lihat Semua
-          </span>
+          <Link href={"/dashboard/parent/announcement"}>
+            <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
+              See All
+            </span>
+          </Link>
         </section>
         <div
           className="w-full py-4 flex items-center gap-3 overflow-x-auto bg-none rounded-2xl"
@@ -49,11 +49,6 @@ export default function Pengumuman() {
           <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
         </div>
       </div>
-      {modal && (
-        <div className="w-full h-screen absolute backdrop-blur-md z-30 flex justify-center items-center">
-          <div className="w-36 h-64 bg-white rounded-2xl"></div>
-        </div>
-      )}
     </>
   );
 }

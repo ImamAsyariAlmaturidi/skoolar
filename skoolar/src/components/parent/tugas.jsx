@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function Tugas() {
   return (
     <>
-      <div className="w-full h-[20rem] rounded-3xl bg-white mt-3">
-        <section className="w-full h-[3rem] text-black text-[17px] font-medium flex items-start justify-between gap-4 px-6">
-          <section className="flex items-center gap-3">
+      <div className="w-full h-full rounded-3xl bg-white ">
+        <section className="w-full h-[15%]  text-black text-[17px] font-medium flex items-center justify-between gap-4 px-6">
+          <section className="flex items-center gap-3 w-full">
             <svg
               width="30px"
               height="30px"
@@ -47,19 +47,22 @@ export default function Tugas() {
                 strokeWidth="0.1"
               ></path>
             </svg>
-            <span>Tugas Hari Ini</span>
+            <span>Today's Assignment</span>
           </section>
-          <Link href={"/dashboard/parent/assignment"}>
-            <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
-              Lihat Semua
+
+          <div className="w-1/3 flex justify-end items-center">
+          <Link href={"/dashboard/parent/assignment"} className="w-1/3">
+            <span className="text-[12px] text-nowrap text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
+              See All
             </span>
           </Link>
+          </div>
         </section>
         <div
-          className="w-full h-[20rem] py-3 overflow-auto px-4 bg-white rounded-2xl"
+          className="w-full h-[80%] py-3 overflow-auto px-4 bg-white rounded-2xl"
           id="scroll-container"
         >
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 py-11">
             <section className="w-full h-[10rem] bg-[#f6f8fc] hover:scale-105 transition-transform pt-5 py-3 px-5  rounded-2xl relative">
               <span className="text-black text-2xl">IPA</span>
               <p className="text-neutral-600 mt-1 text-[13px]">
