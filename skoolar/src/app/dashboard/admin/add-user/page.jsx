@@ -34,6 +34,8 @@ export default function Group() {
         setNewGroup({ ...newGroup, [name]: value });
     };
 
+
+
     const handleStudentChange = (e) => {
         const { value, checked } = e.target;
         setNewGroup((prev) => ({
@@ -61,7 +63,7 @@ export default function Group() {
                                 <div className="grid grid-cols-1 gap-4 lg:col-span-4 h-full">
                                     <div className="rounded-2xl  bg-white p-6 shadow-sm h-full  ">
                                         <div className="mb-5 flex items-center justify-between">
-                                            <h3 className="text-lg font-medium">All Groups</h3>
+                                            <h3 className="text-xl font-semibold">All Groups</h3>
                                             <button
                                                 className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600"
                                                 onClick={toggleModal}

@@ -18,8 +18,8 @@ const TuitionPaymentStatusPage = () => {
 
     return (
         <div className="bg-white rounded-2xl p-4 w-full ml-4">
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="font-medium text-lg">Tuition Payment Status</h2>
+            <div className="flex justify-between items-center mb-4 p-4">
+                <h2 className="font-semibold text-xl">Tuition Payment Status</h2>
             </div>
 
             <table className="min-w-full table-auto border-collapse">

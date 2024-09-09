@@ -1,19 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import getAllUser from "./action"
+
 
 export default function TeacherStudentList() {
     // State untuk daftar guru dan murid
     const [teachers, setTeachers] = useState([
-        { name: "Ms Lita", subject: "Math" },
-        { name: "Ms Rina", subject: "Science" },
-        { name: "Mr Fathan", subject: "History" },
     ]);
     const [students, setStudents] = useState([
         { name: "Alice", grade: "6A" },
         { name: "Bob", grade: "5A" },
         { name: "Charlie", grade: "4C" },
     ]);
+
+
+
+    async function data(params) {
+        const data = await getAllUser()
+        console.log(data);
+
+        setTeachers(data)
+    }
+
+    useEffect(() => {
+        data()
+    }, [])
+
+
 
     // State untuk modal guru dan murid
     const [isTeacherModalOpen, setIsTeacherModalOpen] = useState(false);
@@ -63,7 +77,7 @@ export default function TeacherStudentList() {
                 <div className="flex flex-1 flex-col  ">
                     <header className="sticky top-0 z-30 flex h-14 pt-7 pb-7 items-center gap-4 border-b bg-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
 
-                        <h1 className="text-lg font-medium">Teachers & Students</h1>
+                        <h1 className="text-xl font-semibold">Teachers & Students</h1>
                     </header>
 
                     <main className="grid flex-1 items-start gap-4 pt-5 p-4 sm:px-6 sm:py-0 md:gap-8">
