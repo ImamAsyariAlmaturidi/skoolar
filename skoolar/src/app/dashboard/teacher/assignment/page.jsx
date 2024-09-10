@@ -6,6 +6,7 @@ import { getMe } from "../../parent/action";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../../../../config/firebase";
 import { format } from "date-fns";
+import { getGroupByID } from "./action";
 
 // Function to format date and time using date-fns
 const formatDate = (dueDate, dueTime) => {
@@ -23,7 +24,8 @@ const formatDate = (dueDate, dueTime) => {
 };
 
 export default function TeacherAssignment() {
-  const [groupId, setGroupId] = useState([]);
+  const [dataGroup, setDataGroup] = useState(null);
+  const [groupId, setGroupId] = useState(null);
   const [assignments, setAssignments] = useState([]);
 
   useEffect(() => {
@@ -31,17 +33,21 @@ export default function TeacherAssignment() {
       try {
         const data = await getMe();
         setGroupId(data.GroupId);
+
+        if (data.GroupId) {
+          const { data: groupData } = await getGroupByID(data.GroupId);
+          setDataGroup(groupData);
+        }
       } catch (error) {
         console.log(error);
       }
     }
+
     fetchData();
   }, []);
 
-  //this core code
-
   useEffect(() => {
-    if (groupId.length === 0) return;
+    if (!groupId) return;
 
     const assignmentsRef = collection(db, "assignment");
     const q = query(assignmentsRef, where("groupId", "==", groupId));
@@ -65,9 +71,9 @@ export default function TeacherAssignment() {
         <div className="w-[90%] bg-white rounded-3xl px-10 py-5 overflow-y-auto">
           <section className="text-black font-semibold h-[20rem] relative pt-2 border-b-2">
             <span className="text-3xl text-neutral-700">
-              Class 6A Assignments
+              Class {dataGroup?.name} Assignments
             </span>
-            <div className="flex w-[90%] justify-evenly items-center h-16 px-4 mt-11 ">
+            <div className="flex w-[90%] justify-evenly items-center h-16 px-4 mt-11">
               <div className="w-[10rem] flex justify-evenly items-center h-full border-2 border-[#0f828c] border-l-8 text-black relative rounded-2xl">
                 <img
                   className="w-9 h-9"
@@ -76,7 +82,7 @@ export default function TeacherAssignment() {
                 />
                 <div className="ml-3 flex flex-col justify-center">
                   <div className="text-right text-neutral-500">Class</div>
-                  <p className="text-right">6A</p>
+                  <p className="text-right">{dataGroup?.name}</p>
                 </div>
               </div>
               <div className="w-[10rem] flex justify-evenly items-center h-full border-2 border-[#f5a81c] border-l-8 text-black relative rounded-2xl">
@@ -87,7 +93,9 @@ export default function TeacherAssignment() {
                 />
                 <div className="ml-3 flex flex-col justify-center">
                   <div className="text-right text-neutral-500">Students</div>
-                  <p className="text-right">22</p>
+                  <p className="text-right">
+                    {dataGroup?.parent_id?.length || 0}
+                  </p>
                 </div>
               </div>
             </div>

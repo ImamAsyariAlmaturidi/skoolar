@@ -9,21 +9,9 @@ import { getGroup } from "../../../../../db/models/Group";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../../../config/firebase";
 import { revalidatePath } from "next/cache";
+import { getMe } from "../../../parent/action";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
-
-const cookiesStore = cookies();
-const access_token = cookiesStore.get("access_token");
-
-const { payload } = await jwtVerify(
-  access_token.value,
-  new TextEncoder().encode(ACCESS_TOKEN_SECRET)
-);
-console.log(
-  payload,
-  "<< ini payload hasil ekstrak token di formClassroom/action"
-);
 
 // === ganti ===
 // ganti session jadi adaptor
@@ -61,8 +49,6 @@ export const getAllGroup = async () => {
   return groups;
 };
 
-console.log(payload, "<< ini payload token di formClassroom/action");
-
 const schemaCourseWorkInput = Joi.object({
   title: Joi.string().required().min(2),
   description: Joi.string().required().min(5),
@@ -72,16 +58,7 @@ const schemaCourseWorkInput = Joi.object({
 });
 
 export const createCourseWork = async (formData) => {
-  const cookiesStore = cookies();
-  const access_token = cookiesStore.get("access_token");
-
-  console.log(access_token, "ini access token");
-  console.log(formData?.get("title"), "<< ini formData title");
-  console.log(formData?.get("description"), "<< ini formData description");
-  console.log(formData?.get("duedate"), "<< ini formData duedate");
-  console.log(formData?.get("duetime"), "<< ini formData duetime");
-  console.log(formData?.get("course"), "<< ini formData course");
-  console.log(formData?.get("group"), "<< ini formData group");
+  const data = await getMe();
 
   const title = formData?.get("title");
   const description = formData?.get("description");
@@ -90,10 +67,6 @@ export const createCourseWork = async (formData) => {
   const courseData = formData?.get("course");
   const courseId = courseData.split(",")[0];
   const courseName = courseData.split(",")[1];
-  const group = formData?.get("group");
-  // console.log(typeof course);
-  // console.log(course.split(",")[1]);
-  // console.log(course[1]);
 
   const parsedData = schemaCourseWorkInput.validate({
     title,
@@ -107,7 +80,9 @@ export const createCourseWork = async (formData) => {
     const errMessage = parsedData.error.details[0].message;
     const errFinalMessage = `${errPath} - ${errMessage}`;
 
-    return redirect(`${BASE_URL}/login?error=${errFinalMessage}`);
+    return redirect(
+      `${BASE_URL}/dashboard/teacher/assignment/add-assignment?error=${errFinalMessage}`
+    );
   }
 
   console.log(parsedData, "<< ini parsed data");
@@ -122,8 +97,6 @@ export const createCourseWork = async (formData) => {
 
     // return session;
   }
-  console.log(session, "<<<< ini session di page");
-  console.log(session.accessToken, "<<<< ini ACCESS TOKEN di page");
 
   // const { payload } = await jwtVerify(
   //   access_token.value,
@@ -173,7 +146,7 @@ export const createCourseWork = async (formData) => {
       hours: splitDueTime[0],
       minutes: splitDueTime[1],
     },
-    groupId: payload.GroupId,
+    groupId: data.GroupId,
     title: response?.data.title,
   });
 
