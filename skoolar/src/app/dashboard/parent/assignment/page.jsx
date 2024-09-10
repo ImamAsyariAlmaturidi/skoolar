@@ -3,9 +3,9 @@ import SideBar from "../../../../components/parent/Sidebar";
 export default function AssignmentPage() {
   return (
     <>
-      <div className="flex gap-3 px-5 py-10 h-screen bg-[#f0f6fe]">
+      <div className="w-full h-screen bg-[#f0f6fe] flex gap-3 px-5 py-10">
         <SideBar className="w-1/4 lg:w-1/5" />
-        <div className="w-[90%] bg-white rounded-3xl px-10 py-5">
+        <div className="w-[91%] h-full bg-white rounded-2xl overflow-y-auto px-10 py-6">
           <section className="text-black font-semibold bg-white h-[8rem] pt-2 ">
             <span className="text-3xl">Today's Assignments</span>
           </section>
@@ -23,9 +23,9 @@ export default function AssignmentPage() {
               Art & Craft
             </span>
           </div>
-          <div className="w-full h-[35rem] py-3 mt-3">
+          <div className="w-full py-3 mt-3">
             <div
-              className="w-full h-full py-3 overflow-auto bg-white rounded-2xl"
+              className="w-full h-full py-3 overflow-y-auto overflow-x-hidden bg-white rounded-2xl"
               id="scroll-container"
             >
               <div className="flex flex-col ">

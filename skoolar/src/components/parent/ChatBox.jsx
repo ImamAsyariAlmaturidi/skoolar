@@ -46,7 +46,7 @@ export default function ChatBox({ data }) {
     : "";
 
   return (
-    <div className="pl-8 pt-2 pb-2 flex hover:bg-neutral-200 cursor-pointer">
+    <div className="pl-8 pt-2 pb-2 flex hover:bg-neutral-200 cursor-pointer ">
       <div className="rounded-full bg-orange-200 border border-neutral-200 w-14 h-11 flex items-center justify-center">
         <img
           className="h-7"
@@ -55,9 +55,9 @@ export default function ChatBox({ data }) {
         />
       </div>
       <div className="w-full mr-4">
-        <div className="flex justify-between w-full mb-4">
+        <div className="flex justify-between w-full mb-1">
           <p className="ml-4 font-semibold text-[0.9rem] text-neutral-700">
-            {data?.name}
+            Class {data?.name}
           </p>
           <p className="text-neutral-500 text-[0.8rem]">{formattedTime}</p>
         </div>
