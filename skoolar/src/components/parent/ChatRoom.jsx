@@ -137,7 +137,7 @@ export default function ChatRoom({ id }) {
               </div>
             </div>
           </div>
-          <div className="flex flex-row items-center h-16 rounded-xl w-full px-4">
+          <div className="flex flex-row items-center h-16 lg:h-14 rounded-xl w-full px-4">
             <div>
               <button className="flex items-center justify-center text-gray-400 hover:text-gray-600">
                 <svg

@@ -36,7 +36,7 @@ const TuitionPaymentStatusPage = () => {
   };
 
   return (
-    <div className="bg-white rounded-2xl p-4 w-full ml-4">
+    <div className="bg-white rounded-2xl p-4 w-full ml-4 overflow-y-auto overflow-x-auto">
       <div className="flex justify-between items-center mb-4">
         <h2 className="font-medium text-lg">Tuition Payment Status</h2>
       </div>

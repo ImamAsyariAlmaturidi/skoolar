@@ -9,7 +9,7 @@ export default function TeacherAssignment() {
     <>
       <div className="w-full h-screen bg-[#f0f6fe] flex gap-3 px-5 py-10">
         <SideBar className="w-1/4 lg:w-1/5" />
-        <div className="w-[90%] bg-white rounded-3xl px-10 py-5">
+        <div className="w-[90%] bg-white rounded-3xl px-10 py-5 overflow-y-auto">
           <section className="text-black font-semibold h-[20rem] relative pt-2  border-b-2">
             <span className="text-3xl text-neutral-700">
               Class 6A Assignments
@@ -25,7 +25,7 @@ export default function TeacherAssignment() {
                   <p className="text-right">6A</p>
                 </div>
               </div>
-              <div className="w-[10rem]  flex justify-evenly items-center h-full border-2 border-[#1581bf] border-l-8 text-black relative rounded-2xl">
+              <div className="w-[10rem] flex justify-evenly items-center h-full border-2 border-[#1581bf] border-l-8 text-black relative rounded-2xl">
                 <img
                   className="w-10 h-10"
                   src="https://www.svgrepo.com/show/341538/strategy-success-task.svg"
@@ -76,10 +76,10 @@ export default function TeacherAssignment() {
               </button>
             </div>
           </section>
-          <div className="relative mt-4 bg-black max-h-[400px] overflow-y-auto ">
+          <div className="relative mt-4  max-h-[400px] overflow-y-auto ">
             <div className="overflow-x-auto">
               <div className="border-b-2">
-                <table className="w-full min-w-full  rounded-2xl">
+                <table className="w-full min-w-full  rounded-2xl overflow-x-hidden overflow-y-auto">
                   <thead className="text-neutral-600 bg-neutral-100  top-0 z-10 border-slate-400 border-b-2">
                     <tr className="h-[4rem]">
                       <th className="px-4 py-2 text-left w-[5%]">No</th>

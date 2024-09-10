@@ -52,8 +52,14 @@ export default function Pemberitahuan() {
           <PrentNotification />
           <PrentNotification />
           <PrentNotification />
-         
-
+          <PrentNotification />
+          <PrentNotification />
+          <PrentNotification />
+          <PrentNotification />
+          <PrentNotification />
+          <PrentNotification />
+          <PrentNotification />
+          <PrentNotification />
         </div>
       </div>
     </>

@@ -5,27 +5,16 @@ import { getAllUser, getParent } from "./action";
 
 export default function TeacherStudentList() {
   // State untuk daftar guru dan murid
-  const [teachers, setTeachers] = useState([]);
-  const [students, setStudents] = useState([]);
-
-  async function teacherData(params) {
-    const data = await getAllUser();
-    console.log(data);
-
-    setTeachers(data);
-  }
-
-  async function parentData(params) {
-    const data = await getParent();
-    console.log(data);
-
-    setStudents(data);
-  }
-
-  useEffect(() => {
-    teacherData();
-    parentData();
-  }, []);
+  const [teachers, setTeachers] = useState([
+    { name: "Ms Lita", subject: "Math" },
+    { name: "Ms Rina", subject: "Science" },
+    { name: "Mr Fathan", subject: "History" },
+  ]);
+  const [students, setStudents] = useState([
+    { name: "Alice", grade: "6A" },
+    { name: "Bob", grade: "5A" },
+    { name: "Charlie", grade: "4C" },
+  ]);
 
   // State untuk modal guru dan murid
   const [isTeacherModalOpen, setIsTeacherModalOpen] = useState(false);
@@ -80,10 +69,10 @@ export default function TeacherStudentList() {
       <div className="flex ml-4  w-full bg-white rounded-2xl">
         <div className="flex flex-1 flex-col  ">
           <header className="sticky top-0 z-30 flex h-14 pt-7 pb-7 items-center gap-4 border-b bg-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-            <h1 className="text-xl font-semibold">Teachers & Students</h1>
+            <h1 className="text-lg font-medium">Teachers & Students</h1>
           </header>
 
-          <main className="grid flex-1  items-start gap-4 pt-5 p-4 sm:px-6 sm:py-0 md:gap-8">
+          <main className="grid flex-1 items-start gap-4 pt-5 p-4 sm:px-6 sm:py-0 md:gap-8">
             <div className="grid auto-rows-max items-start">
               <section className="grid items-start gap-4 lg:grid-cols-2">
                 {/* List Guru */}
@@ -102,8 +91,7 @@ export default function TeacherStudentList() {
                       <thead>
                         <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
                           <th className="border px-4 py-2">Name</th>
-                          <th className="border px-4 py-2">Class</th>
-                          <th className="border px-4 py-2">NIK</th>
+                          <th className="border px-4 py-2">Subject</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -111,9 +99,8 @@ export default function TeacherStudentList() {
                           <tr key={index} className="text-sm text-gray-700">
                             <td className="border px-4 py-2">{teacher.name}</td>
                             <td className="border px-4 py-2">
-                              {teacher.GroupId}
+                              {teacher.subject}
                             </td>
-                            <td className="border px-4 py-2">{teacher.NIK}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -136,24 +123,16 @@ export default function TeacherStudentList() {
                     <table className="min-w-full table-auto border-collapse">
                       <thead>
                         <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
-                          <th className="border px-4 py-2">Student Name</th>
-                          <th className="border px-4 py-2">Parent Name</th>
-                          <th className="border px-4 py-2">NISN</th>
-                          <th className="border px-4 py-2">Class</th>
+                          <th className="border px-4 py-2">Name</th>
+                          <th className="border px-4 py-2">Grade</th>
                         </tr>
                       </thead>
                       <tbody>
                         {students.map((student, index) => (
                           <tr key={index} className="text-sm text-gray-700">
+                            <td className="border px-4 py-2">{student.name}</td>
                             <td className="border px-4 py-2">
-                              {student.studentName}
-                            </td>
-                            <td className="border px-4 py-2">
-                              {student.parentName}
-                            </td>
-                            <td className="border px-4 py-2">{student.NISN}</td>
-                            <td className="border px-4 py-2">
-                              {student.GroupId}
+                              {student.grade}
                             </td>
                           </tr>
                         ))}
@@ -180,7 +159,7 @@ export default function TeacherStudentList() {
                   </label>
                   <input
                     type="text"
-                    id="name"
+                    id="teacherName"
                     name="name"
                     value={newTeacher.name}
                     onChange={handleTeacherInputChange}
@@ -193,30 +172,13 @@ export default function TeacherStudentList() {
                     htmlFor="teacherSubject"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    NIK
+                    Subject
                   </label>
                   <input
                     type="text"
-                    id="NIK"
-                    name="NIK"
-                    value={newTeacher.NIK}
-                    onChange={handleTeacherInputChange}
-                    className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
-                  />
-                </div>
-
-                <div className="mb-4">
-                  <label
-                    htmlFor="teacherSubject"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    value={newTeacher.email}
+                    id="teacherSubject"
+                    name="subject"
+                    value={newTeacher.subject}
                     onChange={handleTeacherInputChange}
                     className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
                   />
