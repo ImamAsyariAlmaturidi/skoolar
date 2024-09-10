@@ -5,12 +5,12 @@ export default function TeacherSideBar() {
   return (
     <>
       {" "}
-      <div className="w-full max-w-[7rem] h-full rounded-3xl bg-white shadow-xl py-5">
-        <div className="w-full h-full flex justify-evenly items-center ">
-          <ul className="text-black h-[70%] space-y-[10%] flex flex-col items-center justify-evenly">
+      <div className="w-full flex flex-col max-w-[7rem] h-full rounded-3xl bg-white shadow-xl py-5">
+        <div className="w-full h-full flex justify-evenly items-center overflow-y-auto overflow-x-hidden ">
+          <ul className="text-black flex flex-col items-center gap-y-10 mt-10">
             <li>
               <Link href="/dashboard/teacher">
-                <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1  cursor-pointer  hover:text-white">
+                <figure className="lg:w-[3.3rem] lg:h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 cursor-pointer hover:text-white">
                   <svg
                     width="35px"
                     height="35px"

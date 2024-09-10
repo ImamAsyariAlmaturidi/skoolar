@@ -4,11 +4,11 @@ import SideBar from "../../../../components/parent/Sidebar";
 export default function NotificationPage() {
   return (
     <>
-      <div className="flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">
+      <div className="w-full flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">
         <SideBar />
-        <div className="w-full h-full bg-white rounded-2xl flex">
-          <div className="w-1/4 h-full border-r border-neutral-200 rounded-2xl rounded-tr-none rounded-br-none">
-            <header className="flex items-center p-3 pb-4 h-[10%]  gap-3  text-[#006bf8] border-b border-neutral-300 ">
+        <div className="flex w-full">
+          <div className=" bg-white w-[30rem] h-full border-r border-neutral-200 rounded-2xl rounded-tr-none rounded-br-none">
+            <header className="flex items-center p-3 pb-4 h-[11%] gap-3 text-[#006bf8] border-b border-neutral-300 ">
               <svg
                 width="36px"
                 height="36px"
@@ -45,7 +45,7 @@ export default function NotificationPage() {
                   </defs>
                 </g>
               </svg>
-              <span className="text-[17px] text-black font-medium">
+              <span className="text-2xl text-black font-medium">
                 All Notifications
               </span>
             </header>
@@ -64,16 +64,10 @@ export default function NotificationPage() {
               </div>
             </div>
           </div>
-          <div className="w-3/4 h-full ">
-            <header className="flex justify-end px-4 py-3 gap-3 bg-white border-b border-neutral-300 h-[10%]">
-              <input
-                placeholder="Search for any messages"
-                className="w-[20rem] py-[7px] px-3 bg-slate-50 rounded-md border border-neutral-400"
-              />
-            </header>
-            <div className="w-full h-[88%] bg-neutral-50 flex justify-center items-center">
-              <span className="text-4xl text-neutral-200">
-                Choose Your Message
+          <div className="w-full bg-white ml-0 rounded-2xl rounded-l-none">
+            <div className="w-full h-full flex items-center justify-center">
+              <span className="text-3xl font-bold text-slate-300">
+                Select your notification
               </span>
             </div>
           </div>

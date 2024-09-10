@@ -139,7 +139,7 @@ export default function Login() {
                     <input
                       type="text"
                       name="NISN"
-                      placeholder="NISN"
+                      placeholder="National Student Number (NISN)"
                       className="forms_field-input"
                       required
                       autoFocus
@@ -158,7 +158,7 @@ export default function Login() {
                 <div className="forms_buttons">
                   <input
                     type="submit"
-                    defaultValue="Log In"
+                    defaultValue="Sign in as Parent "
                     className="forms_buttons-action"
                   />
                 </div>
@@ -182,7 +182,7 @@ export default function Login() {
                     <input
                       type="text"
                       name="NIK"
-                      placeholder="NIK"
+                      placeholder="National Identity Number (NIK)"
                       className="forms_field-input"
                       required
                     />
@@ -200,7 +200,7 @@ export default function Login() {
                 <div className="forms_buttons">
                   <input
                     type="submit"
-                    defaultValue="Sign up"
+                    defaultValue="Sign in As School"
                     className="forms_buttons-action"
                   />
                 </div>

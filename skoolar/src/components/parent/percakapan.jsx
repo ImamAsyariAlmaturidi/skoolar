@@ -5,8 +5,8 @@ export default async function Percakapan({ data }) {
   // console.log(data, "ini data di sini");
   return (
     <>
-      <div className="w-full h-full rounded-3xl ">
-        <section className="w-full  h-[15%] text-black text-[17px] font-medium flex items-center justify-between gap-4 px-3">
+      <div className="w-full h-full overflow-y-auto overflow-x-hidden">
+        <section className="w-full h-[15%] text-black text-[17px] font-medium flex items-center justify-between gap-4 px-3">
           <section className="flex items-center gap-3 w-full">
             <svg
               width="33px"
@@ -35,11 +35,24 @@ export default async function Percakapan({ data }) {
             </Link>
           </div>
         </section>
+        <span className="ml-8 pt-2 pb-2 flex cursor-pointer mt-2 text-xs text-neutral-400">
+          Group Chat
+        </span>
         {data?.map((el, index) => (
           <Link href={`/dashboard/parent/chat/${el._id}`} key={index}>
             <ChatBox data={el} />
           </Link>
         ))}
+        <div>
+          <p className="ml-8 mt-5 mb-2 text-xs text-neutral-400">
+            Personal Message
+          </p>
+          <ChatBox />
+          <ChatBox />
+          <ChatBox />
+          <ChatBox />
+          <ChatBox />
+        </div>
       </div>
     </>
   );

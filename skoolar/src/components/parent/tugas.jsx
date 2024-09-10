@@ -1,6 +1,44 @@
+"use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-
+import { db } from "../../config/firebase";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { getMe } from "../../app/dashboard/parent/action";
 export default function Tugas() {
+  const [assignments, setAssignments] = useState([]);
+  const [groupId, setGroupId] = useState([]);
+
+  const spesificAssignment = assignments.slice(0, 3);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getMe();
+        setGroupId(data.GroupId);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (groupId.length === 0) return;
+
+    const assignmentsRef = collection(db, "assignment");
+    console.log(groupId);
+    const q = query(assignmentsRef, where("groupId", "in", groupId));
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const fetchedAssignments = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setAssignments(fetchedAssignments);
+      console.log("Fetched Assignments:", fetchedAssignments);
+    });
+
+    return () => unsubscribe();
+  }, [groupId]);
   return (
     <>
       <div className="w-full h-full rounded-3xl bg-white ">
@@ -47,15 +85,15 @@ export default function Tugas() {
                 strokeWidth="0.1"
               ></path>
             </svg>
-            <span>Today's Assignment</span>
+            <span>Assignment</span>
           </section>
 
           <div className="w-1/3 flex justify-end items-center">
-          <Link href={"/dashboard/parent/assignment"} className="w-1/3">
-            <span className="text-[12px] text-nowrap text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
-              See All
-            </span>
-          </Link>
+            <Link href={"/dashboard/parent/assignment"} className="w-1/3">
+              <span className="text-[12px] text-nowrap text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
+                See All
+              </span>
+            </Link>
           </div>
         </section>
         <div
@@ -63,56 +101,18 @@ export default function Tugas() {
           id="scroll-container"
         >
           <div className="flex flex-col gap-4 py-11">
-            <section className="w-full h-[10rem] bg-[#f6f8fc] hover:scale-105 transition-transform pt-5 py-3 px-5  rounded-2xl relative">
-              <span className="text-black text-2xl">IPA</span>
-              <p className="text-neutral-600 mt-1 text-[13px]">
-                Hai murid murid , tolong kerjakan tugas IPA bab 3 , halaman
-                22-24 yaa, dikumpul besok.{" "}
-              </p>
-              <span className="absolute text-black bottom-3 right-5 text-[12px]">
-                Lebih Lanjut
-              </span>
-            </section>
-            <section className="w-full h-[10rem] py-3 px-4 bg-[#f6f8fc] rounded-2xl relative">
-              <span className="text-black text-2xl">IPS</span>
-              <p className="text-neutral-600 mt-1 text-[13px]">
-                Hai murid murid , tolong kerjakan tugas IPA bab 3 , halaman
-                22-24 yaa, dikumpul besok.{" "}
-              </p>
-              <span className="absolute text-black bottom-3 right-5 text-[12px]">
-                Lebih Lanjut
-              </span>
-            </section>
-            <section className="w-full h-[10rem] py-2 px-4 bg-[#f6f8fc] rounded-2xl relative">
-              <span className="text-black text-2xl">Matematika</span>
-              <p className="text-neutral-600 mt-1 text-[13px]">
-                Hai murid murid , tolong kerjakan tugas IPA bab 3 , halaman
-                22-24 yaa, dikumpul besok.{" "}
-              </p>
-              <span className="absolute text-black bottom-3 right-5 text-[12px]">
-                Lebih Lanjut
-              </span>
-            </section>
-            <section className="w-full h-[10rem] py-2 px-4 bg-[#f6f8fc] rounded-2xl relative">
-              <span className="text-black text-2xl">Prakarya</span>
-              <p className="text-neutral-600 mt-1 text-[13px]">
-                Hai murid murid , tolong kerjakan tugas IPA bab 3 , halaman
-                22-24 yaa, dikumpul besok.{" "}
-              </p>
-              <span className="absolute text-black bottom-3 right-5 text-[12px]">
-                Lebih Lanjut
-              </span>
-            </section>
-            <section className="w-full h-[10rem] py-2 px-4 bg-[#f6f8fc] rounded-2xl relative">
-              <span className="text-black text-2xl">IPA</span>
-              <p className="text-neutral-600 mt-1 text-[13px]">
-                Hai murid murid , tolong kerjakan tugas IPA bab 3 , halaman
-                22-24 yaa, dikumpul besok.{" "}
-              </p>
-              <span className="absolute text-black bottom-3 right-5 text-[12px]">
-                Lebih Lanjut
-              </span>
-            </section>
+            {spesificAssignment.map((el) => {
+              return (
+                <>
+                  <section className="w-full h-[10rem] py-2 px-4 bg-[#f6f8fc] rounded-2xl relative">
+                    <span className="text-black text-2xl">{el.title}</span>
+                    <p className="text-neutral-600 mt-1 text-[13px]">
+                      {el.description}
+                    </p>
+                  </section>
+                </>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -5,9 +5,9 @@ import { doLogout } from "../app/login/action";
 export default function SideBar() {
   return (
     <>
-      <div className="w-full max-w-[7rem] h-full rounded-3xl bg-white shadow-xl flex flex-col items-center justify-center">
-        <div className="w-full h-[55%] flex justify-center items-center ">
-          <ul className="text-black space-y-6 flex flex-col items-center">
+      <div className="w-full flex flex-col max-w-[7rem] h-full rounded-3xl bg-white shadow-xl py-5">
+        <div className="w-full h-full flex justify-evenly items-center overflow-y-auto overflow-x-hidden ">
+          <ul className="text-black flex flex-col items-center gap-y-10">
             <li>
               <Link href="/dashboard/admin/">
                 <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1  cursor-pointer  hover:text-white">
@@ -182,18 +182,61 @@ export default function SideBar() {
                 </figure>
               </Link>
             </li>
-          </ul>
-        </div>
-        <div className="w-full h-[25%] flex justify-center items-center pt-10 ">
-          <ul className="text-black space-y-7 flex flex-col items-center">
             <li>
-              <figure className="w-[3rem] h-[3rem] rounded-full bg-white flex justify-center items-center hover:translate-x-2 transition-transform hover:bg-blue-100 hover:border-2 border-slate-300 cursor-pointer">
-                <img
-                  className="w-[75%] h-[75%] object-contain"
-                  src="https://icons.veryicon.com/png/o/internet--web/iview-3-x-icons/ios-log-out.png"
-                  alt="Icon"
-                />
-              </figure>
+              <button onClick={() => doLogout()}>
+                <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 cursor-pointer hover:text-white">
+                  <svg
+                    width="40px"
+                    height="40px"
+                    viewBox="0 0 512 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="transition-colors duration-300"
+                  >
+                    <g id="SVGRepo_bgCarrier" strokeWidth={0} />
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <g id="SVGRepo_iconCarrier">
+                      <title>ionicons-v5-o</title>
+                      <path
+                        d="M304,336v40a40,40,0,0,1-40,40H104a40,40,0,0,1-40-40V136a40,40,0,0,1,40-40H256c22.09,0,48,17.91,48,40v40"
+                        style={{
+                          fill: "none",
+                          stroke: "currentColor",
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 32,
+                        }}
+                      />
+                      <polyline
+                        points="368 336 448 256 368 176"
+                        style={{
+                          fill: "none",
+                          stroke: "currentColor",
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 32,
+                        }}
+                      />
+                      <line
+                        x1={176}
+                        y1={256}
+                        x2={432}
+                        y2={256}
+                        style={{
+                          fill: "none",
+                          stroke: "currentColor",
+                          strokeLinecap: "round",
+                          strokeLinejoin: "round",
+                          strokeWidth: 32,
+                        }}
+                      />
+                    </g>
+                  </svg>
+                </figure>
+              </button>
             </li>
           </ul>
         </div>
