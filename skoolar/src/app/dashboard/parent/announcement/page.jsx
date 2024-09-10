@@ -38,7 +38,7 @@ export default function ParentAnnouncement() {
   ]);
   return (
     <>
-      <div className="w-full flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">
+      <div className="flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">
         <SideBar />
         <div className="flex w-full">
           <div className=" bg-white w-[30rem] h-full border-r border-neutral-200 rounded-2xl rounded-tr-none rounded-br-none">
