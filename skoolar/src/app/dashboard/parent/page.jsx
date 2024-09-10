@@ -1,4 +1,4 @@
-import { getMe } from "./action";
+import { getMe, getSchoolAnnouncement } from "./action";
 import Pemberitahuan from "../../../components/parent/pemberitahuan";
 import Pengumuman from "../../../components/parent/pengumuman";
 import Percakapan from "../../../components/parent/percakapan";
@@ -9,6 +9,9 @@ export default async function Dashboard() {
   const data = await getMe();
   const groups = await getAllGroup();
   const groupData = groups.data;
+  const GeneralAnnouncement = await getSchoolAnnouncement();
+  const AnnouncementData = GeneralAnnouncement.data;
+
   return (
     <>
       <div className="w-full h-screen bg-[#f0f6fe] flex gap-3 px-5 py-10">
@@ -26,8 +29,7 @@ export default async function Dashboard() {
                 </p>
               </div>
             </div>
-            <Pengumuman />
-
+            <Pengumuman data={AnnouncementData} />
             <div className="w-full h-[27rem] rounded-3xl flex gap-3 mt-1 ">
               <div className="w-1/2 h-[92%] bg-white rounded-xl px-7 py-4">
                 <Percakapan data={groupData} />

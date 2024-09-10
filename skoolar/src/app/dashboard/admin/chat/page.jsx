@@ -1,13 +1,12 @@
 import Link from "next/link";
 import ChatRoom from "../../../../components/parent/ChatRoom";
 import ChatBox from "../../../../components/parent/Chatbox";
-import SideBar from "../../../../components/parent/Sidebar";
 import { getAllGroup } from "./actios";
 export default async function ChatPage() {
   const { data } = await getAllGroup();
   return (
     <>
-      <div className="w-full flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">
+      <div className="w-full flex gap-3 px-5 py-10 h-full bg-[#F1F7FE]">
         <div className="flex w-full">
           <div className=" bg-white w-[30rem]  rounded-2xl  rounded-r-none border-r border-neutral-200 border-solid">
             <div className="border-b  border-neutral-200 flex justify-start items-center h-[11%]">
