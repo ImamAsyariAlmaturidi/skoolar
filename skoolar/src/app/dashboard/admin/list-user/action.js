@@ -68,7 +68,7 @@ export async function getGroup(params) {
       },
     });
     const { data } = await response.json();
-    // console.log(data, "data groups di list0user");
+    console.log(data, "data groups di list0user");
 
     return data;
   } catch (error) {
@@ -123,7 +123,7 @@ export async function GetTeachersClass(params) {
       },
     });
     const { data } = await response.json();
-    console.log(data, "data groups di list0user");
+    // console.log(data, "data groups di list0user");
     return data;
   } catch (error) {
     console.log(error);

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getAllUser, getGroup, getParent } from "../list-user/action";
+import { postGroup } from "./action";
 
 export default function Group() {
   const [products, setProducts] = useState([]);
@@ -40,17 +41,27 @@ export default function Group() {
     teacher.name.toLowerCase().includes(teacherSearchTerm.toLowerCase())
   );
 
-  const postStudents = async (event) => {
+  const postGroups = async (event) => {
     event.preventDefault();
     setIsLoading(true);
     const formData = new FormData(event.target);
-    const result = await (formData);
+
+    const parentIds = [];
+    formData.forEach((value, key) => {
+      if (key === "parent_id") {
+        parentIds.push(value);
+      }
+    });
+
+    // Menambahkan parent_id array ke FormData
+    formData.set("parent_id", JSON.stringify(parentIds));
+    const result = await postGroup(formData);
 
     if (result.success) {
       await fetchData();
-      toggleStudentModal(); // Tutup modal jika berhasil
+      toggleModal(); // Tutup modal jika berhasil
     } else {
-      console.error("Error adding Student:", result.error);
+      console.error("Error adding Group:", result.error);
       // Anda bisa menambahkan notifikasi error di sini jika diperlukan
     }
     setIsLoading(false);
@@ -112,7 +123,7 @@ export default function Group() {
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
               <div className="bg-white rounded-lg p-6 w-full max-w-lg shadow-lg">
                 <h2 className="text-lg font-medium mb-4">Create New Group</h2>
-                <form>
+                <form onSubmit={postGroups}>
                   {/* Nama Group */}
                   <div className="mb-4">
                     <label
@@ -124,7 +135,7 @@ export default function Group() {
                     <input
                       type="text"
                       id="groupName"
-                      name="groupName"
+                      name="name"
                       className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2"
                     />
                   </div>
@@ -148,7 +159,7 @@ export default function Group() {
                             type="radio"
                             id={`teacher-${index}`}
                             name="teacher_id"
-                            value={teacher}
+                            value={teacher._id}
                             className="h-4 w-4 text-blue-600"
                           />
                           <label
@@ -208,13 +219,10 @@ export default function Group() {
                       Cancel
                     </button>
                     <button
+                      type="submit"
                       className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
-                      onClick={() => {
-                        setProducts([...products, newGroup]);
-                        toggleModal();
-                      }}
                     >
-                      Create Group
+                      {isLoading ? "Adding..." : "Create Group"}
                     </button>
                   </div>
                 </form>
