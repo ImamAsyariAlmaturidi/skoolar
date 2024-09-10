@@ -206,7 +206,7 @@ export default function TeacherStudentList() {
             </div>
           </main>
 
-          {/* Modal untuk Menambahkan Guru */}
+          {/* Modal untuk Menambahkan Guruuu */}
           {isTeacherModalOpen && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
               <div className="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
