@@ -17,9 +17,11 @@ export default function TeacherStudentList() {
 
   const fetchData = async () => {
     const teachersData = await getAllUser();
+
     setTeachers(teachersData);
 
     const studentsData = await getParent();
+    console.log(studentsData);
     setStudents(studentsData);
 
     const groupsData = await getGroup();
@@ -152,7 +154,7 @@ export default function TeacherStudentList() {
                           <tr key={index} className="text-sm text-gray-700">
                             <td className="border px-4 py-2">{teacher.name}</td>
                             <td className="border px-4 py-2">
-                              {teacher.subject}
+                              {teacher.GroupId}
                             </td>
                           </tr>
                         ))}
@@ -183,9 +185,11 @@ export default function TeacherStudentList() {
                       <tbody>
                         {students.map((student, index) => (
                           <tr key={index} className="text-sm text-gray-700">
-                            <td className="border px-4 py-2">{student.name}</td>
                             <td className="border px-4 py-2">
-                              {student.grade}
+                              {student.studentName}
+                            </td>
+                            <td className="border px-4 py-2">
+                              {student.GroupId}
                             </td>
                           </tr>
                         ))}
