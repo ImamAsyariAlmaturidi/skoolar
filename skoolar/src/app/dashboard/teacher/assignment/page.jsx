@@ -1,41 +1,60 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SideBar from "../../../../components/teacher/Sidebar";
-import addCourseWork from "./action";
+import Link from "next/link";
+import { getMe } from "../../parent/action";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { db } from "../../../../config/firebase";
+import { format } from "date-fns";
+
+// Function to format date and time using date-fns
+const formatDate = (dueDate, dueTime) => {
+  const { year, month, day } = dueDate;
+  const { hours, minutes } = dueTime;
+
+  // Create a date object using the provided values
+  const date = new Date(year, month - 1, day, hours, minutes);
+
+  // Format the date using date-fns
+  const formattedDate = format(date, "dd/MM/yyyy");
+  const formattedTime = format(date, "HH:mm");
+
+  return `${formattedDate} ${formattedTime}`;
+};
 
 export default function TeacherAssignment() {
-  const [tugas, setTugas] = useState(false);
+  const [groupId, setGroupId] = useState([]);
+  const [assignments, setAssignments] = useState([]);
 
-  // State variables for form inputs
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [course, setCourse] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-
-  async function add(event) {
-    event.preventDefault();
-
-    const formData = {
-      title,
-      description,
-      course,
-      deadline: `${date}T${time}`,
-    };
-
-    try {
-      await addCourseWork(formData);
-      // Clear form fields after successful submission
-      setTitle("");
-      setDescription("");
-      setCourse("");
-      setDate("");
-      setTime("");
-      setTugas(false); // Close the form modal
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getMe();
+        setGroupId(data.GroupId);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (groupId.length === 0) return;
+
+    const assignmentsRef = collection(db, "assignment");
+    const q = query(assignmentsRef, where("groupId", "==", groupId));
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const fetchedAssignments = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setAssignments(fetchedAssignments);
+      console.log("Fetched Assignments:", fetchedAssignments);
+    });
+
+    return () => unsubscribe();
+  }, [groupId]);
 
   return (
     <>
@@ -79,12 +98,12 @@ export default function TeacherAssignment() {
               <span className="text-2xl">Challenges</span>
             </div>
             <div className="flex w-full px-4 justify-between items-end mt-4 absolute bottom-2">
-              <button
-                onClick={() => setTugas(true)}
+              <Link
+                href={"/dashboard/teacher/assignment/add-assignment"}
                 className="px-4 py-3 border-2 border-[#66b2b1] text-[#66b2b1] text-[14px] rounded-2xl"
               >
                 Add New Challenge
-              </button>
+              </Link>
             </div>
           </section>
           <div className="relative mt-4 max-h-[400px] overflow-y-auto">
@@ -96,23 +115,19 @@ export default function TeacherAssignment() {
                     <th className="px-4 py-2 text-left w-[50%]">Challenges</th>
                     <th className="px-4 py-2 text-left w-[15%]">Subject</th>
                     <th className="px-4 py-2 text-left w-[15%]">Deadline</th>
-                    <th className="px-4 py-2 text-left">Status</th>
                   </tr>
                 </thead>
                 <tbody className="text-black text-[15px]">
-                  {[...Array(8)].map((_, index) => (
+                  {assignments.map((el, index) => (
                     <tr
-                      key={index}
+                      key={el.id}
                       className="h-[3rem] border-neutral-300 border-b-2"
                     >
                       <td className="px-4 py-2">{index + 1}</td>
-                      <td className="px-4 py-2">Algebra , sin , cos tan</td>
-                      <td className="px-4 py-2">Mathematics</td>
-                      <td className="px-4 py-2">15-03-2024</td>
+                      <td className="px-4 py-2">{el.title}</td>
+                      <td className="px-4 py-2">{el.courseName}</td>
                       <td className="px-4 py-2">
-                        <button className="px-6 py-2 border-2 rounded-md border-[#66b2b1] text-[#66b2b1]">
-                          Ongoing
-                        </button>
+                        {formatDate(el.dueDate, el.dueTime)}
                       </td>
                     </tr>
                   ))}
@@ -122,97 +137,6 @@ export default function TeacherAssignment() {
           </div>
         </div>
       </div>
-      {tugas && (
-        <div className="fixed inset-0 h-screen w-full bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center">
-          <div className="w-[30rem] h-[40rem] rounded-2xl gap-10 bg-white">
-            <section className="px-5 h-[11%] w-full flex justify-between items-center">
-              <span className="text-2xl text-neutral-600">
-                Add New Assignment
-              </span>
-              <span
-                onClick={() => setTugas(false)}
-                className="text-2xl text-neutral-600 cursor-pointer hover:text-red-700"
-              >
-                x
-              </span>
-            </section>
-            <div className="h-[80%] w-full py-3 px-5">
-              <form
-                onSubmit={add}
-                className="h-full w-full flex flex-col space-y-6"
-              >
-                <div>
-                  <label className="text-neutral-600">Title</label>
-                  <input
-                    name="title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    className="w-full py-2 px-4 text-black outline-none border-neutral-400 bg-neutral-100"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="text-neutral-600">Description</label>
-                  <input
-                    name="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    className="w-full py-2 px-4 text-black outline-none border-neutral-400 bg-neutral-100"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="text-neutral-600">Course Name</label>
-                  <select
-                    name="course"
-                    value={course}
-                    onChange={(e) => setCourse(e.target.value)}
-                    className="w-full py-5 px-4 text-black outline-none border-neutral-400 bg-neutral-100"
-                    required
-                  >
-                    <option value="" disabled>
-                      Select a course
-                    </option>
-                    <option value="Science">Science</option>
-                    <option value="English">English</option>
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Art & Craft">Art & Craft</option>
-                    <option value="Mandarin">Mandarin</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="text-neutral-600">Deadline: Date</label>
-                  <input
-                    type="date"
-                    name="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className="w-full py-3 px-4 text-neutral-700 outline-none border-neutral-400 bg-neutral-100 mt-1"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="text-neutral-600">Deadline: Time</label>
-                  <input
-                    type="time"
-                    name="time"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                    className="w-full py-3 px-4 text-neutral-700 outline-none border-neutral-400 bg-neutral-100 mt-1"
-                    required
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-3 bg-[#006bf8] my-2 rounded-lg text-white"
-                >
-                  Add
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
