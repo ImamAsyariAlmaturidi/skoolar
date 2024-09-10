@@ -2,7 +2,12 @@ import Percakapan from "../../../components/parent/percakapan";
 
 import TeacherSideBar from "../../../components/teacher/Sidebar";
 import Link from "next/link";
-export default function TeacherDashboard() {
+import { getMe } from "../parent/action";
+import { getGroupTeacher } from "./action";
+export default async function TeacherDashboard() {
+  const me = await getMe();
+  const { data } = await getGroupTeacher(me.GroupId);
+
   return (
     <>
       <div className="w-full h-screen bg-[#f0f6fe] flex gap-3 px-5 py-10">
@@ -20,14 +25,11 @@ export default function TeacherDashboard() {
                 </div>
                 <div className="w-full h-full px-4 pt-7 flex flex-col space-y-6">
                   <span className="text-3xl text-black font-medium">
-                    Adelaine Fischer
+                    {me?.name}
                   </span>
                   <div className="space-y-2">
                     <p className="text-slate-600 text-[13px] ">
-                      Teachers of class 6A
-                    </p>
-                    <p className="text-slate-600 text-[13px] ">
-                      Female , 25 years old
+                      Teachers of class {data.name}
                     </p>
                     <p className="text-slate-600 text-[13px] ">
                       Currently working at Tunas Bangsa School
@@ -126,7 +128,7 @@ export default function TeacherDashboard() {
                       strokeWidth="0.1"
                     ></path>
                   </svg>
-                  <span>Class 6A Assignment</span>
+                  <span>Class {data.name} Assignment</span>
                 </section>
                 <Link href={"/dashboard/teacher/assignment"}>
                   <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">

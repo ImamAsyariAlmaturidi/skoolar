@@ -46,7 +46,7 @@ export default function AssignmentPage() {
         <SideBar className="w-1/4 lg:w-1/5" />
         <div className="w-[90%] bg-white rounded-3xl px-10 py-5">
           <section className="text-black font-semibold bg-white h-[8rem] pt-2">
-            <span className="text-3xl">Today's Assignments</span>
+            <span className="text-3xl">All Assignments</span>
           </section>
           <div className="w-[30rem] py-1 bg-neutral-100 flex justify-evenly rounded-2xl">
             {/* Add your filter options here if needed */}
@@ -80,6 +80,8 @@ export default function AssignmentPage() {
                       <div className="h-[4rem] bg-slate-300 w-[1px]" />
                       <div className="flex w-full justify-between items-center">
                         <span className="text-black">
+                          <strong>Course Name:</strong> {assignment.courseName}{" "}
+                          <br />
                           <strong>Title:</strong> {assignment.title} <br />
                           <strong>Description:</strong> {assignment.description}{" "}
                           <br />

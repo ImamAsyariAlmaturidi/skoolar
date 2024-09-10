@@ -3,6 +3,7 @@ import { getGroupById } from "../../../../db/models/Group";
 
 export async function GET(request, params) {
   try {
+    console.log(params);
     const data = await getGroupById(params.params.id);
     return NextResponse.json({
       statusCode: 200,

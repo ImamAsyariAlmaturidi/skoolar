@@ -7,6 +7,8 @@ import { getMe } from "../../app/dashboard/parent/action";
 export default function Tugas() {
   const [assignments, setAssignments] = useState([]);
   const [groupId, setGroupId] = useState([]);
+
+  const spesificAssignment = assignments.slice(0, 3);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -99,7 +101,7 @@ export default function Tugas() {
           id="scroll-container"
         >
           <div className="flex flex-col gap-4 py-11">
-            {assignments.map((el) => {
+            {spesificAssignment.map((el) => {
               return (
                 <>
                   <section className="w-full h-[10rem] py-2 px-4 bg-[#f6f8fc] rounded-2xl relative">
