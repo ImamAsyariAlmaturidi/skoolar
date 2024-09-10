@@ -38,6 +38,8 @@ export default function TeacherAssignment() {
     fetchData();
   }, []);
 
+  //this core code
+
   useEffect(() => {
     if (groupId.length === 0) return;
 
