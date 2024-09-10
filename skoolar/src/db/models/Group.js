@@ -102,3 +102,21 @@ export const deleteUserFromGroup = async (groupId, userId) => {
 
   return result.modifiedCount > 0;
 };
+
+export const getAllGroup = async () => {
+  const db = await getDb();
+  const group = await db.collection(COLLECTION_GROUP).find().toArray();
+  return group;
+};
+
+export const updateStudentGroup = async (GroupId, newParentId) => {
+  const db = await getDb();
+  const collection = db.collection(COLLECTION_GROUP);
+
+  const result = await collection.updateOne(
+    { _id: new ObjectId(GroupId) },
+    { $push: { parentId: newParentId } }
+  );
+
+  return result;
+};

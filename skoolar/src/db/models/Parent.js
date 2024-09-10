@@ -1,5 +1,6 @@
 import { ObjectId } from "mongodb";
 import { getMongoClientInstance } from "../../config/mongo";
+import { hashingPassword } from "../utils/bcrypt";
 const DATABASE_NAME = process.env.DATABASE_NAME || "skoolar";
 const COLLECTION_PARENT = "parent";
 const COLLECTION_USER = "user";
@@ -24,7 +25,7 @@ export const getUser = async () => {
 export const createParent = async (parent) => {
   const modifiedUser = {
     ...parent,
-    password: hashText(parent.password),
+    password: hashingPassword(parent.password),
   };
   const db = await getDb();
   const result = await db.collection(COLLECTION_PARENT).insertOne(modifiedUser);
