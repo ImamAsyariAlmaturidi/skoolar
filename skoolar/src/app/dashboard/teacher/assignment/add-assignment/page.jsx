@@ -1,6 +1,5 @@
 import { createCourseWork, getCourse, getAllGroup, getToken } from "./action";
 import { auth, signIn, signOut } from "../../../../../auth";
-import { redirect } from "next/navigation";
 import TeacherSideBar from "../../../../../components/teacher/Sidebar";
 
 export default async function page() {
