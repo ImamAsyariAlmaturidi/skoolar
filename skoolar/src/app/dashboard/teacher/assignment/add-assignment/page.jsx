@@ -20,7 +20,7 @@ export default async function page() {
         <div className="w-full h-screen bg-[#f0f6fe] flex justify-center items-center">
           <div>
             <h1 className="text-2xl text-neutral-600">
-              I'm Sorry , It seems Like you havent login yet , please log in
+              Im Sorry , It seems Like you havent login yet , please log in
               first
             </h1>
             <form

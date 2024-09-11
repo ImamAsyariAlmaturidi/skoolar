@@ -101,7 +101,7 @@ export default function AnnouncementDetail() {
                       <section className="overflow-hidden relative mr-2 ">
                         <span className="text-black text-[15px] font-medium">
                           {el.title}
-                        </span>{" "}
+                        </span>
                         <span className="text-[#006bf8] text-[12px] absolute right-3 mt-1">
                           17.30
                         </span>

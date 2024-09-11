@@ -108,7 +108,7 @@ export default function Pembayaran() {
         <div className="h-screen w-full fixed inset-0 z-20 bg-neutral-500 backdrop-blur-sm bg-opacity-20 flex justify-center items-center overflow-y-auto overflow-x-hidden">
           <div className="w-[35rem] h-[40rem] bg-white rounded-2xl">
             <section className="px-5 h-[11%] w-full flex justify-between items-center">
-              <span className="text-2xl text-neutral-600">Payment Detail</span>{" "}
+              <span className="text-2xl text-neutral-600">Payment Detail</span>
               <span
                 onClick={() => {
                   setDetail(false);

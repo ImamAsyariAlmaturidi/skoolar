@@ -226,8 +226,8 @@ export default function Home() {
             className="flex flex-col justify-center items-center w-full px-36"
           >
             <p className="text-center font-semibold text-4xl">
-              We Serve You With Various <br /> Feature For{" "}
-              <span className="underline"> School </span> and{" "}
+              We Serve You With Various <br /> Feature For
+              <span className="underline"> School </span> and
               <span className="underline">Parent</span>
             </p>
             <div className="relative w-full overflow-hidden ">
@@ -365,7 +365,7 @@ export default function Home() {
           >
             <div className="w-[37%] mr-16">
               <p className="text-5xl font-medium tracking-wide">
-                What Our Alumni <br /> Parents Said About{" "}
+                What Our Alumni <br /> Parents Said About
                 <span className="text-blue-700">Skoolar?</span>
               </p>
               <p className="pt-5 text-neutral-400">
