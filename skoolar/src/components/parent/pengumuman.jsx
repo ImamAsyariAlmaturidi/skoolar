@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-export default function Pengumuman({ data }) {
-  console.log(data, "ini data di pengumuman");
+export default function Pengumuman() {
   return (
     <>
       <div className="w-full rounded-2xl px-2 bg-none">
@@ -43,20 +42,11 @@ export default function Pengumuman({ data }) {
           className="w-full py-4 flex items-center gap-3 overflow-x-auto bg-none rounded-2xl"
           id="scroll-container"
         >
-          {data?.map((el, index) => (
-            <div
-              className="w-[25rem] h-[10rem] bg-white rounded-2xl px-4 py-2"
-              key={index}
-            >
-              <img className="w-10 h-10 mt-3" src={el.image} />
-              <p className="text-neutral-600 font-semibold text-lg mt-3">
-                {el.title}
-              </p>
-              <p className="text-neutral-300 font-light text-xs line line-clamp-2 mt-1">
-                {el.content}
-              </p>
-            </div>
-          ))}
+          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
+          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
+          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
+          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
+          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
         </div>
       </div>
     </>

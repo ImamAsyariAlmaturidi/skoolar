@@ -1,5 +1,6 @@
 import { hashingPassword } from "../utils/bcrypt";
 import { getMongoClientInstance } from "../../config/mongo";
+import { ObjectId } from "mongodb";
 const DATABASE_NAME = process.env.DATABASE_NAME || "skoolar";
 const COLLECTION_USER = "user";
 export const getDb = async () => {
@@ -63,4 +64,19 @@ export const getUserByUsername = async (name) => {
   const user = await db.collection(COLLECTION_USER).findOne({ name: name });
 
   return user;
+};
+
+export const updateGroupTeacher = async (newGroupId, teacherId) => {
+  console.log(newGroupId, teacherId, "<<<< di model user");
+
+  const db = await getDb();
+  const collection = db.collection(COLLECTION_USER);
+
+  const result = await collection.updateOne({
+    _id: new ObjectId(teacherId),
+  }, { $set: { GroupId: newGroupId } });
+  console.log(result, "<<<< ini result di model teacher");
+
+  return result;
+
 };

@@ -115,8 +115,43 @@ export const updateStudentGroup = async (GroupId, newParentId) => {
 
   const result = await collection.updateOne(
     { _id: new ObjectId(GroupId) },
-    { $push: { parentId: newParentId } }
+    { $push: { parent_id: newParentId } }
   );
+
+  console.log(result, "result update");
 
   return result;
 };
+
+export const groupWithName = async () => {
+  const db = await getDb()
+  const collection = db.collection(COLLECTION_GROUP);
+
+  const agg = [
+    {
+      $lookup: {
+        from: "parent",
+        localField: "parent_id",
+        foreignField: "_id",
+        as: "parents",
+      },
+    },
+    {
+      $lookup: {
+        from: "user",
+        localField: "teacher_id",
+        foreignField: "_id",
+        as: "teacher",
+      },
+    },
+    {
+      $project: {
+        "teacher.password": 0,
+        "parents.password": 0,
+      },
+    },
+  ]
+
+  const groups = await collection.aggregate(agg).toArray();
+  return groups;
+}

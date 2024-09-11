@@ -353,7 +353,7 @@ export default function TeacherStudentList() {
                     >
                       Group
                     </label>
-                    <div className="mt-2 flex flex-wrap -mx-2">
+                    <div className="mt-2 h-40 overflow-y-auto flex flex-wrap -mx-2">
                       {groups.map((group) => (
                         <div
                           key={group._id}

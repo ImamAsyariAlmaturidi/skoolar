@@ -122,14 +122,14 @@ export default function SideBar() {
               </Link>
             </li>
             <li>
-              <Link href={"/dashboard/admin/announcement"}>
+              <Link href={"/dashboard/admin/chat"}>
                 <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 cursor-pointer hover:text-white">
                   <svg
-                    width="30px"
-                    height="30px"
+                    width="35px"
+                    height="35px"
                     viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
                     fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <g id="SVGRepo_bgCarrier" strokeWidth={0} />
                     <g
@@ -138,13 +138,16 @@ export default function SideBar() {
                       strokeLinejoin="round"
                     />
                     <g id="SVGRepo_iconCarrier">
-                      {" "}
-                      <path
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.512"
-                        d="M11,15 C14,15 19,19 19,19 L19,3 C19,3 14,7 11,7 C11,7 11,15 11,15 Z M5,15 L8,23 L12,23 L9,15 M19,14 C20.657,14 22,12.657 22,11 C22,9.343 20.657,8 19,8 M11,19 C11.9999997,18.9999994 14,18 14,16 M2,11 C2,7.88888889 3.7912,7 6,7 L11,7 L11,15 L6,15 C3.7912,15 2,14.1111111 2,11 Z"
-                      />{" "}
+                      <g id="Communication / Chat_Conversation">
+                        <path
+                          id="Vector"
+                          d="M16 8H20C20.5523 8 21 8.44772 21 9V20L17.667 17.231C17.4875 17.0818 17.2608 17 17.0273 17H9C8.44771 17 8 16.5523 8 16V13M16 8V5C16 4.44772 15.5523 4 15 4H4C3.44772 4 3 4.44772 3 5V16.0003L6.33301 13.2308C6.51255 13.0817 6.73924 13 6.97266 13H8M16 8V12C16 12.5523 15.5523 13 15 13H8"
+                          stroke="currentColor" // Menggunakan currentColor untuk mengikuti warna hover
+                          strokeWidth="1.448"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </g>
                     </g>
                   </svg>
                 </figure>
