@@ -181,8 +181,3 @@ export const createCourseWork = async (formData) => {
 
   // return response.data.courses;
 };
-
-export async function getToken() {
-  const store = cookies();
-  return (token = store.get("access_token"));
-}
