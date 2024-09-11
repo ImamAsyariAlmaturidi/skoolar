@@ -1,29 +1,25 @@
 "use client";
 
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { AddNewAnnouncement, getSchoolAnnouncement } from "./action";
 export default function AnnouncementPage() {
-  const [announcements, setAnnouncements] = useState([
-    {
-      id: 1,
-      title: "Welcome Back",
-      content: "Welcome to the new school year!",
-      class: "All",
-      date: "2023-09-01",
-    },
-    {
-      id: 2,
-      title: "Math Quiz",
-      content: "Math quiz next week",
-      class: "Grade 10",
-      date: "2023-09-05",
-    },
-  ]);
+  const [announcements, setAnnouncements] = useState([]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  console.log(announcements, "iniii");
+  async function data() {
+    try {
+      const newdata = await getSchoolAnnouncement();
+      console.log(newdata);
+      const AnnouncementData = newdata.data;
+      setAnnouncements(AnnouncementData);
+    } catch (error) {}
+  }
+
   const [newAnnouncement, setNewAnnouncement] = useState({
     title: "",
     content: "",
-    class: "",
   });
 
   const handleInputChange = (e) => {
@@ -40,6 +36,10 @@ export default function AnnouncementPage() {
     setNewAnnouncement({ title: "", content: "", class: "" });
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    data();
+  }, []);
 
   return (
     <div className="bg-white rounded-2xl p-10 w-full ml-4 overflow-y-auto overflow-x-auto">
@@ -59,7 +59,7 @@ export default function AnnouncementPage() {
               <h3 className="text-lg font-semibold mb-4 ">
                 Add New Announcement
               </h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form action={AddNewAnnouncement} className="space-y-4">
                 <div>
                   <label
                     htmlFor="title"
@@ -71,10 +71,8 @@ export default function AnnouncementPage() {
                     type="text"
                     id="title"
                     name="title"
-                    value={newAnnouncement.title}
-                    onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-input rounded-md "
+                    className="w-full px-3 py-2 border-[0.1px] border-neutral-600 border-input bg-white rounded-md "
                   />
                 </div>
                 <div>
@@ -87,36 +85,12 @@ export default function AnnouncementPage() {
                   <textarea
                     id="content"
                     name="content"
-                    value={newAnnouncement.content}
-                    onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-input rounded-md "
+                    className="w-full px-3 py-2 border-[0.1px] border-neutral-500 border-input bg-white rounded-md "
                     rows={3}
                   />
                 </div>
-                <div>
-                  <label
-                    htmlFor="class"
-                    className="block text-sm font-medium mb-1"
-                  >
-                    Class
-                  </label>
-                  <select
-                    id="class"
-                    name="class"
-                    value={newAnnouncement.class}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-3 py-2 border border-input rounded-md "
-                  >
-                    <option value="">Select a class</option>
-                    <option value="All">All</option>
-                    <option value="Grade 9">Grade 9</option>
-                    <option value="Grade 10">Grade 10</option>
-                    <option value="Grade 11">Grade 11</option>
-                    <option value="Grade 12">Grade 12</option>
-                  </select>
-                </div>
+
                 <div className="flex justify-end space-x-2 mt-6">
                   <button
                     type="button"

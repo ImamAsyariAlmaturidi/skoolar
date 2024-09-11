@@ -8,6 +8,7 @@ import { getMe } from "../action";
 export default function AssignmentPage() {
   const [groupId, setGroupId] = useState([]);
   const [assignments, setAssignments] = useState([]);
+  console.log(assignments);
 
   useEffect(() => {
     async function fetchData() {
@@ -44,50 +45,43 @@ export default function AssignmentPage() {
     <>
       <div className="flex gap-3 px-5 py-10 h-screen bg-[#f0f6fe]">
         <SideBar className="w-1/4 lg:w-1/5" />
-        <div className="w-[90%] bg-white rounded-3xl px-10 py-5">
-          <section className="text-black font-semibold bg-white h-[8rem] pt-2">
+        <div className="w-[90%] bg-white rounded-3xl px-10 py-5 overflow-x-hidden overflow-y-auto">
+          <section className="text-black font-semibold bg-white h-[5rem] pt-2">
             <span className="text-3xl">All Assignments</span>
           </section>
-          <div className="w-[30rem] py-1 bg-neutral-100 flex justify-evenly rounded-2xl">
-            {/* Add your filter options here if needed */}
-            <span className="px-3 py-2 text-neutral-400 rounded-2xl hover:bg-white hover:text-black transition-transform focus:text-black focus:bg-white">
-              Math
-            </span>
-            <span className="px-5 py-2 text-neutral-400 rounded-2xl hover:bg-white hover:text-black transition-transform">
-              Science
-            </span>
-            <span className="px-5 py-2 text-neutral-400 rounded-2xl hover:bg-white hover:text-black transition-transform">
-              Bahasa
-            </span>
-            <span className="px-5 py-2 text-neutral-400 rounded-2xl hover:bg-white hover:text-black transition-transform">
-              Art & Craft
-            </span>
-          </div>
-          <div className="w-full h-[35rem] py-3 mt-3">
+          <div className="w-full h-[40rem] py-3 ">
             <div
               className="w-full h-full py-3 overflow-auto bg-white rounded-2xl"
               id="scroll-container"
             >
-              <div className="flex flex-col ">
+              <div className="grid grid-cols-2 gap-4 h-full w-full">
                 {assignments.length === 0 ? (
                   <p className="text-center py-10">No assignments available.</p>
                 ) : (
                   assignments.map((assignment) => (
                     <section
                       key={assignment.id}
-                      className="w-full py-2 px-4 border-b-[0.7px] border-slate-300 flex gap-6 items-center"
+                      className="flex flex-col justify-between border-[1px] rounded-lg border-slate-300 p-4  text-white"
                     >
-                      <div className="h-[4rem] bg-slate-300 w-[1px]" />
-                      <div className="flex w-full justify-between items-center">
-                        <span className="text-black">
-                          <strong>Course Name:</strong> {assignment.courseName}{" "}
-                          <br />
-                          <strong>Title:</strong> {assignment.title} <br />
-                          <strong>Description:</strong> {assignment.description}{" "}
-                          <br />
-                          <strong>Due Time:</strong> {assignment.dueTime.hours}:
+                      <div className="flex items-start border-b-[0.1px] border-neutral-400">
+                        <p className="text-lg mb-2 text-black">
+                          Title : {assignment.courseName}
+                        </p>
+                      </div>
+                      <div className="flex items-start justify-between pr-5 text-black border-b-[0.1px] border-neutral-400">
+                        <p className=" text-lg mb-2 text-black">
+                          Subject : {assignment.courseName}
+                        </p>
+                        <p>
+                          Deadline: {assignment.dueDate.day},
+                          {assignment.dueDate.year},{assignment.dueTime.hours}:
                           {assignment.dueTime.minutes}
-                        </span>
+                        </p>
+                      </div>
+                      <div className="flex items-start ">
+                        <p className=" mb-2 text-black">
+                          Description : {assignment.description}
+                        </p>
                       </div>
                     </section>
                   ))

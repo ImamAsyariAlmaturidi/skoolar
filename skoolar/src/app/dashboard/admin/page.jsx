@@ -1,74 +1,54 @@
-"use client";
-
-import { useState } from "react";
 import SideBarAdmin from "../../../components/SidebarAdmin";
 import Link from "next/link";
+import { getAllUser, getGroup, getParent } from "./action";
+export default async function AdminDashboard() {
+  const teachers = await getAllUser();
+  // console.log(teachers, "ini data teachers");
+  const students = await getParent();
+  const groups = await getGroup();
 
-export default function AdminDashboard() {
-  // State for managing teachers, students, groups, and payments
-  const [teachers, setTeachers] = useState([
-    { name: "Ms Lita", subject: "Math" },
-    { name: "Ms Rina", subject: "Science" },
-    { name: "Mr Fathan", subject: "History" },
-  ]);
-  const [students, setStudents] = useState([
-    { name: "Alice", grade: "6A" },
-    { name: "Bob", grade: "5A" },
-    { name: "Charlie", grade: "4C" },
-  ]);
-  const [groups, setGroups] = useState([
-    { name: "6A", teacher: "Ms Lita", members: 12 },
-    { name: "5A", teacher: "Ms Rina", members: 12 },
-  ]);
-  const [payments, setPayments] = useState([
-    { name: "Alice", status: "Paid" },
-    { name: "Bob", status: "Pending" },
-  ]);
+  // const filteredTeachers = teachers
+  //   ?.filter((teacher) => teacher.GroupId.length > 0)
+  //   .map((teacher) => teacher.GroupId)
+  //   .join(",");
 
-  // Modal controls for teacher and student
-  const [isTeacherModalOpen, setIsTeacherModalOpen] = useState(false);
-  const [isStudentModalOpen, setIsStudentModalOpen] = useState(false);
-  const [isGroupModalOpen, setIsGroupModalOpen] = useState(false);
-
-  // Toggle Modal Handlers
-  const toggleTeacherModal = () => setIsTeacherModalOpen(!isTeacherModalOpen);
-  const toggleStudentModal = () => setIsStudentModalOpen(!isStudentModalOpen);
-  const toggleGroupModal = () => setIsGroupModalOpen(!isGroupModalOpen);
+  // // console.log(filteredTeachers, "inii di filter");
+  // const newTeacherData = await getGroupTeacher(filteredTeachers);
 
   return (
     <>
-      <div className=" w-full overflow-y-auto">
-        <div className="flex h-full flex-col w-full rounded-3xl overflow-y-auto">
+      <div className=" w-full overflow-y-auto overflow-x-hidden">
+        <div className="flex h-full flex-col w-full rounded-3xl overflow-y-auto overflow-x-hidden">
           <header className="flex justify-between items-center px-6 py-5 pt-4">
             <h1 className="text-2xl font-medium">Admin Dashboard</h1>
           </header>
 
           <div className="grid grid-cols-2 gap-6 px-6 h-full">
             {/* Teachers Table */}
-            <div className="bg-white  rounded-2xl p-4">
+            <div className="bg-white rounded-2xl p-4 overflow-y-auto">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="font-medium">Teachers</h2>
                 <Link href={"/dashboard/admin/list-user"}>
                   <button
-                    onClick={toggleTeacherModal}
+                    // onClick={toggleTeacherModal}
                     className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600"
                   >
                     Details
                   </button>
                 </Link>
               </div>
-              <table className="min-w-full table-auto border-collapse">
+              <table className="min-w-full table-auto border-collapse overflow-y-auto">
                 <thead>
                   <tr className="bg-gray-100 text-sm font-medium">
                     <th className="border px-4 py-2">Name</th>
-                    <th className="border px-4 py-2">Subject</th>
+                    <th className="border px-4 py-2">Class</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {teachers.map((teacher, index) => (
+                  {teachers?.slice(0, 5).map((teacher, index) => (
                     <tr key={index} className="text-sm">
                       <td className="border px-4 py-2">{teacher.name}</td>
-                      <td className="border px-4 py-2">{teacher.subject}</td>
+                      <td className="border px-4 py-2">{teacher.GroupId}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -81,7 +61,7 @@ export default function AdminDashboard() {
                 <h2 className="font-medium">Students</h2>
                 <Link href={"/dashboard/admin/list-user"}>
                   <button
-                    onClick={toggleStudentModal}
+                    // onClick={toggleStudentModal}
                     className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600"
                   >
                     Details
@@ -96,10 +76,14 @@ export default function AdminDashboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  {students.map((student, index) => (
+                  {students?.slice(0, 5).map((student, index) => (
                     <tr key={index} className="text-sm">
-                      <td className="border px-4 py-2">{student.name}</td>
-                      <td className="border px-4 py-2">{student.grade}</td>
+                      <td className="border px-4 py-2">
+                        {student.studentName}
+                      </td>
+                      <td className="border px-4 py-2 max-w-xs truncate">
+                        {student.GroupId}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -112,7 +96,7 @@ export default function AdminDashboard() {
                 <h2 className="font-medium">Groups</h2>
                 <Link href={"/dashboard/admin/add-user"}>
                   <button
-                    onClick={toggleGroupModal}
+                    // onClick={toggleGroupModal}
                     className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600"
                   >
                     Details
@@ -128,11 +112,13 @@ export default function AdminDashboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  {groups.map((group, index) => (
+                  {groups?.slice(0, 5).map((group, index) => (
                     <tr key={index} className="text-sm">
                       <td className="border px-4 py-2">{group.name}</td>
-                      <td className="border px-4 py-2">{group.teacher}</td>
-                      <td className="border px-4 py-2">{group.members}</td>
+                      <td className="border px-4 py-2">{group.teacher_id}</td>
+                      <td className="border px-4 py-2">
+                        {group.parent_id.length}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -144,7 +130,7 @@ export default function AdminDashboard() {
               <div className="flex justify-between items-center mb-4">
                 <h2 className="font-medium">Payments</h2>
                 <button
-                  onClick={toggleStudentModal}
+                  // onClick={toggleStudentModal}
                   className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600"
                 >
                   Details
@@ -157,14 +143,14 @@ export default function AdminDashboard() {
                     <th className="border px-4 py-2">Status</th>
                   </tr>
                 </thead>
-                <tbody>
+                {/* <tbody>
                   {payments.map((payment, index) => (
                     <tr key={index} className="text-sm">
                       <td className="border px-4 py-2">{payment.name}</td>
                       <td className="border px-4 py-2">{payment.status}</td>
                     </tr>
                   ))}
-                </tbody>
+                </tbody> */}
               </table>
             </div>
           </div>

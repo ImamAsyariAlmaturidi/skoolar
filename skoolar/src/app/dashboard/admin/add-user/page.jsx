@@ -75,11 +75,11 @@ export default function Group() {
             {/* Header code here */}
           </header>
 
-          <main className="grid flex-1 items-start p-4 py-0 h-screen">
-            <div className="grid auto-rows-max items-start h-full">
+          <main className="grid flex-1 items-start p-4 py-0 h-full overflow-y-auto">
+            <div className="grid auto-rows-max items-start h-full ">
               <section className="grid items-start gap-4 lg:grid-cols-4 h-full">
                 <div className="grid grid-cols-1 gap-4 lg:col-span-4 h-full">
-                  <div className="rounded-2xl  bg-white p-6 shadow-sm h-full  ">
+                  <div className="rounded-2xl  bg-white p-6 shadow-sm h-full ">
                     <div className="mb-5 flex items-center justify-between">
                       <h3 className="text-xl font-semibold">All Groups</h3>
                       <button

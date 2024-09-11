@@ -1,6 +1,9 @@
 "use server";
 import { NextResponse } from "next/server";
-import { getAllAnnouncement } from "../../../db/models/announcement";
+import {
+  CreateAnnouncement,
+  getAllAnnouncement,
+} from "../../../db/models/announcement";
 
 export async function GET() {
   try {
@@ -19,13 +22,13 @@ export async function GET() {
   }
 }
 
-export async function POST() {
+export async function POST(data) {
   try {
-    const data = await getAllAnnouncement();
+    const newAnnouncement = await CreateAnnouncement(data);
     return NextResponse.json({
       statusCode: 200,
       message: "Succes get all user",
-      data: data,
+      data: newAnnouncement,
     });
   } catch (error) {
     return NextResponse.json({

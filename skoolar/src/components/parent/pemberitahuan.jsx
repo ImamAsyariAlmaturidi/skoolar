@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PrentNotification from "../../components/parent/Notifications";
-export default function Pemberitahuan() {
+export default function Pemberitahuan({ data }) {
   return (
     <>
       <section className="flex items-center gap-3 text-[#006bf8] text-[17px] font-medium h-[10%] ">
@@ -49,17 +49,9 @@ export default function Pemberitahuan() {
       </Link>
       <div className="w-full h-[80%] py-3 overflow-y-auto">
         <div className="flex flex-col gap-4 ">
-          <PrentNotification />
-          <PrentNotification />
-          <PrentNotification />
-          <PrentNotification />
-          <PrentNotification />
-          <PrentNotification />
-          <PrentNotification />
-          <PrentNotification />
-          <PrentNotification />
-          <PrentNotification />
-          <PrentNotification />
+          {data?.map((el, index) => (
+            <PrentNotification el={el} key={index} />
+          ))}
         </div>
       </div>
     </>

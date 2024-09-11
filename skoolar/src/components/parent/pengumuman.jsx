@@ -40,19 +40,19 @@ export default function Pengumuman({ data }) {
           </Link>
         </section>
         <div
-          className="w-full py-4 flex items-center gap-3 overflow-x-auto bg-none rounded-2xl"
+          className="w-full max-w-screen-lg py-4 flex items-center gap-3 overflow-x-auto bg-none rounded-2xl"
           id="scroll-container"
         >
           {data?.map((el, index) => (
             <div
-              className="w-[25rem] h-[10rem] bg-white rounded-2xl px-4 py-2"
+              className="w-[15rem] h-[10rem] bg-white rounded-2xl px-4 py-2 flex-shrink-0"
               key={index}
             >
               <img className="w-10 h-10 mt-3" src={el.image} />
               <p className="text-neutral-600 font-semibold text-lg mt-3">
                 {el.title}
               </p>
-              <p className="text-neutral-300 font-light text-xs line line-clamp-2 mt-1">
+              <p className="text-neutral-300 font-light text-xs line-clamp-2 mt-1">
                 {el.content}
               </p>
             </div>

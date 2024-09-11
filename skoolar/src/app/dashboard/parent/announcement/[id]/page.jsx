@@ -1,12 +1,8 @@
 "use client";
 import Link from "next/link";
 import SideBar from "../../../../../components/parent/Sidebar";
-import { useState } from "react";
 
-export default function AnnouncementDetail({ params }) {
-  const fetch = params.id;
-  console.log(fetch);
-  const [announcement, setAnnouncement] = useState();
+export default function AnnouncementDetail() {
   return (
     <>
       <div className="flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">

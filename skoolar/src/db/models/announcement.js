@@ -18,3 +18,15 @@ export const getAllAnnouncement = async () => {
     .toArray();
   return announcement;
 };
+
+export const CreateAnnouncement = async (payload) => {
+  const modifiedUser = {
+    ...payload,
+    image: "https.image.example",
+  };
+  const db = await getDb();
+  const collection = db.collection(COLLECTION_ANNOUNCEMENT);
+  const result = await collection.insertOne(modifiedUser);
+  console.log(result);
+  return result;
+};

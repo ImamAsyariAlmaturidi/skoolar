@@ -1,17 +1,21 @@
 "use server";
 import { cookies } from "next/headers";
+import { CreateAnnouncement } from "../../../../db/models/announcement";
 
-export async function getGroupTeacher(groupId) {
+export async function AddNewAnnouncement(formData) {
   try {
-    const res = await fetch(`http://localhost:3000/api/group/${groupId}`, {
-      cache: "no-store",
-      method: "GET",
-      headers: {
-        Cookie: cookies().toString(),
-      },
-    });
-    return await res.json();
+    console.log("haloo masuk action postTeacher");
+
+    const title = formData.get("title");
+    const content = formData.get("content");
+
+    const payload = { title, content };
+    console.log(payload);
+
+    const newUser = await CreateAnnouncement(payload);
+    return { success: true };
   } catch (error) {
+    console.error("Error fetching groups: ", error);
     throw error;
   }
 }

@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import SideBar from "../../../../components/teacher/Sidebar";
 import Link from "next/link";
 import { getMe } from "../../parent/action";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../../../../config/firebase";
 import { format } from "date-fns";
 import { getGroupByID } from "./action";
+import TeacherSideBar from "../../../../components/teacher/Sidebar";
 
 // Function to format date and time using date-fns
 const formatDate = (dueDate, dueTime) => {
@@ -67,7 +67,7 @@ export default function TeacherAssignment() {
   return (
     <>
       <div className="w-full h-screen bg-[#f0f6fe] flex gap-3 px-5 py-10">
-        <SideBar className="w-1/4 lg:w-1/5" />
+        <TeacherSideBar className="w-1/4 lg:w-1/5" />
         <div className="w-[90%] bg-white rounded-3xl px-10 py-5 overflow-y-auto">
           <section className="text-black font-semibold h-[20rem] relative pt-2 border-b-2">
             <span className="text-3xl text-neutral-700">
