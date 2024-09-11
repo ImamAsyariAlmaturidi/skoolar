@@ -4,10 +4,13 @@ import { ObjectId } from "mongodb";
 import { createGroup, groupWithName } from "../../../../db/models/Group";
 import { updateGroupParent } from "../../../../db/models/Parent";
 import { updateGroupTeacher } from "../../../../db/models/User";
+import { cookies } from "next/headers";
 
 export async function getGroup(params) {
   try {
     const response = await fetch("https://skoolar.vercel.app/api/getOneGroup", {
+      cache: "no-store",
+      method: "GET",
       headers: {
         Cookie: cookies().toString(),
       },

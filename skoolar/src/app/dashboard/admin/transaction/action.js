@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { createTransaction } from "../../parent/transaction/action";
 import { createTransactionNew } from "../../../../db/models/Transaction";
 import { CreateNotification } from "../../../../db/models/notification";
+import { revalidatePath } from "next/cache";
 
 export async function getTranscation(params) {
   const response = await fetch(
@@ -17,6 +18,7 @@ export async function getTranscation(params) {
       },
     }
   );
+  revalidatePath("/dashboard/admin/transaction");
   const { data } = await response.json();
   console.log(data, "<<<< data transaction");
 
@@ -46,6 +48,7 @@ export async function postNewTransaction(formData) {
     parent_id: new ObjectId(parent_id),
   };
 
+  revalidatePath("/dashboard/admin/list-user");
   await CreateNotification(payloadNotification);
   console.log("success add Notification");
 
