@@ -50,7 +50,9 @@ export default function Pemberitahuan({ data }) {
       <div className="w-full h-[80%] py-3 overflow-y-auto">
         <div className="flex flex-col gap-4 ">
           {data?.map((el, index) => (
-            <PrentNotification el={el} key={index} />
+            <Link href={"/dashboard/parent/transaction"}>
+              <PrentNotification el={el} key={index} />
+            </Link>
           ))}
         </div>
       </div>

@@ -41,14 +41,14 @@ export const doLoginAsParent = async (formData) => {
   cookies().set("access_token", accessToken, {
     httpOnly: true,
     secure: false,
-    expires: new Date(Date.now() + 1000 * 60 * 15),
+    // expires: new Date(Date.now() + 1000 * 60 * 15),
     sameSite: "strict",
   });
 
   cookies().set("refresh_token", refreshToken, {
     httpOnly: true,
     secure: false,
-    expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+    // expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
     sameSite: "strict",
   });
 

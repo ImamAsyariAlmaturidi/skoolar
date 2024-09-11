@@ -33,7 +33,7 @@ export const getTransactionByParentId = async (parent_id) => {
   }
 };
 
-export const createTransaction = async (transaction) => {
+export const createTransactionNew = async (transaction) => {
   try {
     const db = await getDb();
     const transactions = {
@@ -43,6 +43,40 @@ export const createTransaction = async (transaction) => {
     const result = await db
       .collection(COLLECTION_TRANSACTION)
       .insertOne(transactions);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updatePendingTransaction = async (
+  transactionIds = [],
+  tokenMidtrans = ""
+) => {
+  try {
+    const db = await getDb();
+    for await (const transactionId of transactionIds) {
+      await db
+        .collection(COLLECTION_TRANSACTION)
+        .updateOne(
+          { _id: new ObjectId(transactionId) },
+          { $set: { tokenMidtrans, status: "pending" } }
+        );
+    }
+
+    return "success update pending";
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updatePaidTransaction = async (tokenMidtrans) => {
+  console.log(tokenMidtrans);
+  try {
+    const db = await getDb();
+    const result = await db
+      .collection(COLLECTION_TRANSACTION)
+      .updateOne({ tokenMidtrans }, { $set: { status: "paid" } });
     return result;
   } catch (error) {
     throw error;
@@ -59,4 +93,36 @@ export const updateTransaction = async (order_id) => {
   } catch (error) {
     throw error;
   }
+};
+
+export const getAllTransaction = async () => {
+  const db = await getDb();
+  const collection = db.collection(COLLECTION_TRANSACTION);
+
+  const agg = [
+    {
+      $lookup: {
+        from: "parent",
+        localField: "parentId",
+        foreignField: "_id",
+        as: "parents",
+      },
+    },
+  ];
+
+  const data = await collection.aggregate(agg).toArray();
+  return data;
+};
+
+export const getTransactionById = async (idTransaction) => {
+  console.log("id transaksi", idTransaction);
+  const db = await getDb();
+  const collection = db.collection(COLLECTION_TRANSACTION);
+
+  const data = await collection.findOne({
+    _id: new ObjectId(idTransaction),
+  });
+
+  console.log(data);
+  return data;
 };

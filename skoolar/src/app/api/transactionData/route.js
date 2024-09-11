@@ -1,14 +1,14 @@
+"use server";
 import { NextResponse } from "next/server";
-import { getGroupById } from "../../../../db/models/Group";
+import {getAllTransaction} from "../../../db/models/Transaction"
 
-export async function GET(request, params) {
+export async function GET() {
   try {
-    // console.log(params);
-    const data = await getGroupById(params.params.id);
+    const data = await getAllTransaction();
     return NextResponse.json({
       statusCode: 200,
-      message: "success get data by id ",
-      data,
+      message: "Succes get all user",
+      data: data,
     });
   } catch (error) {
     return NextResponse.json({

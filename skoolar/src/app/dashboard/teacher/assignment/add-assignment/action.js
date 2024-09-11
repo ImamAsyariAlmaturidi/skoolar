@@ -51,7 +51,7 @@ export const getAllGroup = async () => {
 
 const schemaCourseWorkInput = Joi.object({
   title: Joi.string().required().min(2),
-  description: Joi.string().required().min(5),
+  description: Joi.string().required(),
   duedate: Joi.string().required(),
   duetime: Joi.string().required(),
   courseName: Joi.string().required(),

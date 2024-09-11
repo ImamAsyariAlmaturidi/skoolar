@@ -1,11 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SideBar from "../../../../../components/parent/Sidebar";
 import Link from "next/link";
-
+import { getTransactions } from "../action";
+import { getTransactionDetail } from "./action";
 export default function Pembayaran() {
+  const [transaction, setTransaction] = useState([]);
   const [detail, setDetail] = useState(false);
+  const [dataDetail, setDataDetail] = useState({});
+
+  async function getTransactionId(idTransaction) {
+    try {
+      setDetail(true);
+      const { result } = await getTransactionDetail(idTransaction);
+      setDataDetail(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    async function getTransaction() {
+      try {
+        const { data } = await getTransactions();
+
+        const result = data?.filter((el) => {
+          return el.status === "paid";
+        });
+
+        setTransaction(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getTransaction();
+  }, []);
+
+  useEffect(() => {}, [detail]);
   return (
     <>
       <div className="w-full h-screen bg-[#f0f6fe] flex gap-3 px-5 py-10 ">
@@ -30,7 +62,7 @@ export default function Pembayaran() {
             <table className="w-full min-w-[300px] mt-6 border-collapse">
               <thead className="text-neutral-600 bg-neutral-100 sticky top-0 z-10 rounded-t-2xl border-slate-400 border-b-2">
                 <tr className="h-[4rem] mb-10">
-                  <th className="px-4 py-2 text-left w-[8%]">Trx ID</th>
+                  <th className="px-4 py-2 text-left w-[8%]">ID</th>
                   <th className="px-4 py-2 text-left w-[15%]">Date</th>
                   <th className="px-4 py-2 text-left w-[40%]">Description</th>
                   <th className="px-4 py-2 text-left w-[15%]">Amount</th>
@@ -39,25 +71,34 @@ export default function Pembayaran() {
                 </tr>
               </thead>
               <tbody className="text-black text-[15px]">
-                <tr className="h-[3rem] border-neutral-300 border-b-2">
-                  <td className="px-4 py-2">B268134</td>
-                  <td className="px-4 py-2">March 13, 2024</td>
-                  <td className="px-4 py-2">Payment for March School Fees</td>
-                  <td className="px-4 py-2"> Rp 1,400,000.00</td>
-                  <td className="px-4 py-2">
-                    <button className="p-3 text-green-500 text-[1rem] font-semibold">
-                      Paid
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => setDetail(true)}
-                      className="px-6 py-2 border-2 rounded-2xl bg-black text-white"
-                    >
-                      Detail
-                    </button>
-                  </td>
-                </tr>
+                {transaction?.map((el, i) => {
+                  return (
+                    <>
+                      <tr
+                        key={el._id}
+                        className="h-[3rem] border-neutral-300 border-b-2"
+                      >
+                        <td className="px-4 py-2">{el._id}</td>
+                        <td className="px-4 py-2">{el.dueDate}</td>
+                        <td className="px-4 py-2">{el.description}</td>
+                        <td className="px-4 py-2">Rp.{el.amount}</td>
+                        <td className="px-4 py-2">
+                          <button className="p-3 text-green-500 text-[1rem] font-semibold">
+                            {el.status}
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            onClick={() => getTransactionId(el._id)}
+                            className="px-6 py-2 border-2 rounded-2xl bg-black text-white"
+                          >
+                            Detail
+                          </button>
+                        </td>
+                      </tr>
+                    </>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -100,13 +141,11 @@ export default function Pembayaran() {
                   <span className="text-black font-semibold">
                     Transaction ID
                   </span>
-                  <span className="text-green-500">bg23456</span>
+                  <span className="text-green-500">{dataDetail._id}</span>
                 </section>
                 <section className="flex items-center justify-between gap-x-20 my-2 text-[14px]">
                   <span className="text-black font-semibold">Payment date</span>
-                  <span className="text-green-500">
-                    13/02/2024 , 09:02 WIB{" "}
-                  </span>
+                  <span className="text-green-500">{dataDetail.dueDate}</span>
                 </section>
                 <div className="w-full overflow-y-auto overflow-x-hidden h-auto mt-6">
                   <span className="text-black font-semibold text-[14px]">
@@ -127,9 +166,9 @@ export default function Pembayaran() {
                       <tbody className="text-black text-[15px]">
                         <tr className="h-[3rem] border-neutral-300 border-b-2">
                           <td className="px-4 py-2">
-                            Payment for March School Fees
+                            {dataDetail.description}
                           </td>
-                          <td className="px-4 py-2"> Rp 1,400,000.00</td>
+                          <td className="px-4 py-2"> Rp {dataDetail.amount}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -137,7 +176,7 @@ export default function Pembayaran() {
                       <span className="text-black font-bold pl-10">Total</span>
                       <span className="w-[10rem] text-black font-bold">
                         {/* {formatCurrency(totalAmount)} */}
-                        Rp.1.400.000,00
+                        Rp.{dataDetail.amount}
                       </span>
                     </div>
                   </div>

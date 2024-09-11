@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import SideBar from "../../../../components/parent/Sidebar";
 import Link from "next/link";
 
-import { getTransactions } from "./action";
+import {
+  addNotif,
+  getTransactions,
+  redirectHistory,
+  updateTransaction,
+} from "./action";
 import Swal from "sweetalert2";
 const formatCurrency = (amount) => {
   return new Intl.NumberFormat("id-ID", {
@@ -39,6 +44,7 @@ export default function Pembayaran() {
       description,
       amount,
       dueDate,
+      transactionIds: dataTransaction.map((e) => e._id),
     };
     try {
       const response = await fetch("/api/transaction", {
@@ -47,19 +53,14 @@ export default function Pembayaran() {
       });
 
       const requestData = await response.json();
+
       window.snap.pay(requestData.token, {
         onSuccess: async function () {
-          const response = await fetch(
-            `http://localhost:3000/api/transaction`,
-            {
-              method: "POST",
-              body: JSON.stringify(data),
-            }
-          );
-
+          await updateTransaction(requestData.token);
+          await redirectHistory();
           Swal.fire({
             icon: "success",
-            title: response.data.message,
+            title: "Waiting for your payment!",
           });
         },
         onPending: function () {
@@ -94,7 +95,10 @@ export default function Pembayaran() {
       const { data } = await getTransactions();
 
       const unpaidTransactions =
-        data?.filter((transaction) => transaction.status === "unpaid") || [];
+        data?.filter(
+          (transaction) =>
+            transaction.status === "unpaid" || transaction.status === "pending"
+        ) || [];
 
       console.log(unpaidTransactions);
 
@@ -137,7 +141,7 @@ export default function Pembayaran() {
               <thead className="text-neutral-600 bg-neutral-100 sticky top-0 z-10 rounded-t-2xl border-slate-400 border-b-2">
                 <tr className="h-[4rem] mb-10">
                   <th className="px-4 py-2 text-left w-[5%]">No</th>
-                  <th className="px-4 py-2 text-left w-[15%]">Date</th>
+
                   <th className="px-4 py-2 text-left w-[50%]">Description</th>
                   <th className="px-4 py-2 text-left w-[15%]">Due Date</th>
                   <th className="px-4 py-2 text-left">Amount</th>
@@ -151,7 +155,6 @@ export default function Pembayaran() {
                     className="h-[3rem] border-neutral-300 border-b-2"
                   >
                     <td className="px-4 py-2">{index + 1}</td>
-                    <td className="px-4 py-2">{transaction.createdAt}</td>
                     <td className="px-4 py-2">{transaction.description}</td>
                     <td className="px-4 py-2">{transaction.dueDate}</td>
                     <td className="px-4 py-2"> Rp.{transaction.amount}</td>

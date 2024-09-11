@@ -2,6 +2,8 @@ import Midtrans from "midtrans-client";
 import {
   createTransaction,
   getTransactionByParentId,
+  updatePaidTransaction,
+  updatePendingTransaction,
 } from "../../../db/models/Transaction";
 import { NextResponse } from "next/server";
 import { generateUniqueOrderId } from "../../../db/utils/timestamp";
@@ -32,8 +34,10 @@ export async function GET(request) {
 
 export async function POST(request) {
   const parent_id = request.headers.get("x-user-id");
-  const { description, amount, due_date } = await request.json();
+  const { description, amount, due_date, transactionIds } =
+    await request.json();
 
+  // console.log(transactionIds, "<<< ids");
   const order_id = generateUniqueOrderId();
 
   const transaction = {
@@ -49,11 +53,26 @@ export async function POST(request) {
     },
   };
 
-  const result = await createTransaction(transaction);
-  console.log(result);
+  // const result = await createTransaction(transaction);
+  // console.log(result);
   const token = await snap.createTransactionToken(parameter);
 
+  await updatePendingTransaction(transactionIds, token);
+  // console.log(token, "<<< token");
   return Response.json({
     token,
   });
+}
+
+export async function PATCH(request) {
+  console.log(request);
+  console.log("masuk di patch");
+  // const parent_id = request.headers.get("x-user-id");
+  const { token } = await request.json();
+
+  console.log(token, "<<< tokenn");
+
+  const result = await updatePaidTransaction(token);
+
+  return Response.json({ result });
 }

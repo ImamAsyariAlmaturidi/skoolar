@@ -55,3 +55,46 @@ export async function getAllGroup() {
     throw error;
   }
 }
+
+export async function getSchoolAnnouncement() {
+  try {
+    const res = await fetch("http://localhost:3000/api/announcement", {
+      cache: "no-store",
+      method: "GET",
+      headers: {
+        Cookie: cookies().toString(),
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(`Error fetching groups: ${res.statusText}`);
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching groups: ", error);
+    throw error;
+  }
+}
+
+export async function getAllNotification() {
+  try {
+    const response = await fetch("http://localhost:3000/api/notification", {
+      cache: "no-store",
+      method: "GET",
+      headers: {
+        Cookie: cookies().toString(),
+      },
+    });
+    const { data } = await response.json();
+
+    console.log(data, "<<< action notif");
+
+    // const result = data.filter((el) => el.role === "teacher");
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching groups: ", error);
+    throw error;
+  }
+}

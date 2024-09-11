@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Pengumuman() {
+export default function Pengumuman({ data }) {
   return (
     <>
       <div className="w-full rounded-2xl px-2 bg-none">
@@ -42,13 +42,6 @@ export default function Pengumuman() {
           className="w-full max-w-screen-lg py-4 flex items-center gap-3 overflow-x-auto bg-none rounded-2xl"
           id="scroll-container"
         >
-<<<<<<< HEAD
-          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
-          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
-          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
-          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
-          <div className="w-[15rem] h-[10rem] bg-white flex-shrink-0 rounded-2xl"></div>
-=======
           {data?.map((el, index) => (
             <div
               className="w-[15rem] h-[10rem] bg-white rounded-2xl px-4 py-2 flex-shrink-0"
@@ -63,7 +56,6 @@ export default function Pengumuman() {
               </p>
             </div>
           ))}
->>>>>>> origin/farhanadmin
         </div>
       </div>
     </>

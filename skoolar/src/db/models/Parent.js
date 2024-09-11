@@ -81,7 +81,7 @@ export const getParentById = async (id) => {
 };
 
 export const updateGroupParent = async (newGroupId, ParentId) => {
-  console.log(newGroupId, ParentId, "<<<<<<<<<<<< parentt model");
+  // console.log(newGroupId, ParentId, "<<<<<<<<<<<< parentt model");
 
   const db = await getDb();
   const collection = db.collection(COLLECTION_PARENT);

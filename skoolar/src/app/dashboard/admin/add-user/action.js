@@ -41,7 +41,7 @@ export async function postGroup(formData) {
     console.log(payload);
     const newGroup = await createGroup(payload);
 
-    console.log(newGroup, "<<<<<<<<<<<<<<<< idnya");
+    // console.log(newGroup, "<<<<<<<<<<<<<<<< idnya");
 
     for (const parentId of parent_id) {
       await updateGroupParent(newGroup, parentId);

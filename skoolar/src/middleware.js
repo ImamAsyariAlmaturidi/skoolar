@@ -12,7 +12,10 @@ export const middleware = async (request) => {
     return NextResponse.next();
   }
   // Memeriksa apakah URL mengandung `/api`
-  if (request.url.includes("/api")) {
+  if (
+    request.url.includes("/api") &&
+    !(request.url.includes("/transaction") && request.method == "PATCH")
+  ) {
     // console.log("Processing /api request");
 
     const cookiesStore = cookies();

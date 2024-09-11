@@ -8,7 +8,7 @@ export default async function page() {
   const store = cookies();
   const token = store.get("access_token");
 
-  if (!token.value) {
+  if (!token) {
     redirect("/login");
   }
 
@@ -75,7 +75,10 @@ export default async function page() {
           </form>
         </div> */}
         <div className="w-[90%]  rounded-3xl px-10 py-5 overflow-y-auto flex justify-center items-center">
-          <form className="w-full max-w-md space-y-6 bg-white p-8 rounded-lg shadow-xl">
+          <form
+            action={createCourseWork}
+            className="w-full max-w-md space-y-6 bg-white p-8 rounded-lg shadow-xl"
+          >
             <h2 className="text-2xl font-bold text-neutral-600 mb-6">
               Add Coursework
             </h2>

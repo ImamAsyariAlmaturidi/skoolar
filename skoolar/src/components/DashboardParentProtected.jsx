@@ -11,14 +11,13 @@ const DashboardParentProtected = ({ children }) => {
   // Mengecek apabila token tidak ada, maka redirect ke halaman login
   if (!token || token.value.length <= 0) {
     redirect("/login");
-  }
-
-  const user = verifyAccessToken(token.value);
-
-  if (user.role === "admin") {
-    redirect("/dashboard/admin");
-  } else if (user.role === "teacher") {
-    redirect("/dashboard/teacher");
+  } else {
+    const user = verifyAccessToken(token.value);
+    if (user.role === "admin") {
+      redirect("/dashboard/admin");
+    } else if (user.role === "teacher") {
+      redirect("/dashboard/teacher");
+    }
   }
 
   // redirect("/dashboard/parent");

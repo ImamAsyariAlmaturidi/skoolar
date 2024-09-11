@@ -11,12 +11,11 @@ const ServerProtectedComponents = ({ children }) => {
   // Mengecek apabila token tidak ada, maka redirect ke halaman login
   if (!token || token.value.length <= 0) {
     redirect("/login");
-  }
-
-  const user = verifyAccessToken(token.value);
-
-  if (!user.role) {
-    redirect("/dashboard/parent");
+  } else {
+    const user = verifyAccessToken(token.value);
+    if (!user.role) {
+      redirect("/dashboard/parent");
+    }
   }
 
   // Di sini kita hanya akan mengembalikan children
