@@ -42,11 +42,11 @@ export default function Pemberitahuan({ data }) {
         </svg>
         <span className="text-black">Notification</span>
       </section>
-      <Link href={"/dashboard/parent/notification"}>
-        <p className="text-[#006bf8] font-medium text-[12px] mt-8 mb-2 ">
-          All Notifications
-        </p>
-      </Link>
+      {/* <Link href={"/dashboard/parent/notification"}> */}
+      <p className="text-[#006bf8] font-medium text-[12px] mt-8 mb-2 ">
+        All Notifications
+      </p>
+      {/* </Link> */}
       <div className="w-full h-[80%] py-3 overflow-y-auto">
         <div className="flex flex-col gap-4 ">
           {data?.map((el, index) => (

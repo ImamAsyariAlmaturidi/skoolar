@@ -2,11 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { AddNewAnnouncement, getSchoolAnnouncement } from "./action";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function AnnouncementPage() {
   const [announcements, setAnnouncements] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
   console.log(announcements, "iniii");
   async function data() {
     try {
@@ -41,8 +45,40 @@ export default function AnnouncementPage() {
     data();
   }, []);
 
+  function toggleModal() {
+    setIsModalOpen(false);
+  }
+
+  const postAnnouncement = async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData(event.target);
+    const result = await AddNewAnnouncement(formData);
+
+    if (result.success) {
+      await data();
+      toggleModal(); // Tutup modal jika berhasil
+      toast("Success Add New Announcement", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      console.error("Error adding teacher:", result.error);
+      // Anda bisa menambahkan notifikasi error di sini jika diperlukan
+    }
+    setIsLoading(false);
+  };
+
   return (
     <div className="bg-white rounded-2xl p-10 w-full ml-4 overflow-y-auto overflow-x-auto">
+      <ToastContainer />
       <h1 className="text-xl font-bold mb-4">Announcements</h1>
       <button
         onClick={() => setIsModalOpen(true)}
@@ -58,7 +94,7 @@ export default function AnnouncementPage() {
               <h3 className="text-lg font-semibold mb-4 ">
                 Add New Announcement
               </h3>
-              <form action={AddNewAnnouncement} className="space-y-4">
+              <form onSubmit={postAnnouncement} className="space-y-4">
                 <div>
                   <label
                     htmlFor="title"
@@ -102,7 +138,7 @@ export default function AnnouncementPage() {
                     type="submit"
                     className="px-4 py-2 bg-blue-700 text-white rounded-md text-sm font-medium hover:bg-primary/90"
                   >
-                    Add Announcement
+                    {isLoading ? "Adding..." : "Add Announcement"}
                   </button>
                 </div>
               </form>
@@ -110,6 +146,39 @@ export default function AnnouncementPage() {
           </div>
         </div>
       )}
+      <div className="border rounded-lg overflow-hidden">
+        <table className="w-full">
+          <thead className="bg-muted">
+            <tr>
+              <th className="py-3 px-4 text-left font-medium text-muted-foreground">
+                Date
+              </th>
+              <th className="py-3 px-4 text-left font-medium text-muted-foreground">
+                Title
+              </th>
+              <th className="py-3 px-4 text-left font-medium text-muted-foreground">
+                Content
+              </th>
+              <th className="py-3 px-4 text-left font-medium text-muted-foreground">
+                Class
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {announcements.map((announcement, index) => (
+              <tr
+                key={announcement.id}
+                className={index % 2 === 0 ? "bg-background" : "bg-muted/50"}
+              >
+                <td className="py-3 px-4 border-t">{announcement.date}</td>
+                <td className="py-3 px-4 border-t">{announcement.title}</td>
+                <td className="py-3 px-4 border-t">{announcement.content}</td>
+                <td className="py-3 px-4 border-t">{announcement.class}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

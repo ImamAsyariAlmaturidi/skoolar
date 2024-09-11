@@ -32,11 +32,11 @@ export default function Pengumuman({ data }) {
 
             <span>School Announcement</span>
           </section>
-          <Link href={"/dashboard/parent/announcement"}>
+          {/* <Link href={"/dashboard/parent/announcement"}>
             <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
               See All
             </span>
-          </Link>
+          </Link> */}
         </section>
         <div
           className="w-full max-w-screen-lg py-4 flex items-center gap-3 overflow-x-auto bg-none rounded-2xl"

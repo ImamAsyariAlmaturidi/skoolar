@@ -186,7 +186,7 @@ export default function SideBar() {
                 </figure>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/dashboard/parent/announcement">
                 <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 cursor-pointer hover:text-white">
                   <svg
@@ -214,7 +214,7 @@ export default function SideBar() {
                   </svg>
                 </figure>
               </Link>
-            </li>
+            </li> */}
             <li>
               <button onClick={() => doLogout()}>
                 <figure className="w-[3.3rem] h-[3.3rem] rounded-full bg-white flex justify-center items-center hover:bg-[#006bf8] transition-transform hover:translate-x-1 cursor-pointer hover:text-white">

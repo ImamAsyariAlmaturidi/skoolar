@@ -43,13 +43,13 @@ export default async function Percakapan({ data }) {
             <ChatBox data={el} />
           </Link>
         ))}
-        <div>
+        {/* <div>
           <p className="ml-8 mt-5 mb-2 text-xs text-neutral-400">
             Personal Message
           </p>
           <ChatBox />
           <ChatBox />
-        </div>
+        </div> */}
       </div>
     </>
   );

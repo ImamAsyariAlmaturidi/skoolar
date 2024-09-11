@@ -91,7 +91,7 @@ export default async function AdminDashboard() {
             </div>
 
             {/* Groups Table */}
-            <div className="bg-white  rounded-2xl p-4">
+            <div className="bg-white  rounded-2xl p-4 col-span-2">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="font-medium">Groups</h2>
                 <Link href={"/dashboard/admin/add-user"}>
@@ -126,7 +126,7 @@ export default async function AdminDashboard() {
             </div>
 
             {/* Payments Table */}
-            <div className="bg-white  rounded-2xl p-4">
+            {/* <div className="bg-white  rounded-2xl p-4">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="font-medium">Payments</h2>
                 <button
@@ -143,16 +143,16 @@ export default async function AdminDashboard() {
                     <th className="border px-4 py-2">Status</th>
                   </tr>
                 </thead>
-                {/* <tbody>
+                <tbody>
                   {payments.map((payment, index) => (
                     <tr key={index} className="text-sm">
                       <td className="border px-4 py-2">{payment.name}</td>
                       <td className="border px-4 py-2">{payment.status}</td>
                     </tr>
                   ))}
-                </tbody> */}
+                </tbody>
               </table>
-            </div>
+            </div> */}
           </div>
 
           {/* Modal code can go here for adding teachers, students, groups */}

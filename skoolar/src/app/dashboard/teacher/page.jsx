@@ -72,11 +72,11 @@ export default async function TeacherDashboard() {
 
                   <span>School Announcement</span>
                 </section>
-                <Link href={"/dashboard/teacher/announcement"}>
-                  <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
-                    Lihat Semua
-                  </span>
-                </Link>
+                {/* <Link href={"/dashboard/teacher/announcement"}> */}
+                {/* <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
+                  Lihat Semua
+                </span> */}
+                {/* </Link> */}
               </section>
               <div
                 className="w-full py-5 flex items-center gap-4 bg-none rounded-2xl mt-3 max-w-screen-lg overflow-x-auto"
