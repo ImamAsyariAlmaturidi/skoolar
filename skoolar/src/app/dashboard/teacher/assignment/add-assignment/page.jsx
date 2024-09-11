@@ -42,7 +42,7 @@ export default function Page() {
       <div className="w-full h-screen bg-[#f0f6fe] flex justify-center items-center">
         <div>
           <h1 className="text-2xl text-neutral-600">
-            I'm Sorry, it seems like you haven't logged in yet. Please log in
+            Im Sorry, it seems like you havent logged in yet. Please log in
             first.
           </h1>
           <form
