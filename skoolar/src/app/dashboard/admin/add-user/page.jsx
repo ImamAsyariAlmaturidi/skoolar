@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { getAllUser, getGroup, getParent } from "../list-user/action";
 import { getGroupWithName, postGroup } from "./action";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Group() {
   const [products, setProducts] = useState([]);
   const [students, setStudents] = useState([]);
@@ -66,6 +67,16 @@ export default function Group() {
     if (result.success) {
       await fetchData();
       toggleModal();
+      toast("Success Create New Group", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } else {
       console.error("Error adding Group:", result.error);
     }
@@ -74,6 +85,7 @@ export default function Group() {
 
   return (
     <>
+      <ToastContainer />
       <div className="flex w-full bg-[#F0F6FE]">
         <div className="flex flex-1 flex-col">
           <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
@@ -243,15 +255,26 @@ export default function Group() {
                 </div>
                 <div className="p-4">
                   <div className="mb-4">
-                    <p className="text-sm font-semibold text-gray-500 mb-1">Nama Grup</p>
-                    <p className="text-lg font-medium text-gray-800">{selectedParent.name}</p>
+                    <p className="text-sm font-semibold text-gray-500 mb-1">
+                      Nama Grup
+                    </p>
+                    <p className="text-lg font-medium text-gray-800">
+                      {selectedParent.name}
+                    </p>
                   </div>
                   <div className="mb-4">
-                    <p className="text-sm font-semibold text-gray-500 mb-1">Teacher</p>
-                    <p className="text-md text-gray-700">{selectedParent.teacher?.[0]?.name || "No Teacher Assigned"}</p>
+                    <p className="text-sm font-semibold text-gray-500 mb-1">
+                      Teacher
+                    </p>
+                    <p className="text-md text-gray-700">
+                      {selectedParent.teacher?.[0]?.name ||
+                        "No Teacher Assigned"}
+                    </p>
                   </div>
                   <div className="mb-4">
-                    <p className="text-sm font-semibold text-gray-500 mb-1">Daftar Siswa</p>
+                    <p className="text-sm font-semibold text-gray-500 mb-1">
+                      Daftar Siswa
+                    </p>
                     <ul className="list-disc list-inside text-md text-gray-700">
                       {selectedParent.parents.map((student, index) => (
                         <li key={index} className="mb-1">
@@ -272,7 +295,6 @@ export default function Group() {
               </div>
             </div>
           )}
-
         </div>
       </div>
     </>

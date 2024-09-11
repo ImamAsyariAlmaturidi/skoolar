@@ -10,6 +10,8 @@ import {
   getUserWithGroup,
   getParentWithGroup,
 } from "./action";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function TeacherStudentList() {
   // State untuk daftar guru dan murid
   const [teachers, setTeachers] = useState([]);
@@ -18,17 +20,14 @@ export default function TeacherStudentList() {
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {
-
-
     const groupsData = await getGroup();
     setGroups(groupsData);
 
-    const userGroup = await getUserWithGroup()
+    const userGroup = await getUserWithGroup();
     setTeachers(userGroup);
 
-    const parentGroup = await getParentWithGroup()
-    setStudents(parentGroup)
-
+    const parentGroup = await getParentWithGroup();
+    setStudents(parentGroup);
   };
 
   useEffect(() => {
@@ -64,6 +63,16 @@ export default function TeacherStudentList() {
     if (result.success) {
       await fetchData();
       toggleTeacherModal(); // Tutup modal jika berhasil
+      toast("Success Add Teacher to School", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } else {
       console.error("Error adding teacher:", result.error);
       // Anda bisa menambahkan notifikasi error di sini jika diperlukan
@@ -80,6 +89,16 @@ export default function TeacherStudentList() {
     if (result.success) {
       await fetchData();
       toggleStudentModal(); // Tutup modal jika berhasil
+      toast("Success Add Student to School", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } else {
       console.error("Error adding Student:", result.error);
       // Anda bisa menambahkan notifikasi error di sini jika diperlukan
@@ -95,6 +114,7 @@ export default function TeacherStudentList() {
 
   return (
     <>
+      <ToastContainer />
       <div className="flex ml-4  w-full bg-white rounded-2xl">
         <div className="flex flex-1 flex-col  ">
           <header className="sticky top-0 z-30 flex h-14 pt-7 pb-7 items-center gap-4 border-b bg-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
@@ -163,9 +183,7 @@ export default function TeacherStudentList() {
                       <tbody>
                         {students.map((student, index) => (
                           <tr key={index} className="text-sm text-gray-700">
-                            <td className="border px-4 py-2">
-                              {student.NISN}
-                            </td>
+                            <td className="border px-4 py-2">{student.NISN}</td>
                             <td className="border px-4 py-2">
                               {student.studentName}
                             </td>

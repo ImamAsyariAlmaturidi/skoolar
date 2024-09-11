@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { getParent } from "../list-user/action";
 import { getTranscation, postNewTransaction } from "./action";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { func } from "joi";
 
 const TuitionPaymentStatusPage = () => {
@@ -38,6 +40,16 @@ const TuitionPaymentStatusPage = () => {
     if (result.success) {
       await fetchData();
       toggleModal();
+      toast("Succes Add New Transaction", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } else {
       console.error("Error adding Student:", result.error);
       // Anda bisa menambahkan notifikasi error di sini jika diperlukan
@@ -47,6 +59,7 @@ const TuitionPaymentStatusPage = () => {
 
   return (
     <div className="bg-white rounded-2xl p-4 w-full ml-4 overflow-y-auto overflow-x-auto">
+      <ToastContainer />
       <div className="flex justify-between items-center mb-4">
         <h2 className="font-medium text-2xl text-neutral-800">
           Tuition Payment Status

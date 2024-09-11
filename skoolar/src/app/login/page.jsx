@@ -3,8 +3,28 @@
 import { useEffect } from "react";
 import "./style.scss";
 import { doLoginAsParent, doLoginAsSchool } from "./action";
-
+import { useSearchParams } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Login() {
+  const params = useSearchParams();
+  const param = params.get("error");
+
+  useEffect(() => {
+    console.log(param);
+    if (param) {
+      toast(param, {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }, [param]);
   useEffect(() => {
     const signupButton = document.getElementById("signup-button");
     const loginButton = document.getElementById("login-button");
@@ -28,6 +48,7 @@ export default function Login() {
 
   return (
     <>
+      <ToastContainer />
       <section className="user">
         <div className="user_options-container bg-[#006CFF]">
           <div className="user_options-text rounded-xl">
