@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "auth": "npx auth secret",
+    "build": "npm run auth && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -31,7 +32,8 @@
     "react-toastify": "^10.0.5",
     "sass": "^1.78.0",
     "scroll": "^3.0.1",
-    "sweetalert2": "^11.13.3"
+    "sweetalert2": "^11.13.3",
+    "daisyui": "^4.12.10"
   },
   "devDependencies": {
     "@types/react": "18.3.5",
