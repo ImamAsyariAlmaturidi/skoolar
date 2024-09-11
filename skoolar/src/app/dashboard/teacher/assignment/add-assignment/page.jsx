@@ -3,13 +3,19 @@ import { auth, signIn, signOut } from "../../../../../auth";
 import TeacherSideBar from "../../../../../components/teacher/Sidebar";
 
 export default async function page() {
+  const token = await getToken();
   // const token = await getToken();
   // if (!token) {
   //   redirect("/login");
   // }
 
+  if (!token) {
+    redirect("/login");
+  }
+
   const session = await auth();
 
+  let courses;
   if (!session) {
     return (
       <>
@@ -32,9 +38,9 @@ export default async function page() {
         </div>
       </>
     );
+  } else {
+    courses = await getCourse();
   }
-
-  const courses = await getCourse();
 
   return (
     <>

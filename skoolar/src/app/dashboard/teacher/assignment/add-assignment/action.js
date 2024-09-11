@@ -15,9 +15,27 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 // === ganti ===
 // ganti session jadi adaptor
-const session = await auth();
+export async function getToken() {
+  try {
+    const store = cookies();
+    return store.get("access_token");
+  } catch (error) {
+    console.log(error);
+  }
+}
+// === ganti ===
+// ganti session jadi adaptor
+
+export async function getSession() {
+  try {
+    return await auth();
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export const getCourse = async () => {
+  const session = await auth();
   if (!session || !session.accessToken) {
     //ini harusnya ngambil access token baru pake refresh token
     // return "Not authenticated";
@@ -58,6 +76,14 @@ const schemaCourseWorkInput = Joi.object({
 });
 
 export const createCourseWork = async (formData) => {
+  const session = await auth();
+
+  if (!session || !session.accessToken) {
+    //ini harusnya ngambil access token baru pake refresh token
+    // return "Not authenticated";
+    redirect("/dashboard/teacher/assignment");
+  }
+
   const data = await getMe();
 
   const title = formData?.get("title");
