@@ -56,7 +56,6 @@ export async function postGroup(formData) {
     const result = await updateGroupTeacher(newGroup, teacher_id);
     console.log("success update User", result);
 
-    revalidatePath("/dashboard/admin/add-user");
     return { success: true };
   } catch (error) {
     console.log(error);

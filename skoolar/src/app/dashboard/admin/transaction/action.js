@@ -48,7 +48,6 @@ export async function postNewTransaction(formData) {
     parent_id: new ObjectId(parent_id),
   };
 
-  revalidatePath("/dashboard/admin/list-user");
   await CreateNotification(payloadNotification);
   console.log("success add Notification");
 

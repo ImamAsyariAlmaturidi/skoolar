@@ -81,7 +81,6 @@ export async function postTeacher(formData) {
   console.log(payload);
 
   const newUser = await createUser(payload);
-  revalidatePath("/dashboard/admin/list-user");
   return { success: true };
 }
 
@@ -96,7 +95,6 @@ export async function getGroup(params) {
     });
     const { data } = await response.json();
 
-    revalidatePath("/dashboard/admin/list-user");
     return data;
   } catch (error) {
     console.log(error);
@@ -131,7 +129,6 @@ export async function postStudent(formData) {
 
     await updateStudentGroup(GroupId, newStudent.insertedId);
 
-    revalidatePath("/dashboard/admin/list-user");
     console.log("success add to group");
 
     return { success: true };
@@ -153,7 +150,7 @@ export async function GetTeachersClass(params) {
         },
       }
     );
-    revalidatePath("/dashboard/admin/list-user");
+
     const { data } = await response.json();
     return data;
   } catch (error) {
@@ -173,7 +170,7 @@ export async function getParentWithGroup(params) {
         },
       }
     );
-    revalidatePath("/dashboard/admin/list-user");
+
     const { data } = await response.json();
     console.log(data, "<<<<<data di action parent");
 
