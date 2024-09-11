@@ -4,10 +4,10 @@ import { redirect } from "next/navigation";
 import TeacherSideBar from "../../../../../components/teacher/Sidebar";
 
 export default async function page() {
-  const token = await getToken();
-  if (!token) {
-    redirect("/login");
-  }
+  // const token = await getToken();
+  // if (!token) {
+  //   redirect("/login");
+  // }
 
   const session = await auth();
 
