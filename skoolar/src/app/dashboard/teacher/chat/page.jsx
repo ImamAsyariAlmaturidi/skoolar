@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ChatRoom from "../../../../components/parent/ChatRoom";
-import ChatBox from "../../../../components/parent/Chatbox";
+import ChatBox from "../../../../components/parent/ChatBox";
 import { getAllGroup } from "./action";
 import TeacherSideBar from "../../../../components/teacher/Sidebar";
 export default async function TeacherClassroom() {

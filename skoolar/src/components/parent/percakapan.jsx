@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ChatBox from "./Chatbox";
+import ChatBox from "./ChatBox";
 
 export default async function Percakapan({ data }) {
   // console.log(data, "ini data di sini");

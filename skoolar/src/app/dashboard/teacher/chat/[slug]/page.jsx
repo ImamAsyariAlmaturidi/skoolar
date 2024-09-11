@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ChatBox from "../../../../../components/parent/Chatbox";
+import ChatBox from "../../../../../components/parent/ChatBox";
 import ChatRoom from "../../../../../components/parent/ChatRoom";
 import { getAllGroup } from "../action";
 import HeaderChat from "../../../../../components/parent/HeaderChat";

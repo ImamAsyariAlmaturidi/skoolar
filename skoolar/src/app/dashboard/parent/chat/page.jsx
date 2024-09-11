@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ChatRoom from "../../../../components/parent/ChatRoom";
-import ChatBox from "../../../../components/parent/Chatbox";
+import ChatBox from "../../../../components/parent/ChatBox";
 import SideBar from "../../../../components/parent/Sidebar";
 import { getAllGroup } from "./action";
 export default async function ChatPage() {
