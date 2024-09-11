@@ -7,13 +7,16 @@ import { createTransactionNew } from "../../../../db/models/Transaction";
 import { CreateNotification } from "../../../../db/models/notification";
 
 export async function getTranscation(params) {
-  const response = await fetch("http://localhost:3000/api/transactionData", {
-    cache: "no-store",
-    method: "GET",
-    headers: {
-      Cookie: cookies().toString(),
-    },
-  });
+  const response = await fetch(
+    "https://skoolar.vercel.app/api/transactionData",
+    {
+      cache: "no-store",
+      method: "GET",
+      headers: {
+        Cookie: cookies().toString(),
+      },
+    }
+  );
   const { data } = await response.json();
   console.log(data, "<<<< data transaction");
 

@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 export async function getGroupTeacher(groupId) {
   try {
-    const res = await fetch(`http://localhost:3000/api/group/${groupId}`, {
+    const res = await fetch(`https://skoolar.vercel.app/api/group/${groupId}`, {
       cache: "no-store",
       method: "GET",
       headers: {
@@ -18,7 +18,7 @@ export async function getGroupTeacher(groupId) {
 
 export async function getSchoolAnnouncement() {
   try {
-    const res = await fetch("http://localhost:3000/api/announcement", {
+    const res = await fetch("https://skoolar.vercel.app/api/announcement", {
       cache: "no-store",
       method: "GET",
       headers: {

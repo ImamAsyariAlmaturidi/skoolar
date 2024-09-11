@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 export async function getSchoolAnnouncement() {
   try {
-    const res = await fetch("http://localhost:3000/api/announcement", {
+    const res = await fetch("https://skoolar.vercel.app/api/announcement", {
       cache: "no-store",
       method: "GET",
       headers: {

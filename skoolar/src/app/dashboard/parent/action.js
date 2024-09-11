@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 export async function getMe() {
   try {
-    const res = await fetch("http://localhost:3000/api/parent", {
+    const res = await fetch("https://skoolar.vercel.app/api/parent", {
       cache: "no-store",
       method: "GET",
       headers: {
@@ -37,7 +37,7 @@ export async function getMe() {
 
 export async function getAllGroup() {
   try {
-    const res = await fetch("http://localhost:3000/api/group", {
+    const res = await fetch("https://skoolar.vercel.app/api/group", {
       cache: "no-store",
       method: "GET",
       headers: {
@@ -58,7 +58,7 @@ export async function getAllGroup() {
 
 export async function getSchoolAnnouncement() {
   try {
-    const res = await fetch("http://localhost:3000/api/announcement", {
+    const res = await fetch("https://skoolar.vercel.app/api/announcement", {
       cache: "no-store",
       method: "GET",
       headers: {
@@ -79,13 +79,16 @@ export async function getSchoolAnnouncement() {
 
 export async function getAllNotification() {
   try {
-    const response = await fetch("http://localhost:3000/api/notification", {
-      cache: "no-store",
-      method: "GET",
-      headers: {
-        Cookie: cookies().toString(),
-      },
-    });
+    const response = await fetch(
+      "https://skoolar.vercel.app/api/notification",
+      {
+        cache: "no-store",
+        method: "GET",
+        headers: {
+          Cookie: cookies().toString(),
+        },
+      }
+    );
     const { data } = await response.json();
 
     console.log(data, "<<< action notif");

@@ -83,7 +83,7 @@ export async function sendMessage(groupId, messageData) {
 
 export async function getAllGroup() {
   try {
-    const res = await fetch("http://localhost:3000/api/group", {
+    const res = await fetch("https://skoolar.vercel.app/api/group", {
       cache: "no-store",
       method: "GET",
       headers: {
@@ -105,7 +105,7 @@ export async function getAllGroup() {
 export async function getUserIdOther(id) {
   console.log(id);
   try {
-    const res = await fetch(`http://localhost:3000/api/parent/${id}`, {
+    const res = await fetch(`https://skoolar.vercel.app/api/parent/${id}`, {
       cache: "no-store",
       method: "GET",
       headers: {
@@ -127,7 +127,7 @@ export async function getUserIdOther(id) {
 export async function getTeaacherIdOther(id) {
   console.log(id);
   try {
-    const res = await fetch(`http://localhost:3000/api/parent/${id}`, {
+    const res = await fetch(`https://skoolar.vercel.app/api/parent/${id}`, {
       cache: "no-store",
       method: "GET",
       headers: {

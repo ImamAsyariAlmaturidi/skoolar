@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 export async function getAllGroup() {
   try {
-    const res = await fetch("http://localhost:3000/api/group", {
+    const res = await fetch("https://skoolar.vercel.app/api/group", {
       cache: "no-store",
       method: "GET",
       headers: {

@@ -6,7 +6,7 @@ import { CreateNotification } from "../../../../db/models/notification";
 
 export async function getTransactions() {
   try {
-    const res = await fetch("http://localhost:3000/api/transaction", {
+    const res = await fetch("https://skoolar.vercel.app/api/transaction", {
       cache: "no-store",
       method: "GET",
       headers: {
@@ -26,7 +26,7 @@ export async function getTransactions() {
 
 export async function createTransaction() {
   try {
-    const res = await fetch("http://localhost:3000/api/transaction", {
+    const res = await fetch("https://skoolar.vercel.app/api/transaction", {
       cache: "no-store",
       method: "POST",
       headers: {
@@ -50,7 +50,7 @@ export async function redirectHistory() {
 export async function updateTransaction(requestData) {
   console.log("masuk action");
   try {
-    const res = await fetch("http://localhost:3000/api/transaction", {
+    const res = await fetch("https://skoolar.vercel.app/api/transaction", {
       method: "PATCH",
       body: JSON.stringify({ token: requestData }),
     });
