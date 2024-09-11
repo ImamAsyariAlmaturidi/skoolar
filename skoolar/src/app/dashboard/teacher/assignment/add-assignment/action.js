@@ -1,6 +1,6 @@
 "use server";
 import { auth } from "../../../../../auth";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { jwtVerify } from "jose";
 import { google } from "googleapis";
 import Joi from "joi";
@@ -155,3 +155,8 @@ export const createCourseWork = async (formData) => {
 
   // return response.data.courses;
 };
+
+export async function getToken() {
+  const store = cookies();
+  return (token = store.get("access_token"));
+}
