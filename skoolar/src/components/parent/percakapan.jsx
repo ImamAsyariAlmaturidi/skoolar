@@ -28,7 +28,7 @@ export default async function Percakapan({ data }) {
             <span>Classroom</span>
           </section>
           <div className="w-1/3 flex justify-end items-center">
-            <Link href={"/dashboard/parent/chat"}>
+            <Link href={"/dashboard/teacher/chat"}>
               <span className="text-[12px] text-[#006bf8] bg-white p-2 px-3 rounded-xl hover:text-white hover:bg-[#006bf8]">
                 See All
               </span>
@@ -39,7 +39,7 @@ export default async function Percakapan({ data }) {
           Group Chat
         </span>
         {data?.map((el, index) => (
-          <Link href={`/dashboard/parent/chat/${el._id}`} key={index}>
+          <Link href={`/dashboard/teacher/chat/${el._id}`} key={index}>
             <ChatBox data={el} />
           </Link>
         ))}
@@ -47,9 +47,6 @@ export default async function Percakapan({ data }) {
           <p className="ml-8 mt-5 mb-2 text-xs text-neutral-400">
             Personal Message
           </p>
-          <ChatBox />
-          <ChatBox />
-          <ChatBox />
           <ChatBox />
           <ChatBox />
         </div>

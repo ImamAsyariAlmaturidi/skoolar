@@ -3,6 +3,7 @@
 import { useState } from 'react'
 
 
+<<<<<<< HEAD
 
 export default function AnnouncementPage() {
     const [announcements, setAnnouncements] = useState([
@@ -11,6 +12,29 @@ export default function AnnouncementPage() {
     ])
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [newAnnouncement, setNewAnnouncement] = useState({ title: '', content: '', class: '' })
+=======
+import { useEffect, useState } from "react";
+import { AddNewAnnouncement, getSchoolAnnouncement } from "./action";
+export default function AnnouncementPage() {
+  const [announcements, setAnnouncements] = useState([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  console.log(announcements, "iniii");
+  async function data() {
+    try {
+      const newdata = await getSchoolAnnouncement();
+      console.log(newdata);
+      const AnnouncementData = newdata.data;
+      setAnnouncements(AnnouncementData);
+    } catch (error) {}
+  }
+
+  const [newAnnouncement, setNewAnnouncement] = useState({
+    title: "",
+    content: "",
+  });
+>>>>>>> origin/farhanadmin
 
     const handleInputChange = (e) => {
         setNewAnnouncement({ ...newAnnouncement, [e.target.name]: e.target.value })
@@ -24,9 +48,19 @@ export default function AnnouncementPage() {
         setIsModalOpen(false)
     }
 
+<<<<<<< HEAD
     return (
         <div className="container mx-auto p-10 bg-white rounded-2xl ">
             <h1 className="text-xl font-bold mb-4">Announcements</h1>
+=======
+  useEffect(() => {
+    data();
+  }, []);
+
+  return (
+    <div className="bg-white rounded-2xl p-10 w-full ml-4 overflow-y-auto overflow-x-auto">
+      <h1 className="text-xl font-bold mb-4">Announcements</h1>
+>>>>>>> origin/farhanadmin
 
             <button
                 onClick={() => setIsModalOpen(true)}
@@ -35,6 +69,7 @@ export default function AnnouncementPage() {
                 New Announcement
             </button>
 
+<<<<<<< HEAD
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
                     <div className="bg-white rounded-lg shadow-lg w-full max-w-md">
@@ -125,6 +160,63 @@ export default function AnnouncementPage() {
                         ))}
                     </tbody>
                 </table>
+=======
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-lg w-full max-w-md">
+            <div className="p-6">
+              <h3 className="text-lg font-semibold mb-4 ">
+                Add New Announcement
+              </h3>
+              <form action={AddNewAnnouncement} className="space-y-4">
+                <div>
+                  <label
+                    htmlFor="title"
+                    className="block text-sm font-medium mb-1"
+                  >
+                    Title
+                  </label>
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    required
+                    className="w-full px-3 py-2 border-[0.1px] border-neutral-600 border-input bg-white rounded-md "
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="content"
+                    className="block text-sm font-medium mb-1"
+                  >
+                    Content
+                  </label>
+                  <textarea
+                    id="content"
+                    name="content"
+                    required
+                    className="w-full px-3 py-2 border-[0.1px] border-neutral-500 border-input bg-white rounded-md "
+                    rows={3}
+                  />
+                </div>
+
+                <div className="flex justify-end space-x-2 mt-6">
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                    className="px-4 py-2 border border-input rounded-md text-sm font-medium "
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-blue-700 text-white rounded-md text-sm font-medium hover:bg-primary/90"
+                  >
+                    Add Announcement
+                  </button>
+                </div>
+              </form>
+>>>>>>> origin/farhanadmin
             </div>
         </div>
     )

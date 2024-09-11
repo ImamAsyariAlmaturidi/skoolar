@@ -1,13 +1,16 @@
 import PrentNotification from "../../../../components/parent/Notifications";
 import SideBar from "../../../../components/parent/Sidebar";
+import { getSchoolAnnouncement } from "../action";
 
-export default function NotificationPage() {
+export default async function NotificationPage() {
+  const GeneralAnnouncement = await getSchoolAnnouncement();
+  const AnnouncementData = GeneralAnnouncement.data;
   return (
     <>
       <div className="w-full flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">
         <SideBar />
         <div className="flex w-full">
-          <div className=" bg-white w-[30rem] h-full border-r border-neutral-200 rounded-2xl rounded-tr-none rounded-br-none">
+          <div className=" bg-white w-[30rem] h-full border-r border-neutral-200 rounded-2xl rounded-tr-none rounded-br-none overflow-y-auto overflow-x-hidden">
             <header className="flex items-center p-3 pb-4 h-[11%] gap-3 text-[#006bf8] border-b border-neutral-300 ">
               <svg
                 width="36px"
@@ -51,16 +54,9 @@ export default function NotificationPage() {
             </header>
             <div className="h-[86%] w-full py-3 overflow-y-auto px-4">
               <div className="flex flex-col gap-4 ">
-                <PrentNotification />
-                <PrentNotification />
-                <PrentNotification />
-                <PrentNotification />
-                <PrentNotification />
-                <PrentNotification />
-                <PrentNotification />
-                <PrentNotification />
-                <PrentNotification />
-                <PrentNotification />
+                {AnnouncementData?.map((el, index) => (
+                  <PrentNotification el={el} key={index} />
+                ))}
               </div>
             </div>
           </div>

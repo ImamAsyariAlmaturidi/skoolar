@@ -1,42 +1,11 @@
-"use client";
-import { useState } from "react";
-import SideBar from "../../../../components/teacher/Sidebar";
 import Link from "next/link";
 import TeacherSideBar from "../../../../components/teacher/Sidebar";
+import { getSchoolAnnouncement } from "./action";
 
-export default function ParentAnnouncement() {
-  const [announcement, setAnnouncement] = useState([
-    {
-      id: "1",
-      title: "Christmas Celebration",
-      content:
-        " Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus laudantium nam suscipit? Numquam doloribus dolorum harum commodi, veniam porro facilis corporis mollitia rem, voluptatem tempora ex earum quidem sapiente modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cumque quisquam eveniet vero magni harum quos doloremque labore inventore rem veritatis, rerum aut reprehenderit tenetur aperiam, hic ex, eos laudantium? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iste nesciunt repellendus nobis! Consequuntur natus quibusdam error. Maxime exercitationem tempora harum dolorem itaque omnis. Sint rerum facere suscipit. Labore, sequi",
-    },
-    {
-      id: "2",
-      title: "School Crnival",
-      content:
-        " Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus laudantium nam suscipit? Numquam doloribus dolorum harum commodi, veniam porro facilis corporis mollitia rem, voluptatem tempora ex earum quidem sapiente modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cumque quisquam eveniet vero magni harum quos doloremque labore inventore rem veritatis, rerum aut reprehenderit tenetur aperiam, hic ex, eos laudantium? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iste nesciunt repellendus nobis! Consequuntur natus quibusdam error. Maxime exercitationem tempora harum dolorem itaque omnis. Sint rerum facere suscipit. Labore, sequi",
-    },
-    {
-      id: "3",
-      title: "Christmas Celebration",
-      content:
-        " Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus laudantium nam suscipit? Numquam doloribus dolorum harum commodi, veniam porro facilis corporis mollitia rem, voluptatem tempora ex earum quidem sapiente modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cumque quisquam eveniet vero magni harum quos doloremque labore inventore rem veritatis, rerum aut reprehenderit tenetur aperiam, hic ex, eos laudantium? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iste nesciunt repellendus nobis! Consequuntur natus quibusdam error. Maxime exercitationem tempora harum dolorem itaque omnis. Sint rerum facere suscipit. Labore, sequi",
-    },
-    {
-      id: "4",
-      title: "Christmas Celebration",
-      content:
-        " Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus laudantium nam suscipit? Numquam doloribus dolorum harum commodi, veniam porro facilis corporis mollitia rem, voluptatem tempora ex earum quidem sapiente modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cumque quisquam eveniet vero magni harum quos doloremque labore inventore rem veritatis, rerum aut reprehenderit tenetur aperiam, hic ex, eos laudantium? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iste nesciunt repellendus nobis! Consequuntur natus quibusdam error. Maxime exercitationem tempora harum dolorem itaque omnis. Sint rerum facere suscipit. Labore, sequi",
-    },
-    {
-      id: "4",
-      title: "Christmas Celebration",
-      content:
-        " Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus laudantium nam suscipit? Numquam doloribus dolorum harum commodi, veniam porro facilis corporis mollitia rem, voluptatem tempora ex earum quidem sapiente modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cumque quisquam eveniet vero magni harum quos doloremque labore inventore rem veritatis, rerum aut reprehenderit tenetur aperiam, hic ex, eos laudantium? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iste nesciunt repellendus nobis! Consequuntur natus quibusdam error. Maxime exercitationem tempora harum dolorem itaque omnis. Sint rerum facere suscipit. Labore, sequi",
-    },
-  ]);
+export default async function ParentAnnouncement() {
+  const data = await getSchoolAnnouncement();
+  const announcement = data.data;
+  console.log(announcement);
   return (
     <>
       <div className="w-full flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">
@@ -73,22 +42,21 @@ export default function ParentAnnouncement() {
             </header>
             <div className="h-[86%] w-full mt-5 overflow-y-auto px-4">
               <div className="flex flex-col gap-4 ">
-                {announcement.map((el, index) => (
+                {announcement?.map((el, index) => (
                   <Link href={`/dashboard/teacher/announcement/${el.title}`}>
-                    <div className="flex justify-start items- gap-3 w-full h-[5rem] border-neutral-200 border-b-[0.3px]">
+                    <div className="flex justify-start items-start gap-3 w-full h-[5rem] border-neutral-200 border-b-[0.3px]">
                       <section className="h-full flex items-start py-2">
                         <section className="w-4 h-4 rounded-full bg-blue-400"></section>
                       </section>
-                      <section className="overflow-hidden relative mr-2">
+                      <section className="flex-1 relative justify-center">
                         <span className="text-black text-[15px] font-medium">
-                          Finance
-                        </span>{" "}
-                        <span className="text-[#006bf8] text-[12px] absolute right-3">
+                          {el.title}
+                        </span>
+                        <span className="text-[#006bf8] text-[12px] absolute right-0 top-0">
                           17.30
                         </span>
                         <p className="text-neutral-600 text-[12px] line-clamp-2 mt-1 leading-normal">
-                          Dear Mr. Fathan, we respectfully inform you that the
-                          payment is overdue by 3 months...
+                          {el.content}
                         </p>
                       </section>
                     </div>

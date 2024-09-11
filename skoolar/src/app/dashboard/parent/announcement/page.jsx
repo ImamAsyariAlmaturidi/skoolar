@@ -2,46 +2,18 @@
 import { useState } from "react";
 import SideBar from "../../../../components/parent/Sidebar";
 import Link from "next/link";
+import { getSchoolAnnouncement } from "../action";
 
-export default function ParentAnnouncement() {
-  const [announcement, setAnnouncement] = useState([
-    {
-      id: "1",
-      title: "Christmas Celebration",
-      content:
-        " Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus laudantium nam suscipit? Numquam doloribus dolorum harum commodi, veniam porro facilis corporis mollitia rem, voluptatem tempora ex earum quidem sapiente modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cumque quisquam eveniet vero magni harum quos doloremque labore inventore rem veritatis, rerum aut reprehenderit tenetur aperiam, hic ex, eos laudantium? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iste nesciunt repellendus nobis! Consequuntur natus quibusdam error. Maxime exercitationem tempora harum dolorem itaque omnis. Sint rerum facere suscipit. Labore, sequi",
-    },
-    {
-      id: "2",
-      title: "School Crnival",
-      content:
-        " Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus laudantium nam suscipit? Numquam doloribus dolorum harum commodi, veniam porro facilis corporis mollitia rem, voluptatem tempora ex earum quidem sapiente modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cumque quisquam eveniet vero magni harum quos doloremque labore inventore rem veritatis, rerum aut reprehenderit tenetur aperiam, hic ex, eos laudantium? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iste nesciunt repellendus nobis! Consequuntur natus quibusdam error. Maxime exercitationem tempora harum dolorem itaque omnis. Sint rerum facere suscipit. Labore, sequi",
-    },
-    {
-      id: "3",
-      title: "Christmas Celebration",
-      content:
-        " Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus laudantium nam suscipit? Numquam doloribus dolorum harum commodi, veniam porro facilis corporis mollitia rem, voluptatem tempora ex earum quidem sapiente modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cumque quisquam eveniet vero magni harum quos doloremque labore inventore rem veritatis, rerum aut reprehenderit tenetur aperiam, hic ex, eos laudantium? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iste nesciunt repellendus nobis! Consequuntur natus quibusdam error. Maxime exercitationem tempora harum dolorem itaque omnis. Sint rerum facere suscipit. Labore, sequi",
-    },
-    {
-      id: "4",
-      title: "Christmas Celebration",
-      content:
-        " Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus laudantium nam suscipit? Numquam doloribus dolorum harum commodi, veniam porro facilis corporis mollitia rem, voluptatem tempora ex earum quidem sapiente modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cumque quisquam eveniet vero magni harum quos doloremque labore inventore rem veritatis, rerum aut reprehenderit tenetur aperiam, hic ex, eos laudantium? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iste nesciunt repellendus nobis! Consequuntur natus quibusdam error. Maxime exercitationem tempora harum dolorem itaque omnis. Sint rerum facere suscipit. Labore, sequi",
-    },
-    {
-      id: "4",
-      title: "Christmas Celebration",
-      content:
-        " Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus laudantium nam suscipit? Numquam doloribus dolorum harum commodi, veniam porro facilis corporis mollitia rem, voluptatem tempora ex earum quidem sapiente modi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae cumque quisquam eveniet vero magni harum quos doloremque labore inventore rem veritatis, rerum aut reprehenderit tenetur aperiam, hic ex, eos laudantium? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iste nesciunt repellendus nobis! Consequuntur natus quibusdam error. Maxime exercitationem tempora harum dolorem itaque omnis. Sint rerum facere suscipit. Labore, sequi",
-    },
-  ]);
+export default async function ParentAnnouncement() {
+  const GeneralAnnouncement = await getSchoolAnnouncement();
+  const AnnouncementData = GeneralAnnouncement.data;
+
   return (
     <>
       <div className="flex gap-3 px-5 py-10 h-screen bg-[#F1F7FE]">
         <SideBar />
         <div className="flex w-full">
-          <div className=" bg-white w-[30rem] h-full border-r border-neutral-200 rounded-2xl rounded-tr-none rounded-br-none">
+          <div className=" bg-white w-[30rem] h-full border-r border-neutral-200 rounded-2xl rounded-tr-none rounded-br-none overflow-y-auto overflow-x-hidden">
             <header className="flex items-center p-3 pb-4  gap-3 h-[11%]  text-[#006bf8] border-b border-neutral-300 ">
               <svg
                 width="25px"
@@ -66,28 +38,30 @@ export default function ParentAnnouncement() {
                   />{" "}
                 </g>
               </svg>
-              <span className="text-2xl text-black font-medium lg:text-nowrap">
+              <span className="text-[1.5rem] text-black font-medium lg:text-nowrap">
                 School Announcemennt
               </span>
             </header>
-            <div className="h-[86%] w-full mt-5 overflow-y-auto px-4">
-              <div className="flex flex-col gap-4 ">
-                {announcement.map((el, index) => (
-                  <Link href={`/dashboard/parent/announcement/${el.title}`}>
-                    <div className="flex justify-start items- gap-3 w-full h-[5rem] border-neutral-200 border-b-[0.3px]">
+            <div className="h-[86%] w-full overflow-y-auto px-4">
+              <div className="flex mt-5 flex-col gap-4 overflow-y-auto">
+                {AnnouncementData?.map((el, index) => (
+                  <Link
+                    href={`/dashboard/parent/announcement/${el.title}`}
+                    key={index}
+                  >
+                    <div className="flex justify-start items-start gap-3 w-full h-[5rem] border-neutral-200 border-b-[0.3px]">
                       <section className="h-full flex items-start py-2">
                         <section className="w-4 h-4 rounded-full bg-blue-400"></section>
                       </section>
-                      <section className="overflow-hidden relative mr-2">
+                      <section className="flex-1 relative justify-center">
                         <span className="text-black text-[15px] font-medium">
-                          Finance
-                        </span>{" "}
-                        <span className="text-[#006bf8] text-[12px] absolute right-3">
+                          {el.title}
+                        </span>
+                        <span className="text-[#006bf8] text-[12px] absolute right-0 top-0">
                           17.30
                         </span>
                         <p className="text-neutral-600 text-[12px] line-clamp-2 mt-1 leading-normal">
-                          Dear Mr. Fathan, we respectfully inform you that the
-                          payment is overdue by 3 months...
+                          {el.content}
                         </p>
                       </section>
                     </div>

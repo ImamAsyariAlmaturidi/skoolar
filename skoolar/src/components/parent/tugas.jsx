@@ -4,7 +4,9 @@ import Link from "next/link";
 import { db } from "../../config/firebase";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { getMe } from "../../app/dashboard/parent/action";
-export default function Tugas() {
+import icon from "../../../public/assignment.png";
+import Image from "next/image";
+export default function Tugas({ filter }) {
   const [assignments, setAssignments] = useState([]);
   const [groupId, setGroupId] = useState([]);
 
@@ -26,7 +28,7 @@ export default function Tugas() {
 
     const assignmentsRef = collection(db, "assignment");
     console.log(groupId);
-    const q = query(assignmentsRef, where("groupId", "in", groupId));
+    const q = query(assignmentsRef, where("groupId", `${filter}`, groupId));
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const fetchedAssignments = snapshot.docs.map((doc) => ({
@@ -104,12 +106,22 @@ export default function Tugas() {
             {spesificAssignment.map((el) => {
               return (
                 <>
-                  <section className="w-full h-[10rem] py-2 px-4 bg-[#f6f8fc] rounded-2xl relative">
-                    <span className="text-black text-2xl">{el.title}</span>
-                    <p className="text-neutral-600 mt-1 text-[13px]">
-                      {el.description}
-                    </p>
-                  </section>
+                  <div className="w-full border mx-auto bg-white rounded-lg p-4 flex">
+                    <div className="w-14 flex items-center mr-5">
+                      <Image className="h-16 w-16" src={icon} />
+                    </div>
+                    <div>
+                      <h2 className="text-lg font-semibold text-gray-800 ">
+                        {el.title}
+                      </h2>
+                      <p className="text-gray-600 text-sm">{el.description}</p>
+                      <div className=" text-right">
+                        <span className="text-xs text-gray-500">
+                          Due: 30 September 2024
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </>
               );
             })}

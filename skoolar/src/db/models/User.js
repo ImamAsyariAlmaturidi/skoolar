@@ -12,15 +12,12 @@ export const getDb = async () => {
 
 export const getUser = async () => {
   console.log("ini di model");
-
   const db = await getDb();
-
   const user = await db
     .collection(COLLECTION_USER)
     .find()
     .project({ password: 0, createdAt: 0, updatedAt: 0 })
     .toArray();
-
 
   return user;
 };

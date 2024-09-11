@@ -15,3 +15,28 @@ export async function getGroupByID(groupID) {
     throw error;
   }
 }
+
+export const getCourse = async () => {
+  if (!session || !session.accessToken) {
+    //ini harusnya ngambil access token baru pake refresh token
+    // return "Not authenticated";
+    return session;
+  }
+
+  try {
+    const oauth2Client = new google.auth.OAuth2(
+      process.env.AUTH_GOOGLE_ID,
+      process.env.AUTH_GOOGLE_SECRET
+    );
+    oauth2Client.setCredentials({ access_token: session.accessToken });
+
+    const classroom = google.classroom({ version: "v1", auth: oauth2Client });
+    // console.log(classroom.courses, "ini object courses");
+
+    const response = await classroom.courses.list();
+
+    return response.data.courses;
+  } catch (error) {
+    console.log(error, "oopsie, something's wrong");
+  }
+};

@@ -41,8 +41,6 @@ const TuitionPaymentStatusPage = () => {
         <h2 className="font-medium text-lg">Tuition Payment Status</h2>
       </div>
 
-      <AddTransactionForm onAddTransaction={handleAddTransaction} />
-
       <table className="min-w-full table-auto border-collapse">
         <thead>
           <tr className="bg-gray-100 text-sm font-medium">

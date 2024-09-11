@@ -9,7 +9,8 @@ import {
   orderBy,
   doc,
 } from "firebase/firestore";
-import { snap } from "../../../config/midtrans";
+// import { snap } from "../../../config/";
+import { cookies } from "next/headers";
 
 // INI FIREBASE
 export async function createGroup(data) {
@@ -110,4 +111,64 @@ async function createTransaction(
   }
 }
 
+export async function getAllUser(params) {
+  try {
+    const response = await fetch("http://localhost:3000/api/user", {
+      headers: {
+        Cookie: cookies().toString(),
+      },
+    });
+    const { data } = await response.json();
+    const result = data.filter((el) => el.role === "teacher");
 
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getParent(params) {
+  try {
+    const response = await fetch("http://localhost:3000/api/parents", {
+      headers: {
+        Cookie: cookies().toString(),
+      },
+    });
+    const { data } = await response.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getGroup(params) {
+  try {
+    const response = await fetch("http://localhost:3000/api/getOneGroup", {
+      headers: {
+        Cookie: cookies().toString(),
+      },
+    });
+    const { data } = await response.json();
+    // console.log(data, "data groups di list0user");
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getGroupTeacher(groupId) {
+  try {
+    const res = await fetch(`http://localhost:3000/api/group/${groupId}`, {
+      cache: "no-store",
+      method: "GET",
+      headers: {
+        Cookie: cookies().toString(),
+      },
+    });
+    return await res.json();
+  } catch (error) {
+    throw error;
+  }
+}
