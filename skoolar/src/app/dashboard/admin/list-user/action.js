@@ -29,6 +29,24 @@ export async function getAllUser(params) {
     }
 }
 
+export async function getUserWithGroup(params) {
+    try {
+        const response = await fetch("http://localhost:3000/api/userWithGroup", {
+            cache: "no-store",
+            method: "GET",
+            headers: {
+                Cookie: cookies().toString(),
+            },
+        });
+        const { data } = await response.json();
+        const result = data.filter((el) => el.role === "teacher");
+
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export async function getParent(params) {
     try {
         const response = await fetch("http://localhost:3000/api/parents", {
@@ -39,8 +57,6 @@ export async function getParent(params) {
             },
         });
         const { data } = await response.json();
-        // console.log(data);
-
         return data;
     } catch (error) {
         console.log(error);
@@ -132,7 +148,24 @@ export async function GetTeachersClass(params) {
             },
         });
         const { data } = await response.json();
-        // console.log(data, "data groups di list0user");
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function getParentWithGroup(params) {
+    try {
+        const response = await fetch("http://localhost:3000/api/parentWithGroup", {
+            cache: "no-store",
+            method: "GET",
+            headers: {
+                Cookie: cookies().toString(),
+            },
+        });
+        const { data } = await response.json();
+        console.log(data, "<<<<<data di action parent");
+
         return data;
     } catch (error) {
         console.log(error);

@@ -93,3 +93,23 @@ export const updateGroupParent = async (newGroupId, ParentId) => {
 
   return result;
 };
+
+export const parentWithGroup = async () => {
+  const db = await getDb();
+  const collection = db.collection(COLLECTION_PARENT);
+
+  const agg = [
+    {
+      $lookup: {
+        from: "group",
+        localField: "GroupId",
+        foreignField: "_id",
+        as: "groups",
+      },
+    },
+  ]
+
+  const user = await collection.aggregate(agg).toArray();
+  return user;
+
+}

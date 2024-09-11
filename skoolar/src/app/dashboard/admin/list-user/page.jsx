@@ -7,6 +7,8 @@ import {
   postStudent,
   postTeacher,
   GetTeachersClass,
+  getUserWithGroup,
+  getParentWithGroup,
 } from "./action";
 export default function TeacherStudentList() {
   // State untuk daftar guru dan murid
@@ -16,17 +18,17 @@ export default function TeacherStudentList() {
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {
-    const teachersData = await getAllUser();
 
-    setTeachers(teachersData);
-
-    const studentsData = await getParent();
-    console.log(studentsData);
-    setStudents(studentsData);
 
     const groupsData = await getGroup();
-    // console.log(groupsData, "data di client");
     setGroups(groupsData);
+
+    const userGroup = await getUserWithGroup()
+    setTeachers(userGroup);
+
+    const parentGroup = await getParentWithGroup()
+    setStudents(parentGroup)
+
   };
 
   useEffect(() => {
@@ -52,34 +54,6 @@ export default function TeacherStudentList() {
     setIsStudentModalOpen(!isStudentModalOpen);
   };
 
-  // Fungsi untuk mengubah input modal guru
-  const handleTeacherInputChange = (e) => {
-    setNewTeacher({ ...newTeacher, [e.target.name]: e.target.value });
-  };
-
-  // Fungsi untuk mengubah input modal murid
-  const handleStudentInputChange = (e) => {
-    setNewStudent({ ...newStudent, [e.target.name]: e.target.value });
-  };
-  //
-
-  // Fungsi untuk menambahkan guru
-  const handleAddTeacher = () => {
-    setTeachers([
-      ...teachers,
-      { name: newTeacher.name, subject: newTeacher.subject },
-    ]);
-    toggleTeacherModal(); // Tutup modal setelah menambahkan
-  };
-
-  // Fungsi untuk menambahkan murid
-  const handleAddStudent = () => {
-    setStudents([
-      ...students,
-      { name: newStudent.name, grade: newStudent.grade },
-    ]);
-    toggleStudentModal(); // Tutup modal setelah menambahkan
-  };
   const postTeachers = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -147,6 +121,7 @@ export default function TeacherStudentList() {
                         <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
                           <th className="border px-4 py-2">Name</th>
                           <th className="border px-4 py-2">Subject</th>
+                          <th className="border px-4 py-2">NIK</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -154,8 +129,9 @@ export default function TeacherStudentList() {
                           <tr key={index} className="text-sm text-gray-700">
                             <td className="border px-4 py-2">{teacher.name}</td>
                             <td className="border px-4 py-2">
-                              {teacher.GroupId}
+                              {teacher?.groups[0]?.name || "No Class"}
                             </td>
+                            <td className="border px-4 py-2">{teacher.NIK}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -178,7 +154,9 @@ export default function TeacherStudentList() {
                     <table className="min-w-full table-auto border-collapse">
                       <thead>
                         <tr className="bg-gray-100 text-left text-sm font-medium text-gray-700">
+                          <th className="border px-4 py-2">NISN</th>
                           <th className="border px-4 py-2">Name</th>
+                          <th className="border px-4 py-2">Parent Name</th>
                           <th className="border px-4 py-2">Grade</th>
                         </tr>
                       </thead>
@@ -186,10 +164,16 @@ export default function TeacherStudentList() {
                         {students.map((student, index) => (
                           <tr key={index} className="text-sm text-gray-700">
                             <td className="border px-4 py-2">
+                              {student.NISN}
+                            </td>
+                            <td className="border px-4 py-2">
                               {student.studentName}
                             </td>
                             <td className="border px-4 py-2">
-                              {student.GroupId}
+                              {student.parentName}
+                            </td>
+                            <td className="border px-4 py-2">
+                              {student?.groups[0]?.name}
                             </td>
                           </tr>
                         ))}

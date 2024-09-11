@@ -80,3 +80,25 @@ export const updateGroupTeacher = async (newGroupId, teacherId) => {
   return result;
 
 };
+
+export const userWithGroup = async () => {
+  const db = await getDb();
+  const collection = db.collection(COLLECTION_USER);
+
+  const agg = [
+    {
+      $lookup: {
+        from: "group",
+        localField: "GroupId",
+        foreignField: "_id",
+        as: "groups",
+      },
+    },
+  ]
+
+  const user = await collection.aggregate(agg).toArray();
+
+  console.log(user, "<<<<< user di model");
+  return user;
+
+}
