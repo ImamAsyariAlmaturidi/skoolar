@@ -22,7 +22,7 @@
 - Creation and management of tuition fees for the school.
 - And many more.
 
-<img width="1470" alt="Screenshot 2024-09-14 at 03 41 06" src="https://github.com/user-attachments/assets/6d1d01db-ee45-42d8-9768-aca549355c24">
+<img width="1470" alt="Screenshot 2024-09-14 at 04 02 04" src="https://github.com/user-attachments/assets/f5987b80-0c89-45c9-9d19-39aa7409e2ba">
 
 
 ### Technologies Used:
