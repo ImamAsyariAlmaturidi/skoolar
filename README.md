@@ -22,7 +22,8 @@
 - Creation and management of tuition fees for the school.
 - And many more.
 
-<img width="1470" alt="Screenshot 2024-09-14 at 03 41 06" src="https://github.com/user-attachments/assets/9b9c3715-50f4-4e28-94c0-89b96889150d">
+<img width="1470" alt="Screenshot 2024-09-14 at 03 41 06" src="https://github.com/user-attachments/assets/6d1d01db-ee45-42d8-9768-aca549355c24">
+
 
 ### Technologies Used:
 - **Next.js**: A React framework for building fast and scalable web applications.
