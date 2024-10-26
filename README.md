@@ -4,6 +4,8 @@
 [Skoolar App](https://skoolar-app.vercel.app)
 
 ### Credentials:
+
+- **School Login Section**
 - **Login as Admin:**
   - National Identity Number: `998009`
   - Password: `12345`
@@ -12,6 +14,7 @@
   - National Identity Number: `998003`
   - Password: `12345`
 
+- **Parent Login Section**
 - **Login as Parent:**
   - National Student Number: `117`
   - Password: `12345`
