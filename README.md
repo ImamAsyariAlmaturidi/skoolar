@@ -1,6 +1,6 @@
 # Skoolar
 
-## Feel Free to Try This Website
+## Feel Free to Try This Website - Please Try using Laptop or Desktop for better Experience
 [Skoolar App](https://skoolar-app.vercel.app)
 
 ### Credentials:
